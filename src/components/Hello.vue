@@ -3,12 +3,17 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   name: 'Hello',
   data() {
     return {
     }
   },
+  computed: {
+    ...mapState('userData', {
+		}),
+  }
 }
 </script>
 
