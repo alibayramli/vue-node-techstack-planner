@@ -1,15 +1,15 @@
 <template>
-  Here are some exciting tools for your startup!
+	Here are some exciting tools for your startup!
 </template>
 
 <script>
 export default {
-  name: 'TechStack',
-  data() {
-    return {
-    }
-  },
-}
+	name: 'TechStack',
+	data() {
+		return {
+		};
+	},
+};
 </script>
 
 <style>
