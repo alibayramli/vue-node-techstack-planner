@@ -1,20 +1,42 @@
 {
   "name": "tech-stack-planner",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Tech stack finder for startups",
+  "main": "backend/server.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "cd backend && nodemon -r dotenv/config server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alibayramli/vue-node-techstack-planner.git"
+  },
+  "keywords": [
+    "tech",
+    "stack",
+    "framework",
+    "programming",
+    "languages",
+    "programming",
+    "tools"
+  ],
+  "author": "Ali Bayramli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alibayramli/vue-node-techstack-planner/issues"
+  },
+  "homepage": "https://github.com/alibayramli/vue-node-techstack-planner#readme",
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-plugin-node": "^11.1.0",
+    "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "vue": "^3.0.0-rc.1",
-    "vue-router": "^4.0.0-beta.11",
-    "vuex": "^4.0.0-beta.4"
-  },
-  "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0-rc.1",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.10.0",
-    "eslint-plugin-vue": "^7.0.0",
-    "vite": "^1.0.0-rc.4"
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7"
   }
 }

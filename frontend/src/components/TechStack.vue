@@ -1,5 +1,7 @@
 <template>
-	Here are some exciting tools for your startup!
+	<div>
+		Here are some exciting tools for your startup!
+	</div>
 </template>
 
 <script>
