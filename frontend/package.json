@@ -1,0 +1,23 @@
+{
+  "name": "tech-stack-planner",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "lodash": "^4.17.20",
+    "vue": "^3.0.0-rc.1",
+    "vue-router": "^4.0.0-beta.11",
+    "vuex": "^4.0.0-beta.4"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-rc.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-vue": "^7.0.1",
+    "vite": "^1.0.0-rc.4"
+  }
+}
