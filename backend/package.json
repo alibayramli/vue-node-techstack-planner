@@ -1,10 +1,10 @@
 {
-  "name": "tech-stack-planner",
+  "name": "tech-stack-planner-backend",
   "version": "1.0.0",
-  "description": "Tech stack finder for startups",
-  "main": "backend/server.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "dev": "cd backend && nodemon -r dotenv/config server.js",
+    "dev": "cd src && nodemon -r dotenv/config app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,13 +12,11 @@
     "url": "git+https://github.com/alibayramli/vue-node-techstack-planner.git"
   },
   "keywords": [
-    "tech",
-    "stack",
-    "framework",
+    "techstack",
     "programming",
-    "languages",
-    "programming",
-    "tools"
+    "tools",
+    "frameworks",
+    "startups"
   ],
   "author": "Ali Bayramli",
   "license": "ISC",
