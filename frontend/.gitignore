@@ -21,5 +21,10 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+# config files 
+public/config.js
+public/config.json 
+public/package.json
+
 # package-lock.json file
 package-lock.json
