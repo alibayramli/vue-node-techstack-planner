@@ -1,15 +1,9 @@
 {
   "name": "tech-stack-planner-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
   "scripts": {
     "dev": "cd src && nodemon -r dotenv/config app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alibayramli/vue-node-techstack-planner.git"
   },
   "keywords": [
     "techstack",
@@ -18,12 +12,6 @@
     "frameworks",
     "startups"
   ],
-  "author": "Ali Bayramli",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alibayramli/vue-node-techstack-planner/issues"
-  },
-  "homepage": "https://github.com/alibayramli/vue-node-techstack-planner#readme",
   "devDependencies": {
     "eslint": "^7.10.0",
     "eslint-plugin-node": "^11.1.0",
