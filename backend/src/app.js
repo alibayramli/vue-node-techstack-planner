@@ -37,15 +37,6 @@ app.delete('/userdata:techstackId', function (req, res) {
 	}
 });
 
-app.patch('/environments/:envId', function (req, res) {
-	try {
-		res.send();
-	} catch (err) {
-		console.log(err);
-		res.status(INTERNAL_SERVER_ERROR).send(err);
-	}
-});
-
 app.listen(port, (err) => {
 	if (err) {
 		return console.error('Error while starting server:', err);
