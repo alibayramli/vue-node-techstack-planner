@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
-import userData from './userData';
+import startupData from './startupData';
 export const store = createStore({
 	modules: {
-		userData,
+		startupData,
 	},
 });

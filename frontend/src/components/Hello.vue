@@ -20,7 +20,7 @@
 					<input type="number" min="1" v-model.number="startupBudget">
 				</div>
 				<div>
-					<input type="submit" value="Send Form">
+					<input type="submit" value="Send Form" :disabled="!startupSize || !startupLocation || !startupBudget">
 				</div>
 			</fieldset>
 		</form>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex';
 export default {
 	name: 'Hello',
 	data() {
@@ -42,34 +42,38 @@ export default {
 	computed: {
 		startupSize: {
 			get() {
-				return this.$store.state.userData.size;
+				return this.$store.state.startupData.size;
 			},
 			set(value) {
-				this.$store.commit('userData/UPDATE_SIZE', value);
+				this.$store.commit('startupData/UPDATE_SIZE', value);
 			},
 		},
 		startupLocation: {
 			get() {
-				return this.$store.state.userData.location;
+				return this.$store.state.startupData.location;
 			},
 			set(value) {
-				this.$store.commit('userData/UPDATE_LOCATION', value);
+				this.$store.commit('startupData/UPDATE_LOCATION', value);
 			},
 		},
 		startupBudget: {
 			get() {
-				return this.$store.state.userData.budget;
+				return this.$store.state.startupData.budget;
 			},
 			set(value) {
-				this.$store.commit('userData/UPDATE_BUDGET', value);
+				this.$store.commit('startupData/UPDATE_BUDGET', value);
 			},
 		},
 	},
 	watch: {
 	},
 	methods: {
-		submit() {
+		...mapActions('startupData', {
+			createData: 'createStartupData',
+		}),
+		async submit() {
 			this.submitted = true;
+			await this.createData();
 		},
 	},
 };
