@@ -1,3 +1,4 @@
+import axios from 'axios';
 export default {
 	namespaced: true,
 	state: {
@@ -17,5 +18,15 @@ export default {
 		},
 	},
 	actions: {
+		async createStartupData({ commit, state }) {
+			const newStartupData = {
+				size: state.size,
+				location: state.location,
+				budget: state.budget,
+			};
+			const response = await axios.post('http://localhost:5000/startup-data', newStartupData);
+			console.log('answer from backend:');
+			console.log(response.data);
+		},
 	},
 };

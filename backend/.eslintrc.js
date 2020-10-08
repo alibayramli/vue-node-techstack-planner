@@ -30,7 +30,7 @@ module.exports = {
 		'require-await': 'error',
 		'no-shadow': 'error',
 		'no-use-before-define': ['error', { functions: false }],
-		'no-unused-vars': ['error', { ignoreRestSiblings: true }],
+		'no-unused-vars': ['warn', { ignoreRestSiblings: true }],
 		indent: ['error', 'tab'], // enforce tabs in script and js files
 		semi: ['error', 'always'],
 		quotes: ['error', 'single', { avoidEscape: true }],
@@ -91,7 +91,6 @@ module.exports = {
 		'space-unary-ops': ['error', { words: true, nonwords: false }],
 		'no-mixed-operators': 'error',
 		'multiline-ternary': ['error', 'always-multiline'],
-		'new-cap': 'error',
 		'new-parens': ['error', 'always'],
 		'consistent-this': ['error', 'that'],
 
