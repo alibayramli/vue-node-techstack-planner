@@ -11,9 +11,7 @@
 					<label class="label" for="name">Location of the startup</label>
 					<p class="select">
 						<select v-model="startupLocation">
-							<option v-for="loc in locations" :key="loc" :value="loc">
-								{{ loc }}
-							</option>
+							<option v-for="loc in locations" :key="loc" :value="loc">{{ loc }}</option>
 						</select>
 					</p>
 				</div>
@@ -21,13 +19,8 @@
 					<label class="label" for="name">Startup budget</label>
 					<input type="number" min="1" v-model.number="startupBudget">
 				</div>
-				<div class="button-container">
-					<input
-						type="submit"
-						value="Send Form"
-						:disabled="!startupSize || !startupLocation || !startupBudget"
-					>
-					<input type="reset" value="Reset">
+				<div>
+					<input type="submit" value="Send Form" :disabled="!startupSize || !startupLocation || !startupBudget">
 				</div>
 			</fieldset>
 		</form>
@@ -40,18 +33,10 @@
 <script>
 import { mapActions } from 'vuex';
 export default {
-	name: 'Hello',
+	name: 'Form',
 	data() {
 		return {
-			locations: [
-				'',
-				'Europe',
-				'North America',
-				'Asia',
-				'South America',
-				'Africa',
-				'Australia',
-			],
+			locations: ['Europe', 'North America', 'Asia', 'South America', 'Africa', 'Australia'],
 		};
 	},
 	computed: {
@@ -80,7 +65,8 @@ export default {
 			},
 		},
 	},
-	watch: {},
+	watch: {
+	},
 	methods: {
 		...mapActions('startupData', {
 			createData: 'createStartupData',
@@ -148,7 +134,7 @@ export default {
 }
 .vue-form input[type="text"],
 .vue-form input[type="number"],
-.vue-form select {
+.vue-form select  {
   padding: 12px;
   border: 1px solid #cfd9db;
   background-color: #ffffff;
@@ -189,14 +175,7 @@ export default {
 .vue-form select::-ms-expand {
   display: none;
 }
-.button-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.vue-form input[type="submit"],
-.vue-form input[type="reset"] {
+.vue-form input[type="submit"] {
   border: none;
   background: #2c3e50;
   border-radius: 1em;
