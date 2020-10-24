@@ -24,9 +24,6 @@
 				</div>
 			</fieldset>
 		</form>
-		<!-- <div class="debug">
-			<pre><code>{{ $data }}</code></pre>
-		</div> -->
 	</div>
 </template>
 
