@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<router-link to="/hello"> Greeting </router-link> &nbsp;
+		<router-link to="/form"> Greeting </router-link> &nbsp;
 		<router-link to="/techstack"> Tech Stack </router-link>
 		<router-view />
 	</div>

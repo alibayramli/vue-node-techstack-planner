@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Hello from '../src/components/Hello.vue';
+import Hello from '../src/components/Form.vue';
 import TechStack from '../src/components/TechStack.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
 		{
 			name: 'hello',
-			path: '/hello',
+			path: '/form',
 			component: Hello,
 		},
 		{

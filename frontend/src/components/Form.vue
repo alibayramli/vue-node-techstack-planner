@@ -24,16 +24,13 @@
 				</div>
 			</fieldset>
 		</form>
-		<!-- <div class="debug">
-			<pre><code>{{ $data }}</code></pre>
-		</div> -->
 	</div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 export default {
-	name: 'Hello',
+	name: 'Form',
 	data() {
 		return {
 			locations: ['Europe', 'North America', 'Asia', 'South America', 'Africa', 'Australia'],
