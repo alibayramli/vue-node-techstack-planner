@@ -1,196 +1,196 @@
 {
     "developerType": {
         "BackendDeveloper": {
-            "popularity": 55.2,
-            "cost": 53
+            "popularity": "55.2%",
+            "cost": "53k"
         },
         "FullstackDeveloper": {
-            "popularity": 54.9,
-            "cost": 54
+            "popularity": "54.9%",
+            "cost": "54k"
         },
         "FrontEndDeveloper": {
-            "popularity": 37.1,
-            "cost": 49
+            "popularity": "37.1%",
+            "cost": "49k"
         },
         "EnterpriseDeveloper": {
-            "popularity": 23.9,
-            "cost": 56
+            "popularity": "23.9%",
+            "cost": "56k"
         },
         "MobileDeveloper": {
-            "popularity": 19.2,
-            "cost": 43
+            "popularity": "19.2%",
+            "cost": "43k"
         },
         "DevOpsSpecialist": {
-            "popularity": 12.1,
-            "cost": 68
+            "popularity": "12.1%",
+            "cost": "68k"
         },
         "DatabaseAdministrator": {
-            "popularity": 11.6,
-            "cost": 50
+            "popularity": "11.6%",
+            "cost": "50k"
         },
         "Designer": {
-            "popularity": 10.8,
-            "cost": 47
+            "popularity": "10.8%",
+            "cost": "47k"
         },
         "SystemAdministrator": {
-            "popularity": 10.6,
-            "cost": 54
+            "popularity": "10.6%",
+            "cost": "54k"
         },
         "EmbeddedApplicationsDeveloper": {
-            "popularity": 9.6,
-            "cost": 57
+            "popularity": "9.6%",
+            "cost": "57k"
         },
         "DataAnalyst": {
-            "popularity": 8.2,
-            "cost": 55
+            "popularity": "8.2%",
+            "cost": "55k"
         },
         "DataScientist": {
-            "popularity": 8.1,
-            "cost": 58
+            "popularity": "8.1%",
+            "cost": "58k"
         }, 
         "QADeveloper": {
-            "popularity": 8.0,
-            "cost": 53
+            "popularity": "8.0%",
+            "cost": "53k"
         },
         "DataEngineer": {
-            "popularity": 7.6,
-            "cost": 65
+            "popularity": "7.6%",
+            "cost": "65k"
         },
         "AcademicResearcher": {
-            "popularity": 7.2,
-            "cost": 41
+            "popularity": "7.2%",
+            "cost": "41k"
         },
         "Educator": {
-            "popularity": 5.9,
-            "cost": 49
+            "popularity": "5.9%",
+            "cost": "49k"
         },
         "EngineeringManager": {
-            "popularity": 5.5,
-            "cost": 92
+            "popularity": "5.5%",
+            "cost": "92k"
         },
         "GameDeveloper": {
-            "popularity": 5.6,
-            "cost": 50
+            "popularity": "5.6%",
+            "cost": "50k"
         },
         "ProductManager": {
-            "popularity": 5.1,
+            "popularity": "5.1%",
             "cost": null
         },
         "Scientist": {
-            "popularity": 4.2,
-            "cost": 57
+            "popularity": "4.2%",
+            "cost": "57k"
         },
         "SiteReliabilityEngineer": {
-            "popularity": 3.9,
-            "cost": 80
+            "popularity": "3.9%",
+            "cost": "80k"
         },
         "SeniorExecutive": {
-            "popularity": 2.7,
+            "popularity": "2.7%",
             "cost": null
         },
         "MarketingProfessional": {
-            "popularity": 1.3,
+            "popularity": "1.3%",
             "cost": null
         }
     },
     "mostUsedLanguages": {
-        "JavaScript": 67.7,
-        "HTML/CSS": 63.1,
-        "SQL": 54.7,
-        "Python": 44.1,
-        "Java": 40.2,
-        "Bash/Shell/PowerShell": 33.1,
-        "C#": 31.4,
-        "PHP": 26.2,
-        "TypeScript" : 25.4,
-        "C++": 23.9,
-        "C": 21.8,
-        "Go": 8.8,
-        "Kotlin": 7.8,
-        "Ruby": 7.1,
-        "Assembly": 6.2,
-        "VBA": 6.1,
-        "Swift": 5.9,
-        "R": 5.7,
-        "Rust" : 5.1,
-        "Objective-C": 4.1,
-        "Dart": 4,
-        "Scala": 3.6,
-        "Perl": 3.1,
-        "Haskell": 2.1,
-        "Julia": 0.9
+        "JavaScript": "67.7%",
+        "HTML/CSS": "63.1%",
+        "SQL": "54.7%",
+        "Python": "44.1%",
+        "Java": "40.2%",
+        "Bash/Shell/PowerShell": "33.1%",
+        "C#": "31.4%",
+        "PHP": "26.2%",
+        "TypeScript" : "25.4%",
+        "C++": "23.9%",
+        "C": "21.8%",
+        "Go": "8.8%",
+        "Kotlin": "7.8%",
+        "Ruby": "7.1%",
+        "Assembly": "6.2%",
+        "VBA": "6.1%",
+        "Swift": "5.9%",
+        "R": "5.7%",
+        "Rust" : "5.1%",
+        "Objective-C": "4.1%",
+        "Dart": "4%",
+        "Scala": "3.6%",
+        "Perl": "3.1%",
+        "Haskell": "2.1%",
+        "Julia": "0.9%"
     },
     "mostWantedFrameworks": {
-        "ASP.NET Core": 70.7,
-        "React.js": 68.9,
-        "Vue.js": 66.0,
-        "Express": 61.9,
-        "Gatsby": 60.7,
-        "Spring": 57.7,
-        "Django": 55.3,
-        "Flask": 54.4,
-        "Angular": 54.0,
-        "Laravel": 51.4,
-        "Ruby on Rails": 49.3,
-        "Symfony":45.6,
-        "ASP.NET": 36.9,
-        "Drupal": 25.5,
-        "Angular.js": 24.1 
+        "ASP.NET Core": "70.7%",
+        "React.js": "68.9%",
+        "Vue.js": "66.0%",
+        "Express": "61.9%",
+        "Gatsby": "60.7%",
+        "Spring": "57.7%",
+        "Django": "55.3%",
+        "Flask": "54.4%",
+        "Angular": "54.0%",
+        "Laravel": "51.4%",
+        "Ruby on Rails": "49.3%",
+        "Symfony":"45.6%",
+        "ASP.NET": "36.9%",
+        "Drupal": "25.5%",
+        "Angular.js": "24.1%" 
     },
     "databases": {
-        "MySQL": 55.6,
-        "PostreSql": 36.1,
-        "Microsoft SQL Server": 33.0,
-        "SQLite": 31.2,
-        "MongoDB":26.4,
-        "Redis": 18.3,
-        "MariaDB": 16.8,
-        "Oracle": 16.5,
-        "Firebase": 14.4,
-        "ElasticSearch": 13.8,
-        "DynamoDB": 7.1,
-        "Cassandra": 3.3,
-        "IBM DB2":2.9,
-        "Couchbase": 1.9
+        "MySQL": "55.6%",
+        "PostreSql": "36.1%",
+        "Microsoft SQL Server": "33.0%",
+        "SQLite": "31.2%",
+        "MongoDB":"26.4%",
+        "Redis": "18.3%",
+        "MariaDB": "16.8%",
+        "Oracle": "16.5%",
+        "Firebase": "14.4%",
+        "ElasticSearch": "13.8%",
+        "DynamoDB": "7.1%",
+        "Cassandra": "3.3%",
+        "IBM DB2":"2.9%",
+        "Couchbase": "1.9%"
     },
     "collaborationTools": {
-        "Github": 82.8,
-        "Slack": 53.0,
-        "Jira": 47.7,
-        "Google Suite":41.5,
-        "Gitlab": 37.0,
-        "Confluence": 32.4,
-        "Trello": 29.6,
-        "Microsoft Teams": 25.6,
-        "Microsoft Azure": 14.8,
-        "Stack Overflow for Teams": 5.8,
-        "Facebook Workplace": 3.0 
+        "Github": "82.8%",
+        "Slack": "53.0%",
+        "Jira": "47.7%",
+        "Google Suite":"41.5%",
+        "Gitlab": "37.0%",
+        "Confluence": "32.4%",
+        "Trello": "29.6%",
+        "Microsoft Teams": "25.6%",
+        "Microsoft Azure": "14.8%",
+        "Stack Overflow for Teams": "5.8%",
+        "Facebook Workplace": "3.0%" 
     },
     "topPayingTechnologies": {
-        "Perl": 76,
-        "Scala": 76,
-        "Go": 74,
-        "Rust": 74,
-        "Ruby": 71,
-        "Bash/Shell/PowerShell": 65,
-        "Objective-C": 64,
-        "Haskell": 60,
-        "Julia": 59,
-        "Python": 59,
-        "Swift": 58,
-        "C#": 57,
-        "R": 57,
-        "TypeScript": 57,
-        "Kotlin": 54,
-        "SQL": 54,
-        "Assembly": 53,
-        "C++": 53,
-        "JavaScript": 53,
-        "HTML/CSS": 52,
-        "VBA": 51,
-        "C": 50,
-        "Java": 50,
-        "PHP": 39,
-        "Dart": 37
+        "Perl": "76k",
+        "Scala": "76k",
+        "Go": "74k",
+        "Rust": "74k",
+        "Ruby": "71k",
+        "Bash/Shell/PowerShell": "65k",
+        "Objective-C": "64k",
+        "Haskell": "60k",
+        "Julia": "59k",
+        "Python": "59k",
+        "Swift": "58k",
+        "C#": "57k",
+        "R": "57k",
+        "TypeScript": "57k",
+        "Kotlin": "54k",
+        "SQL": "54k",
+        "Assembly": "53k",
+        "C++": "53k",
+        "JavaScript": "53k",
+        "HTML/CSS": "52k",
+        "VBA": "51k",
+        "C": "50k",
+        "Java": "50k",
+        "PHP": "39k",
+        "Dart": "37k"
     }
 }
