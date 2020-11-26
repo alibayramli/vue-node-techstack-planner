@@ -1,4 +1,39 @@
 {
+    "softwareType": {
+        "websites": {
+            "popularLanguages": [["PHP","81%"],["JavaScript","76%"],["TypeScript","72%"]]
+        },
+        "utilities": {
+            "popularLanguages": [["C#","45%"],["Kotlin","44%"],["Python","42%"]]
+        },
+        "dataScienceMachineLearning": { 
+            "popularLanguages": [["Python","45%"],["C++","44%"],["SQL","24%"]]
+        },
+        "fintech": { 
+            "popularLanguages": [["Java","15%"],["TypeScript","15%"],["SQL","15%"]]
+        },
+        "games": { 
+            "popularLanguages": [["C#","20%"],["C++","19%"],["Go","10%"]]
+        },
+        "security": { 
+            "popularLanguages": [["Go","10%"],["C++","8%"],["Python","8%"]]
+        } ,
+        "hardware": { 
+            "popularLanguages": [["C", "15%"],["C++","13%"],["Python","7%"]]
+        },
+        "blockchain": { 
+            "popularLanguages": [["Go","5%"],["C++","4%"],["Python","4%"]]
+        } 
+    },
+    "toolsRelateTo": {
+        "utilities": [["React Native","42%"],["Flutter","39%"],["Cordova","18%"],["Ionic","18%"],["Xamarin","14%"] ],
+        "dataScienceMachineLearning": {
+            "platforms": [["No specific platform","67%"],["Google Colab","18%"],["Google AI Platform","11%"]],
+            "tools": [["Apache Spark","24%"],["Apache Kafka","18%"],["Apache Hadoop","14%"]],
+            "statisticsPackages": [["(Microsoft Excel, Google Sheets, OpenOffice Calc, etc.)","50%"],["Tableau","18%"],["SAS","5%"]]
+        }
+
+    },
     "developerType": {
         "BackendDeveloper": {
             "popularity": "55.2%",
@@ -47,7 +82,7 @@
         "DataScientist": {
             "popularity": "8.1%",
             "cost": "58k"
-        }, 
+        },
         "QADeveloper": {
             "popularity": "8.0%",
             "cost": "53k"
@@ -102,7 +137,7 @@
         "Bash/Shell/PowerShell": "33.1%",
         "C#": "31.4%",
         "PHP": "26.2%",
-        "TypeScript" : "25.4%",
+        "TypeScript": "25.4%",
         "C++": "23.9%",
         "C": "21.8%",
         "Go": "8.8%",
@@ -112,7 +147,7 @@
         "VBA": "6.1%",
         "Swift": "5.9%",
         "R": "5.7%",
-        "Rust" : "5.1%",
+        "Rust": "5.1%",
         "Objective-C": "4.1%",
         "Dart": "4%",
         "Scala": "3.6%",
@@ -132,17 +167,17 @@
         "Angular": "54.0%",
         "Laravel": "51.4%",
         "Ruby on Rails": "49.3%",
-        "Symfony":"45.6%",
+        "Symfony": "45.6%",
         "ASP.NET": "36.9%",
         "Drupal": "25.5%",
-        "Angular.js": "24.1%" 
+        "Angular.js": "24.1%"
     },
     "databases": {
         "MySQL": "55.6%",
         "PostreSql": "36.1%",
         "Microsoft SQL Server": "33.0%",
         "SQLite": "31.2%",
-        "MongoDB":"26.4%",
+        "MongoDB": "26.4%",
         "Redis": "18.3%",
         "MariaDB": "16.8%",
         "Oracle": "16.5%",
@@ -150,21 +185,21 @@
         "ElasticSearch": "13.8%",
         "DynamoDB": "7.1%",
         "Cassandra": "3.3%",
-        "IBM DB2":"2.9%",
+        "IBM DB2": "2.9%",
         "Couchbase": "1.9%"
     },
     "collaborationTools": {
         "Github": "82.8%",
         "Slack": "53.0%",
         "Jira": "47.7%",
-        "Google Suite":"41.5%",
+        "Google Suite": "41.5%",
         "Gitlab": "37.0%",
         "Confluence": "32.4%",
         "Trello": "29.6%",
         "Microsoft Teams": "25.6%",
         "Microsoft Azure": "14.8%",
         "Stack Overflow for Teams": "5.8%",
-        "Facebook Workplace": "3.0%" 
+        "Facebook Workplace": "3.0%"
     },
     "topPayingTechnologies": {
         "Perl": "76k",
