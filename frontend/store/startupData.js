@@ -4,7 +4,7 @@ export default {
 	state: {
 		size: '',
 		location: '',
-		budget: '',
+		field: '',
 	},
 	mutations: {
 		UPDATE_SIZE(state, newSizeValue) {
@@ -13,16 +13,16 @@ export default {
 		UPDATE_LOCATION(state, newLocationValue) {
 			state.location = newLocationValue;
 		},
-		UPDATE_BUDGET(state, newBudgetValue) {
-			state.budget = newBudgetValue;
+		UPDATE_FIELD(state, newFieldValue) {
+			state.field = newFieldValue;
 		},
 	},
 	actions: {
-		async createStartupData({ commit, state }) {
+		async createStartupData({ state }) {
 			const newStartupData = {
 				size: state.size,
 				location: state.location,
-				budget: state.budget,
+				field: state.field,
 			};
 			const response = await axios.post('http://localhost:5000/startup-data', newStartupData);
 			console.log('answer from backend:');

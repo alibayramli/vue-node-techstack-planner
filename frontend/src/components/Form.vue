@@ -5,7 +5,11 @@
 				<legend>Tech Stack Specification Form</legend>
 				<div>
 					<label class="label" for="name">Team size</label>
-					<input type="number" min="1" v-model.number="startupSize">
+					<p class="select">
+						<select v-model="startupSize">
+							<option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
+						</select>
+					</p>
 				</div>
 				<div>
 					<label class="label" for="name">Location of the startup</label>
@@ -16,11 +20,15 @@
 					</p>
 				</div>
 				<div>
-					<label class="label" for="name">Startup budget</label>
-					<input type="number" min="1" v-model.number="startupBudget">
+					<label class="label" for="name">Startup field</label>
+					<p class="select">
+						<select v-model="startupField">
+							<option v-for="field in startupFields" :key="field" :value="field">{{ field }}</option>
+						</select>
+					</p>
 				</div>
 				<div>
-					<input type="submit" value="Send Form" :disabled="!startupSize || !startupLocation || !startupBudget">
+					<input type="submit" value="Send Form" :disabled="!startupSize || !startupLocation || !startupField">
 				</div>
 			</fieldset>
 		</form>
@@ -28,15 +36,19 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
 	name: 'Form',
 	data() {
 		return {
-			locations: ['Europe', 'North America', 'Asia', 'South America', 'Africa', 'Australia'],
 		};
 	},
 	computed: {
+		...mapState('generalInfoData', {
+			locations: 'locations',
+			sizes: 'startupSizes',
+			startupFields: 'fields',
+		}),
 		startupSize: {
 			get() {
 				return this.$store.state.startupData.size;
@@ -53,18 +65,26 @@ export default {
 				this.$store.commit('startupData/UPDATE_LOCATION', value);
 			},
 		},
-		startupBudget: {
+		startupField: {
 			get() {
-				return this.$store.state.startupData.budget;
+				return this.$store.state.startupData.field;
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_BUDGET', value);
+				this.$store.commit('startupData/UPDATE_FIELD', value);
 			},
 		},
 	},
 	watch: {
 	},
+	async created() {
+		await this.generalInfos();
+		await this.fields();
+	},
 	methods: {
+		...mapActions('generalInfoData', {
+			generalInfos: 'loadGeneralInfos',
+			fields: 'loadFields',
+		}),
 		...mapActions('startupData', {
 			createData: 'createStartupData',
 		}),
