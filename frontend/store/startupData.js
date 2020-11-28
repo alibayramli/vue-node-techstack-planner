@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router/router';
 export default {
 	namespaced: true,
 	state: {
@@ -18,15 +19,15 @@ export default {
 		},
 	},
 	actions: {
-		async createStartupData({ state }) {
+		async createStartupData({ commit, state }) {
 			const newStartupData = {
 				size: state.size,
 				location: state.location,
 				field: state.field,
 			};
 			const response = await axios.post('http://localhost:5000/startup-data', newStartupData);
-			console.log('answer from backend:');
-			console.log(response.data);
+			commit('toolsData/SET_TOOLS', response.data, { root: true });
+			router.push('techstack');
 		},
 	},
 };
