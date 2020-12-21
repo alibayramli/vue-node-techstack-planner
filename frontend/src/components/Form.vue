@@ -15,7 +15,7 @@
 					<label class="label" for="name">Location of the startup</label>
 					<p class="select">
 						<select v-model="startupLocation">
-							<option v-for="loc in locations" :key="loc" :value="loc">{{ loc }}</option>
+							<option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
 						</select>
 					</p>
 				</div>
@@ -23,7 +23,7 @@
 					<label class="label" for="name">Startup field</label>
 					<p class="select">
 						<select v-model="startupField">
-							<option v-for="field in startupFields" :key="field" :value="field">{{ field }}</option>
+							<option v-for="field in fields" :key="field" :value="field">{{ field }}</option>
 						</select>
 					</p>
 				</div>
@@ -44,10 +44,10 @@ export default {
 		};
 	},
 	computed: {
-		...mapState('generalInfoData', {
-			locations: 'locations',
-			sizes: 'startupSizes',
-			startupFields: 'fields',
+		...mapState('availableData', {
+			locations: 'availableLocations',
+			sizes: 'availableSizes',
+			fields: 'availableFields',
 		}),
 		startupSize: {
 			get() {
@@ -77,20 +77,17 @@ export default {
 	watch: {
 	},
 	async created() {
-		await this.generalInfos();
-		await this.fields();
+		await this.availableInfos();
 	},
 	methods: {
-		...mapActions('generalInfoData', {
-			generalInfos: 'loadGeneralInfos',
-			fields: 'loadFields',
+		...mapActions('availableData', {
+			availableInfos: 'loadAvailableInfos',
 		}),
 		...mapActions('startupData', {
-			createData: 'createStartupData',
+			createStartupData: 'createData',
 		}),
 		async submit() {
-			this.submitted = true;
-			await this.createData();
+			await this.createStartupData();
 		},
 	},
 };

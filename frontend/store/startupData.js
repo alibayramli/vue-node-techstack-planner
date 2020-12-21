@@ -19,13 +19,13 @@ export default {
 		},
 	},
 	actions: {
-		async createStartupData({ commit, state }) {
-			const newStartupData = {
+		async createData({ commit, state }) {
+			const newData = {
 				size: state.size,
 				location: state.location,
 				field: state.field,
 			};
-			const response = await axios.post('http://localhost:5000/startup-data', newStartupData);
+			const response = await axios.post('http://localhost:5000/startup-data', newData);
 			commit('toolsData/SET_TOOLS', response.data, { root: true });
 			router.push('techstack');
 		},

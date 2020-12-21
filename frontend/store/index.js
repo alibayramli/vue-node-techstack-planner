@@ -1,11 +1,11 @@
 import { createStore } from 'vuex';
 import startupData from './startupData';
-import generalInfoData from './generalInfoData';
+import availableData from './availableData';
 import toolsData from './toolsData';
 export const store = createStore({
 	modules: {
 		startupData,
-		generalInfoData,
+		availableData,
 		toolsData,
 	},
 });
