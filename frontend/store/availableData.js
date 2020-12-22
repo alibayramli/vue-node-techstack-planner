@@ -19,7 +19,7 @@ export default {
 	},
 	actions: {
 		async loadAvailableInfos({ commit }) {
-			const availableInfosResponse = await axios.get('http://localhost:5000/general-info-data');
+			const availableInfosResponse = await axios.get('http://localhost:5000/available-data');
 			const locations = availableInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
 			const startupSizes = availableInfosResponse.data.startupSpecifics.sizeOfStartup;
 			const fieldResponse = await axios.get('http://localhost:5000/tools-data');
