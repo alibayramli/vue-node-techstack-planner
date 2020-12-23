@@ -18,14 +18,14 @@ export default {
 		},
 	},
 	actions: {
-		async loadAvailableInfos({ commit }) {
-			const availableInfosResponse = await axios.get('http://localhost:5000/available-data');
-			const locations = availableInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
-			const startupSizes = availableInfosResponse.data.startupSpecifics.sizeOfStartup;
+		async loadFormInfos({ commit }) {
+			const formInfosResponse = await axios.get('http://localhost:5000/form-data');
+			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
+			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
 			const fieldResponse = await axios.get('http://localhost:5000/tools-data');
 			const fields = Object.keys(fieldResponse.data.softwareType);
 
-			commit('SET_AVAILABLE_SIZES', startupSizes);
+			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);
 			commit('SET_AVAILABLE_FIELDS', fields);
 		},

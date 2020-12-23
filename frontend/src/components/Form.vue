@@ -44,7 +44,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapState('availableData', {
+		...mapState('formData', {
 			locations: 'availableLocations',
 			sizes: 'availableSizes',
 			fields: 'availableFields',
@@ -77,11 +77,11 @@ export default {
 	watch: {
 	},
 	async created() {
-		await this.availableInfos();
+		await this.formInfos();
 	},
 	methods: {
-		...mapActions('availableData', {
-			availableInfos: 'loadAvailableInfos',
+		...mapActions('formData', {
+			formInfos: 'loadFormInfos',
 		}),
 		...mapActions('startupData', {
 			createStartupData: 'createData',
