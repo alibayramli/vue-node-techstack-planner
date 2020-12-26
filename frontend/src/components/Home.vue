@@ -2,29 +2,27 @@
 	<div class="container">
 		<p> Some 2020 statistics to be aware of</p>
 		<div class="row">
-			<div class="col-sm">
-				<p> Developer Types </p>
+			<div class="col-sm" v-for="(stat, type) of stats" :key="type">
+				<p> {{ type }} </p>
 				<table class="table">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Name</th>
-							<th scope="col">Popularity</th>
-							<th scope="col">Cost</th>
+							<th scope="col">name</th>
+							<th v-if="Object.entries(stat)[0][1][0]" scope="col">popularity</th>
+							<th v-if="Object.entries(stat)[0][1][1]" scope="col">cost</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="(dev, index) in Object.keys(devs)" :key="dev">
+						<tr v-for="([name,[popularity,cost]], index) of Object.entries(stat)" :key="index">
 							<th scope="row">{{ index + 1 }}</th>
-							<td>{{ dev }}</td>
-							<td>{{ devs[dev].popularity }}</td>
-							<td>{{ devs[dev].cost }}</td>
+							<td>{{ name }}</td>
+							<td v-if="popularity">{{ popularity }}</td>
+							<td>{{ cost }}</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="col-sm" />
-			<div class="col-sm" />
 		</div>
 	</div>
 </template>
@@ -40,8 +38,11 @@ export default {
 	},
 	computed: {
 		...mapState('statisticsData', {
-			devs: 'developersStatistics',
+			stats: 'statistics',
 		}),
+	},
+	methods: {
+
 	},
 };
 </script>
