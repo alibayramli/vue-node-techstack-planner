@@ -2,35 +2,20 @@
 	<div class="container">
 		<p> Some 2020 statistics to be aware of</p>
 		<div class="row">
-			<div class="col-sm" v-for="(stat, type) of stats" :key="type">
-				<p> {{ type }} </p>
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">name</th>
-							<th v-if="Object.entries(stat)[0][1][0]" scope="col">popularity</th>
-							<th v-if="Object.entries(stat)[0][1][1]" scope="col">cost</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="([name,[popularity,cost]], index) of Object.entries(stat)" :key="index">
-							<th scope="row">{{ index + 1 }}</th>
-							<td>{{ name }}</td>
-							<td v-if="popularity">{{ popularity }}</td>
-							<td>{{ cost }}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<StatisticsTable v-for="(stat, type) of stats" :key="type" :type="type" :stat="stat" />
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import StatisticsTable from './StatisticsTable.vue';
+
 export default {
 	name: 'Home',
+	components: {
+		StatisticsTable,
+	},
 	data() {
 		return {
 
