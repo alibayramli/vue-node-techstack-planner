@@ -1,7 +1,7 @@
 <template>
 	<div class="card" style="width: 50rem;">
 		<div class="card-header">
-			{{ type }}
+			{{ convertToStartCase(type) }}
 		</div>
 		<table class="table">
 			<thead>
@@ -32,8 +32,11 @@
 </template>
 
 <script>
+import caseConverterMixin from '../mixins/caseConverter';
+
 export default {
 	name: 'StatisticsTable',
+	mixins: [ caseConverterMixin ],
 	props: {
 		stat: {
 			type: Object,
