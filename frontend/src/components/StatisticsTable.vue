@@ -52,7 +52,6 @@ export default {
 			limit: 5,
 		};
 	},
-
 };
 </script>
 
@@ -65,5 +64,4 @@ export default {
 .buttons {
 	padding-bottom:2rem;
 }
-
 </style>

@@ -18,16 +18,12 @@ export default {
 	},
 	data() {
 		return {
-
 		};
 	},
 	computed: {
 		...mapState('statisticsData', {
 			stats: 'statistics',
 		}),
-	},
-	methods: {
-
 	},
 };
 </script>
