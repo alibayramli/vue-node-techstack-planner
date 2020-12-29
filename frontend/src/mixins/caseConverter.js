@@ -1,10 +1,9 @@
-import _ from 'lodash';
 export default {
 	data() {
 	},
 	methods: {
-		convertToStartCase(str){
-			return _.startCase(str);
-		}
+		convertToStartCase(camelCase) {
+			return camelCase.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+		},
 	},
 };
