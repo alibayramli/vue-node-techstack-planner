@@ -23,7 +23,7 @@
 					<label class="label" for="name">Startup field</label>
 					<p class="select">
 						<select v-model="startupField">
-							<option v-for="field in fields" :key="field" :value="field">{{ field }}</option>
+							<option v-for="field in fields" :key="field" :value="field">{{ convertToStartCase(field) }}</option>
 						</select>
 					</p>
 				</div>
@@ -37,8 +37,11 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import caseConverterMixin from '../mixins/caseConverter';
+
 export default {
 	name: 'Form',
+	mixins: [ caseConverterMixin ],
 	data() {
 		return {
 		};
