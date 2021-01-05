@@ -1,5 +1,5 @@
 <template>
-	<div class="card" style="width: 50rem;">
+	<div class="container" style="width: 50rem;">
 		<div class="card-header">
 			{{ convertToStartCase(type) }}
 		</div>
