@@ -32,7 +32,6 @@
             "tools": [["Apache Spark","24%"],["Apache Kafka","18%"],["Apache Hadoop","14%"]],
             "statisticsPackages": [["(Microsoft Excel, Google Sheets, OpenOffice Calc, etc.)","50%"],["Tableau","18%"],["SAS","5%"]]
         }
-
     },
     "developerType": {
         "BackendDeveloper": ["55.2%","53k"],
