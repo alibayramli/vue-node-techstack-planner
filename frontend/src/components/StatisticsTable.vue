@@ -1,8 +1,14 @@
 <template>
 	<div class="container" style="width: 50rem;">
-		<div class="card-header">
+		<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 			{{ convertToStartCase(type) }}
-		</div>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
 		<table class="table">
 			<thead>
 				<tr>
@@ -28,6 +34,10 @@
 			<div class="divider" />
 			<button class="btn btn-light" v-if="limit !== 5" @click="limit= 5">Show only 5</button>
 		</div>
+      </div>
+    </div>
+  </div>
+</div>
 	</div>
 </template>
 
