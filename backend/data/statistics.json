@@ -208,7 +208,7 @@
                 "Static Analysis Tool": ["13%", null],
                 "In cloud editor/IDE": ["11%", null]
             },
-            "CISystems": {
+            "ciSystems": {
                 "Jenkins/Hudson": ["55%", null],
                 "Gitlab CI": ["27%", null],
                 "Travis CI": ["15%", null],
@@ -258,7 +258,7 @@
                 "Security Testing": ["28%", null],
                 "Stress Testing": ["27%", null]
             },
-            "shareOfQAEngineers": {
+            "shareOfQaEngineers": {
                 "Less than 1 QA per 10 developers": ["43%", null],
                 "1-3 QAs per 10 developers": ["32%", null],
                 "Not sure": ["15%", null],

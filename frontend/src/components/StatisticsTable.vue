@@ -28,7 +28,7 @@
 							</tbody>
 						</table>
 						<div class="buttons">
-							<button class="btn btn-light" v-if="limit <= Object.entries(stat).length" @click="limit=limit + 5">Show more</button>
+							<button class="btn btn-light" v-if="limit < Object.entries(stat).length" @click="limit=limit + 5">Show more</button>
 							<div class="divider" />
 							<button class="btn btn-light" v-if="limit !== 5" @click="limit= limit - 5">Show less</button>
 							<div class="divider" />
