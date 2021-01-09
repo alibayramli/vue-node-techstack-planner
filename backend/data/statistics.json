@@ -1,0 +1,292 @@
+{
+    "softwareType": {
+        "websites": {
+            "popularLanguages": [["PHP","81%"],["JavaScript","76%"],["TypeScript","72%"]]
+        },
+        "utilities": {
+            "popularLanguages": [["C#","45%"],["Kotlin","44%"],["Python","42%"]]
+        },
+        "dataScienceMachineLearning": { 
+            "popularLanguages": [["Python","45%"],["C++","44%"],["SQL","24%"]]
+        },
+        "fintech": { 
+            "popularLanguages": [["Java","15%"],["TypeScript","15%"],["SQL","15%"]]
+        },
+        "games": { 
+            "popularLanguages": [["C#","20%"],["C++","19%"],["Go","10%"]]
+        },
+        "security": { 
+            "popularLanguages": [["Go","10%"],["C++","8%"],["Python","8%"]]
+        } ,
+        "hardware": { 
+            "popularLanguages": [["C", "15%"],["C++","13%"],["Python","7%"]]
+        },
+        "blockchain": { 
+            "popularLanguages": [["Go","5%"],["C++","4%"],["Python","4%"]]
+        } 
+    },
+    "developerType": {
+        "BackendDeveloper": ["55.2%","53k"],
+        "FullstackDeveloper": ["54.9%","54k"],
+        "FrontEndDeveloper": ["37.1%","49k"],
+        "EnterpriseDeveloper": ["23.9%","56k"],
+        "MobileDeveloper": ["19.2%","43k"],
+        "DevOpsSpecialist": ["12.1%","68k"],
+        "DatabaseAdministrator": ["11.6%","50k"],
+        "Designer": ["10.8%","47k"],
+        "SystemAdministrator": ["10.6%","54k"],
+        "EmbeddedApplicationsDeveloper": ["9.6%","57k"],
+        "DataAnalyst": ["8.2%","55k"],
+        "DataScientist": ["8.1%","58k"],
+        "QADeveloper": ["8.0%","53k"],
+        "DataEngineer": ["7.6%","65k"],
+        "AcademicResearcher": ["7.2%","41k"],
+        "Educator": ["5.9%","49k"],
+        "GameDeveloper": ["5.6%","50k"],
+        "EngineeringManager": ["5.5%","92k"],
+        "ProductManager": ["5.1%",null],
+        "Scientist": ["4.2%","57k"],
+        "SiteReliabilityEngineer": ["3.9%","80k"],
+        "SeniorExecutive": ["2.7%",null],
+        "MarketingProfessional": ["1.3%",null]
+    },
+    "mostUsedLanguages": {
+        "JavaScript": ["67.7%",null],
+        "HTML/CSS": ["63.1%",null],
+        "SQL": ["54.7%",null],
+        "Python": ["44.1%",null],
+        "Java": ["40.2%",null],
+        "Bash/Shell/PowerShell": ["33.1%",null],
+        "C#": ["31.4%",null],
+        "PHP": ["26.2%",null],
+        "TypeScript": ["25.4%",null],
+        "C++": ["23.9%",null],
+        "C": ["21.8%",null],
+        "Go": ["8.8%",null],
+        "Kotlin": ["7.8%",null],
+        "Ruby": ["7.1%",null],
+        "Assembly": ["6.2%",null],
+        "VBA": ["6.1%",null],
+        "Swift": ["5.9%",null],
+        "R": ["5.7%",null],
+        "Rust": ["5.1%",null],
+        "Objective-C": ["4.1%",null],
+        "Dart": ["4.0%",null],
+        "Scala": ["3.6%",null],
+        "Perl": ["3.1%",null],
+        "Haskell": ["2.1%",null],
+        "Julia": ["0.9%",null]
+    },
+    "mostWantedFrameworks": {
+        "ASP.NET Core": ["70.7%",null],
+        "React.js": ["68.9%",null],
+        "Vue.js": ["66.0%",null],
+        "Express": ["61.9%",null],
+        "Gatsby": ["60.7%",null],
+        "Spring": ["57.7%",null],
+        "Django": ["55.3%",null],
+        "Flask": ["54.4%",null],
+        "Angular": ["54.0%",null],
+        "Laravel": ["51.4%",null],
+        "Ruby on Rails": ["49.3%",null],
+        "Symfony": ["45.6%",null],
+        "ASP.NET": ["36.9%",null],
+        "Drupal": ["25.5%",null],
+        "Angular.js": ["24.1%",null]
+    },
+    "databases": {
+        "MySQL": ["55.6%",null],
+        "PostreSql": ["36.1%",null],
+        "Microsoft SQL Server": ["33.0%",null],
+        "SQLite": ["31.2%",null],
+        "MongoDB": ["26.4%",null],
+        "Redis": ["18.3%",null],
+        "MariaDB": ["16.8%",null],
+        "Oracle": ["16.5%",null],
+        "Firebase": ["14.4%",null],
+        "ElasticSearch": ["13.8%",null],
+        "DynamoDB": ["7.1%",null],
+        "Cassandra": ["3.3%",null],
+        "IBM DB2": ["2.9%",null],
+        "Couchbase": ["1.9%",null]
+    },
+    "collaborationTools": {
+        "GitHub": ["82.8%",null],
+        "Slack": ["53.0%",null],
+        "Jira": ["47.7%",null],
+        "Google Suite": ["41.5%",null],
+        "Gitlab": ["37.0%",null],
+        "Confluence": ["32.4%",null],
+        "Trello": ["29.6%",null],
+        "Microsoft Teams": ["25.6%",null],
+        "Microsoft Azure": ["14.8%",null],
+        "Stack Overflow for Teams": ["5.8%",null],
+        "Facebook Workplace": ["3.0%",null]
+    },
+    "topPayingTechnologies": {
+        "Perl": [null,"76k"],
+        "Scala": [null,"76k"],
+        "Go": [null,"74k"],
+        "Rust": [null,"74k"],
+        "Ruby": [null,"71k"],
+        "Bash/Shell/PowerShell": [null,"65k"],
+        "Objective-C": [null,"64k"],
+        "Haskell": [null,"60k"],
+        "Julia": [null,"59k"],
+        "Python": [null,"59k"],
+        "Swift": [null,"58k"],
+        "C#": [null,"57k"],
+        "R": [null,"57k"],
+        "TypeScript": [null,"57k"],
+        "Kotlin": [null,"54k"],
+        "SQL": [null,"54k"],
+        "Assembly": [null,"53k"],
+        "C++": [null,"53k"],
+        "JavaScript": [null,"53k"],
+        "HTML/CSS": [null,"52k"],
+        "VBA": [null,"51k"],
+        "C": [null,"50k"],
+        "Java": [null,"50k"],
+        "PHP": [null,"39k"],
+        "Dart": [null,"37k"]
+    },
+    "teamStack": {
+        "devops": {
+            "configurationManagementTools": {
+                "Ansible": ["26%", null],
+                "Custom Solution": ["26%", null],
+                "Chef": ["8%", null],
+                "Puppet": ["7%", null]
+            },
+            "serverTemplatingTools": {
+                "Docker": ["60%", null],
+                "Vagrant": ["8%", null],
+                "Packer": ["4%", null],
+                "CoreOS rkt": ["1%", null]
+            },
+            "infrastructureProvisioningTools": {
+                "Terraform": ["21%", null],
+                "AWS CloudFormation": ["8%", null],
+                "AWS CDK": ["7%", null],
+                "OpenStack Heat": ["6%", null]
+            },
+            "containerOrchestrationServices": {
+                "Kubernetes": ["40%", null],
+                "Amazon ECS/Fargate": ["14%", null],
+                "Docker Swarm": ["14%", null],
+                "Amazon EKS": ["7%", null]
+            },
+            "cloudServices": {
+                "Amazon Web Services": ["62%", null],
+                "Google Cloud Platform": ["30%", null],
+                "Microsoft Azure": ["25%", null],
+                "Heroku": ["14%", null]
+            }
+        },
+        "microservices": {
+            "mostPopularLanguagesToWorkWith": {
+                "Java": ["48%", null],
+                "JavaScript": ["38%", null],
+                "Python": ["29%", null],
+                "Go": ["14%", null]  
+            },
+            "communicateDistributedParts": {
+                "REST": ["79%", null],
+                "MessageQueue": ["45%", null],
+                "WebSocket": ["23%", null],
+                "Cross-platform RPC": ["19%", null]  
+            }
+        },
+        "teamTools": {
+            "regularlyUsedTools": {
+                "Source Code Collaboration Tool": ["85%", null],
+                "Standalone IDE": ["77%", null],
+                "Dektop Editor": ["77%", null],
+                "CI or CD tool": ["45%", null],
+                "Issue Tracker": ["44%", null],
+                "Team Collaboration Management Tools": ["44%", null],
+                "Static Analysis Tool": ["13%", null],
+                "In cloud editor/IDE": ["11%", null]
+            },
+            "ciSystems": {
+                "Jenkins/Hudson": ["55%", null],
+                "Gitlab CI": ["27%", null],
+                "Travis CI": ["15%", null],
+                "GitHub Actions": ["15%", null],
+                "CircleCI": ["12%", null],
+                "Azure Devops": ["9%", null],
+                "TeamCity": ["8%", null]
+            },
+            "issueTrackingSystems": {
+                "Jira": ["73%", null],
+                "GitHub Issues": ["28%", null],
+                "Trello": ["19%", null],
+                "GitLab Issue Board": ["12%", null],
+                "Redmine": ["7%", null],
+                "Azure DevOps": ["5%", null],
+                "YouTrack": ["4%", null],
+                "Asana": ["3%", null]
+            },
+            "versionControlSystems": {
+                "Git": ["90%", null],
+                "Apache Subversion": ["9%", null],
+                "Visual Studio Team Services": ["3%", null],
+                "Microsoft TFS": ["3%", null]
+            },
+            "communicationTools": {
+                "Email": ["90%", null],
+                "Instant messaging/video calling": ["86%", null],
+                "Calendars": ["50%", null],
+                "Video Conferencing": ["43%", null],
+                "Service Desk/Help Desk": ["18%", null]
+            }
+        },
+        "testing":{
+            "typesOfTests": {
+                "Unit": ["68%", null],
+                "Integration": ["49%", null],
+                "End-to-end": ["35%", null],
+                "Performance": ["35%", null]
+            },
+            "typesOfTesting": {
+                "Functional Testing": ["78%", null],
+                "Regression Testing": ["48%", null],
+                "Performance Testing": ["48%", null],
+                "Usability Testing": ["41%", null],
+                "Smoke Testing": ["34%", null],
+                "Stability Testing": ["29%", null],
+                "Security Testing": ["28%", null],
+                "Stress Testing": ["27%", null]
+            },
+            "shareOfQaEngineers": {
+                "Less than 1 QA per 10 developers": ["43%", null],
+                "1-3 QAs per 10 developers": ["32%", null],
+                "Not sure": ["15%", null],
+                "4-6 QAs per 10 developers": ["6%", null],
+                "9-10 QAs per 10 developers": ["2%", null],
+                "7-8 QAs per 10 developers": ["1%", null],
+                "More QAs than developers": ["1%", null]
+            },
+            "testAutomationFrameworks": {
+                "JUnit": ["41%", null],
+                "Selenium WebDriver": ["31%", null],
+                "Cucumber": ["12%", null],
+                "NUnit/xUnit.Net": ["9%", null]
+            },
+            "testAutomationTools": {
+                "Postman": ["35%", null],
+                "Apache JMeter": ["18%", null],
+                "SoapUI": ["7%", null],
+                "Katalon Studio": ["2%", null]
+            },
+            "programmingLanguagesForTestAutomation": {
+                "Java": ["40%", null],
+                "JavaScript": ["37%", null],
+                "Python": ["37%", null],
+                "C#": ["14%", null],
+                "Kotlin": ["8%", null],
+                "Ruby": ["7%", null]
+            }
+        }
+    }
+}
