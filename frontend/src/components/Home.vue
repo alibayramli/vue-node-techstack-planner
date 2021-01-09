@@ -68,3 +68,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.accordion-button {
+  background-color: aliceblue;
+  color: black;
+}
+</style>

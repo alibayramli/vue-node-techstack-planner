@@ -111,4 +111,8 @@ export default {
 .buttons {
   padding-bottom: 2rem;
 }
+.accordion-button {
+  background-color: aliceblue;
+  color: black;
+}
 </style>
