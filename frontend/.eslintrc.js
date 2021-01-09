@@ -29,7 +29,7 @@ module.exports = {
 		'vue/eqeqeq': 'error',
 		'no-extend-native': 'error',
 		'no-floating-decimal': 'error',
-		'no-implicit-coercion': ['error', { allow: [ '!!' ] }],
+		'no-implicit-coercion': ['error', { allow: ['!!'] }],
 		'no-magic-numbers': ['error', { ignore: [0, 1] }],
 		'no-param-reassign': 'error',
 		'no-throw-literal': 'error',
@@ -130,7 +130,7 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: [ '*.vue' ],
+			files: ['*.vue'],
 			rules: {
 				indent: 'off',
 				'max-depth': ['warn', { max: 6 }],
@@ -138,7 +138,7 @@ module.exports = {
 			},
 		},
 		{
-			files: [ 'server/**' ],
+			files: ['server/**'],
 			rules: {
 				'no-console': 'off',
 			},
@@ -152,7 +152,7 @@ module.exports = {
 			env: {
 				jest: true,
 			},
-			plugins: [ 'jest' ],
+			plugins: ['jest'],
 			rules: {
 				'jest/consistent-test-it': 'error',
 				'jest/expect-expect': 'error',
@@ -186,14 +186,14 @@ module.exports = {
 			},
 		},
 		{
-			files: [ '.eslintrc.js' ],
+			files: ['.eslintrc.js'],
 			rules: {
 				'no-magic-numbers': 'off',
 				'no-dupe-keys': 'off',
 			},
 		},
 		{
-			files: [ '*.spec.js' ],
+			files: ['*.spec.js'],
 			rules: {
 				'max-len': ['warn', 120],
 				'max-statements': 'off',
