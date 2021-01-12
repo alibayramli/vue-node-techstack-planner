@@ -7,8 +7,10 @@ const INTERNAL_SERVER_ERROR = 500;
 router.get('/', (req, res) => {
 	try {
 		const statistics = JSON.parse(fs.readFileSync(statisticsFile, 'utf8'));
-		const { softwareType, teamStack, ...restOfStatistics } = statistics;
-		res.send({ softwareType, teamStatistics: teamStack, generalStatistics: restOfStatistics });
+		const { general, team } = statistics;
+		const { softwareType, ...restofGeneral } = general;
+		const typesOfSoftware = Object.keys(softwareType);
+		res.send({ generalStatistics: restofGeneral, teamStatistics: team, typesOfSoftware });
 	} catch (err) {
 		console.log(err);
 		res.status(INTERNAL_SERVER_ERROR).send(err);
