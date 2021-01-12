@@ -6,13 +6,13 @@
 		</h5>
 		<div class="row">
 			<StatisticsTable
-				v-for="(stat, type) of generalStats"
+				v-for="(stat, type) of getterGeneralStats"
 				:type="type"
 				:stat="stat"
 				:key="type"
 			/>
 		</div>
-		<div v-for="statName of Object.keys(teamStats)" :key="statName">
+		<div v-for="statName of Object.keys(getterTeamStats)" :key="statName">
 			<div class="accordion" :id="['accordion-' + statName]">
 				<div class="accordion-item">
 					<h2 :id="['#heading-' + statName]">
@@ -35,7 +35,7 @@
 					>
 						<div class="accordion-body">
 							<StatisticsTable
-								v-for="(stat, type) of teamStats[statName]"
+								v-for="(stat, type) of getterTeamStats[statName]"
 								:type="type"
 								:stat="stat"
 								:key="type"
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import StatisticsTable from './StatisticsTable.vue';
 import caseConverterMixin from '../mixins/caseConverter';
 
@@ -63,9 +63,9 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('statisticsData', {
-			generalStats: 'generalStatistics',
-			teamStats: 'teamStatistics',
+		...mapGetters('statisticsData', {
+			getterGeneralStats: 'getGeneralStatistics',
+			getterTeamStats: 'getTeamStatistics',
 		}),
 	},
 };
