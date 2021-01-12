@@ -11,10 +11,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="([name, rate], index) in tools" :key="name">
+				<tr v-for="([name, popularityRate], index) in tools" :key="name">
 					<th scope="row">{{ index + 1 }}</th>
 					<td>{{ name }}</td>
-					<td>{{ rate }}</td>
+					<td>{{ popularityRate }}</td>
 				</tr>
 			</tbody>
 		</table>

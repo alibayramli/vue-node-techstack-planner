@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<form
-			class="was-validated startupForm justify-content-center"
+			class="was-validated startupForm"
 			@submit.prevent="submit"
 		>
 			<fieldset>
