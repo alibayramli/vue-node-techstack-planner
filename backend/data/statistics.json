@@ -110,19 +110,6 @@
         "IBM DB2": ["2.9%",null],
         "Couchbase": ["1.9%",null]
     },
-    "collaborationTools": {
-        "GitHub": ["82.8%",null],
-        "Slack": ["53.0%",null],
-        "Jira": ["47.7%",null],
-        "Google Suite": ["41.5%",null],
-        "Gitlab": ["37.0%",null],
-        "Confluence": ["32.4%",null],
-        "Trello": ["29.6%",null],
-        "Microsoft Teams": ["25.6%",null],
-        "Microsoft Azure": ["14.8%",null],
-        "Stack Overflow for Teams": ["5.8%",null],
-        "Facebook Workplace": ["3.0%",null]
-    },
     "topPayingTechnologies": {
         "Perl": [null,"76k"],
         "Scala": [null,"76k"],
