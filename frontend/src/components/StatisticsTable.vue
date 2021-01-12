@@ -4,11 +4,11 @@
 			<div class="accordion-item">
 				<h2 :id="['#heading-' + type]">
 					<button
-						class="accordion-button"
+						class="accordion-button collapsed"
 						type="button"
 						data-bs-toggle="collapse"
 						:data-bs-target="['#collapse-' + type]"
-						aria-expanded="true"
+						aria-expanded="false"
 						:aria-controls="['#collapse-' + type]"
 					>
 						{{ convertToStartCase(type) }}

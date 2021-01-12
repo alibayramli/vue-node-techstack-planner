@@ -17,11 +17,11 @@
 				<div class="accordion-item">
 					<h2 :id="['#heading-' + statName]">
 						<button
-							class="accordion-button"
+							class="accordion-button collapsed"
 							type="button"
 							data-bs-toggle="collapse"
 							:data-bs-target="['#collapse-' + statName]"
-							aria-expanded="true"
+							aria-expanded="false"
 							:aria-controls="['#collapse-' + statName]"
 						>
 							{{ convertToStartCase(statName) }}
@@ -33,12 +33,14 @@
 						:aria-labelledby="['#heading-' + statName]"
 						:data-bs-parent="['#accordion-' + statName]"
 					>
-						<StatisticsTable
-							v-for="(stat, type) of teamStats[statName]"
-							:type="type"
-							:stat="stat"
-							:key="type"
-						/>
+						<div class="accordion-body">
+							<StatisticsTable
+								v-for="(stat, type) of teamStats[statName]"
+								:type="type"
+								:stat="stat"
+								:key="type"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
