@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import StatisticsTable from './StatisticsTable.vue';
 import caseConverterMixin from '../mixins/caseConverter';
 
@@ -63,9 +63,11 @@ export default {
 		return {};
 	},
 	computed: {
+		...mapState('statisticsData', {
+			teamStats: 'teamStatistics',
+		}),
 		...mapGetters('statisticsData', {
-			generalStats: 'getIsPickableFilteredGeneralStatistics',
-			teamStats: 'getIsPickableFilteredTeamStatistics',
+			generalStats: 'getIsPickableIgnoredGeneralStatistics',
 		}),
 	},
 };

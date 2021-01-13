@@ -6,17 +6,21 @@ export default {
 		teamStatistics: [],
 	},
 	getters: {
-		getIsPickableFilteredTeamStatistics(state) {
-			const { teamStatistics } = state;
-			const { isPickable, ...restOfheProperties } = teamStatistics;
-			return restOfheProperties;
-		},
-		getIsPickableFilteredGeneralStatistics(state) {
+		getIsPickableIgnoredGeneralStatistics(state) {
 			const { generalStatistics } = state;
 			return Object.keys(generalStatistics).map((stat) => {
 				const { isPickable, ...restOfheProperties } = generalStatistics[stat];
 				return { [stat]: restOfheProperties };
 			});
+		},
+		getIsPickableGeneralStatistics(state) {
+			const { generalStatistics } = state;
+			return Object.keys(generalStatistics)
+				.filter(stat => generalStatistics[stat].isPickable)
+				.map((stat) => {
+					const { isPickable, ...restOfheProperties } = generalStatistics[stat];
+					return { [stat]: restOfheProperties };
+				});
 		},
 	},
 	mutations: {
