@@ -5,15 +5,14 @@
 			Surveys. Feel free to get to know about the trends before going the form
 		</h5>
 		<GeneralStatisticsAccordion :stats-obj="generalStats" />
-		<TeamStatisticsAccordion :stats-obj="teamStats" />
+		<TeamStatisticsAccordion />
 	</div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import GeneralStatisticsAccordion from './GeneralStatisticsAccordion.vue';
 import TeamStatisticsAccordion from './TeamStatisticsAccordion.vue';
-import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
 	name: 'Home',
@@ -21,14 +20,10 @@ export default {
 		GeneralStatisticsAccordion,
 		TeamStatisticsAccordion,
 	},
-	mixins: [ caseConverterMixin ],
 	data() {
 		return {};
 	},
 	computed: {
-		...mapState('statisticsData', {
-			teamStats: 'teamStatistics',
-		}),
 		...mapGetters('statisticsData', {
 			generalStats: 'getIsPickableIgnoredGeneralStatistics',
 		}),

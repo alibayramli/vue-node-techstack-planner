@@ -3,7 +3,7 @@
 		<p class="text-center">Here are some exciting tools for your startup!</p>
 		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-expandable-by-default />
 		<GeneralStatisticsAccordion :stats-obj="generalStats" />
-		<TeamStatisticsAccordion :stats-obj="teamStats" />
+		<TeamStatisticsAccordion />
 	</div>
 	<div v-else>
 		Nothing to show, go to <router-link to="/form"> Form </router-link>to start
@@ -32,9 +32,6 @@ export default {
 	computed: {
 		...mapState('toolsData', {
 			tools: 'tools',
-		}),
-		...mapState('statisticsData', {
-			teamStats: 'teamStatistics',
 		}),
 		...mapGetters('statisticsData', {
 			generalStats: 'getIsPickableGeneralStatistics',
