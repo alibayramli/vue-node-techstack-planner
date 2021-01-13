@@ -4,15 +4,15 @@
 			Those statistics are taken from StackOverflow and Jetbrains Developer
 			Surveys. Feel free to get to know about the trends before going the form
 		</h5>
-		<div class="row">
+		<div class="row" v-for="generalStat of generalStats" :key="generalStat">
 			<StatisticsTable
-				v-for="(stat, type) of getterGeneralStats"
+				v-for="(stat, type) of generalStat"
 				:type="type"
 				:stat="stat"
 				:key="type"
 			/>
 		</div>
-		<div v-for="statName of Object.keys(getterTeamStats)" :key="statName">
+		<div v-for="statName of Object.keys(teamStats)" :key="statName">
 			<div class="accordion" :id="['accordion-' + statName]">
 				<div class="accordion-item">
 					<h2 :id="['#heading-' + statName]">
@@ -35,7 +35,7 @@
 					>
 						<div class="accordion-body">
 							<StatisticsTable
-								v-for="(stat, type) of getterTeamStats[statName]"
+								v-for="(stat, type) of teamStats[statName]"
 								:type="type"
 								:stat="stat"
 								:key="type"
@@ -64,8 +64,8 @@ export default {
 	},
 	computed: {
 		...mapGetters('statisticsData', {
-			getterGeneralStats: 'getGeneralStatistics',
-			getterTeamStats: 'getTeamStatistics',
+			generalStats: 'getIsPickableFilteredGeneralStatistics',
+			teamStats: 'getIsPickableFilteredTeamStatistics',
 		}),
 	},
 };

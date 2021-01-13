@@ -40,7 +40,7 @@
 									:key="index"
 								>
 									<td scope="row">{{ index + 1 }}</td>
-									<td scope="row">{{ name }}</td>
+									<td scope="row">{{ type === 'developerType' ? convertToStartCase(name) :name }}</td>
 									<td scope="row" v-if="popularity">{{ popularity }}</td>
 									<td scope="row" v-if="cost">{{ cost }}</td>
 								</tr>

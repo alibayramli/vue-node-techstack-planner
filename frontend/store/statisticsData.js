@@ -6,13 +6,17 @@ export default {
 		teamStatistics: [],
 	},
 	getters: {
-		getGeneralStatistics: (state) => {
-			Object.keys(state.generalStatistics).forEach(stat => delete state.generalStatistics[stat].isPickable);
-			return state.generalStatistics;
+		getIsPickableFilteredTeamStatistics(state) {
+			const { teamStatistics } = state;
+			const { isPickable, ...restOfheProperties } = teamStatistics;
+			return restOfheProperties;
 		},
-		getTeamStatistics: (state) => {
-			delete state.teamStatistics.isPickable;
-			return state.teamStatistics;
+		getIsPickableFilteredGeneralStatistics(state) {
+			const { generalStatistics } = state;
+			return Object.keys(generalStatistics).map((stat) => {
+				const { isPickable, ...restOfheProperties } = generalStatistics[stat];
+				return { [stat]: restOfheProperties };
+			});
 		},
 	},
 	mutations: {
