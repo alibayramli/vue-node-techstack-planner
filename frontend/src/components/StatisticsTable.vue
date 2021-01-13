@@ -16,7 +16,7 @@
 				</h2>
 				<div
 					:id="['collapse-' + type]"
-					class="accordion-collapse collapse"
+					class="accordion-collapse collapse" :class="{ show: isExpandableByDefault }"
 					:aria-labelledby="['#heading-' + type]"
 					:data-bs-parent="['#accordion-' + type]"
 				>
@@ -92,6 +92,9 @@ export default {
 		type: {
 			type: String,
 			default: '',
+		},
+		isExpandableByDefault: {
+			type: Boolean,
 		},
 	},
 	data() {
