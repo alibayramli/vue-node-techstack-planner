@@ -23,8 +23,7 @@ export default {
 			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
 			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
 			const fieldResponse = await axios.get('http://localhost:5000/statistics-data');
-			const fields = Object.keys(fieldResponse.data.softwareType);
-
+			const fields = fieldResponse.data.typesOfSoftware;
 			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);
 			commit('SET_AVAILABLE_FIELDS', fields);

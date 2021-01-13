@@ -26,7 +26,8 @@ export default {
 				field: state.field,
 			};
 			const response = await axios.post('http://localhost:5000/startup-data', newData);
-			commit('toolsData/SET_TOOLS', response.data, { root: true });
+			const suggestedProgrammingLanguages = response.data;
+			commit('toolsData/SET_TOOLS', suggestedProgrammingLanguages, { root: true });
 			router.push('techstack');
 		},
 	},

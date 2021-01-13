@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
 	try {
 		const statistics = JSON.parse(fs.readFileSync(statisticsFile, 'utf8'));
 		const { size, location, field } = req.body;
-		const tools = statistics.softwareType[field].popularLanguages;
+		const tools = statistics.general.softwareType[field].popularLanguages;
 		res.send(tools);
 	} catch (err) {
 		console.log(err);

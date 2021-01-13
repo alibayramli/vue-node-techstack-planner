@@ -5,6 +5,24 @@ export default {
 		generalStatistics: [],
 		teamStatistics: [],
 	},
+	getters: {
+		getIsPickableIgnoredGeneralStatistics(state) {
+			const { generalStatistics } = state;
+			return Object.keys(generalStatistics).map((stat) => {
+				const { isPickable, ...restOfheProperties } = generalStatistics[stat];
+				return { [stat]: restOfheProperties };
+			});
+		},
+		getIsPickableGeneralStatistics(state) {
+			const { generalStatistics } = state;
+			return Object.keys(generalStatistics)
+				.filter(stat => generalStatistics[stat].isPickable)
+				.map((stat) => {
+					const { isPickable, ...restOfheProperties } = generalStatistics[stat];
+					return { [stat]: restOfheProperties };
+				});
+		},
+	},
 	mutations: {
 		SET_GENERAL_STATISTICS(state, stats) {
 			state.generalStatistics = stats;
