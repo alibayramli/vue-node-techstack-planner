@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const statisticsDataRoutes = require('../routes/statisticsData');
 const startupDataRoutes = require('../routes/startupData');
 const formDataRoutes = require('../routes/formData');
+const programmingLanguagesDataRoutes = require('../routes/programmingLanguagesData');
 const port = 5000;
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use('/statistics-data', statisticsDataRoutes);
 app.use('/startup-data', startupDataRoutes);
 app.use('/form-data', formDataRoutes);
+app.use('/programming-languages-data', programmingLanguagesDataRoutes);
 
 app.listen(port, (err) => {
 	if (err) {
