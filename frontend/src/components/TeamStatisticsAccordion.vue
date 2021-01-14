@@ -23,6 +23,7 @@
 					>
 						<div class="accordion-body">
 							<StatisticsTable
+								:is-pickable="isPickable"
 								v-for="(stat, type) of teamStats[statName]"
 								:type="type"
 								:stat="stat"
@@ -46,6 +47,11 @@ export default {
 		StatisticsTable,
 	},
 	mixins: [ caseConverterMixin ],
+	props: {
+		isPickable: {
+			type: Boolean,
+		},
+	},
 	data() {
 		return {};
 	},
