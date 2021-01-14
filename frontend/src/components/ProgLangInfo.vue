@@ -12,9 +12,17 @@
 				</svg>
 			</a>
 		</a>
-		<div class="collapse" :id="[name.replace(/[+#]+/, name.length)]">
-			<div class="card card-body">
-				{{ details }}
+		<div class="collapse" :id="[name.replace(/[+#]+/, name.length)]" v-if="details">
+			<div class="card" v-for="detailType of Object.keys(details)" :key="detailType">
+				<div class="card-header">
+					{{ detailType }}
+				</div>
+				<p class="card-text"
+					v-for="detail of details[detailType]"
+					:key="detail"
+				>
+					{{ detail[0] }}
+				</p>
 			</div>
 		</div>
 	</div>

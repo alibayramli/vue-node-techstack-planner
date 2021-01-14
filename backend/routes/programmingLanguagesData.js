@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
 	try {
 		const languages = JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
 		const { name } = req.body;
-		const languageDetails = languages[camelCase(name)] || 'language info not found';
+		const languageDetails = languages[camelCase(name)];
 		res.send(languageDetails);
 	} catch (err) {
 		console.log(err);
