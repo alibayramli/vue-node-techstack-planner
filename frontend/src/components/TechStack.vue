@@ -1,7 +1,7 @@
 <template>
 	<div v-if="Object.keys(tools).length">
 		<p class="text-center">Here are some exciting tools for your startup!</p>
-		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-expandable-by-default />
+		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-pickable is-expandable-by-default />
 		<GeneralStatisticsAccordion :stats-obj="generalStats" />
 		<TeamStatisticsAccordion />
 	</div>

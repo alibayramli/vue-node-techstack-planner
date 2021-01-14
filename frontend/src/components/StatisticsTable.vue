@@ -40,7 +40,10 @@
 									:key="index"
 								>
 									<td scope="row">{{ index + 1 }}</td>
-									<td scope="row">{{ type === 'developerType' ? convertToStartCase(name) :name }}</td>
+									<td scope="row">
+										{{ type === 'developerType' ? convertToStartCase(name) : name }}
+										<ProgLangInfo v-if="isPickable" :name="name" />
+									</td>
 									<td scope="row" v-if="popularity">{{ popularity }}</td>
 									<td scope="row" v-if="cost">{{ cost }}</td>
 								</tr>
@@ -80,9 +83,12 @@
 
 <script>
 import caseConverterMixin from '../mixins/caseConverter';
-
+import ProgLangInfo from './ProgLangInfo.vue';
 export default {
 	name: 'StatisticsTable',
+	components: {
+		ProgLangInfo,
+	},
 	mixins: [ caseConverterMixin ],
 	props: {
 		stat: {
@@ -94,6 +100,9 @@ export default {
 			default: '',
 		},
 		isExpandableByDefault: {
+			type: Boolean,
+		},
+		isPickable: {
 			type: Boolean,
 		},
 	},
