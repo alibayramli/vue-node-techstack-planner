@@ -1,16 +1,23 @@
 export default {
 	namespaced: true,
 	state: {
-		choices: {},
+		generalChoices: {},
+		teamChoices: [],
 	},
 	getters: {
-		getChoices(state) {
-			return state.choices;
+		getGeneralChoices(state) {
+			return state.generalChoices;
+		},
+		getTeamChoices(state) {
+			return state.teamChoices;
 		},
 	},
 	mutations: {
-		SET_CHOICES(state, { type, name }) {
-			state.choices[type] = name;
+		SET_GENERAL_CHOICES(state, { type, name }) {
+			state.generalChoices[type] = name;
+		},
+		SET_TEAM_CHOICES(state, { header, type, name }) {
+			state.teamChoices.push({ [header]: { [type]: name } });
 		},
 	},
 };
