@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<form
-			class="was-validated startupForm"
+			class="was-validated startup-form"
 			@submit.prevent="submit"
 		>
 			<fieldset>
@@ -161,7 +161,7 @@ export default {
 </script>
 
 <style scoped>
-.startupForm {
+.startup-form {
   margin: auto;
   margin-top: 5rem;
   padding: 15px 30px;
