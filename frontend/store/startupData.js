@@ -6,6 +6,7 @@ export default {
 		size: '',
 		location: '',
 		field: '',
+		budget: '',
 	},
 	mutations: {
 		UPDATE_SIZE(state, newSizeValue) {
@@ -16,6 +17,9 @@ export default {
 		},
 		UPDATE_FIELD(state, newFieldValue) {
 			state.field = newFieldValue;
+		},
+		UPDATE_BUDGET(state, newBudgetValue) {
+			state.budget = newBudgetValue;
 		},
 	},
 	actions: {
