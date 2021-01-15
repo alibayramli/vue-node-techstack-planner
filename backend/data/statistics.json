@@ -3,7 +3,7 @@
         "softwareType": {
             "websites": {
                 "popularLanguages": {
-                    "PHP": ["81%",null],
+                    "Php": ["81%",null],
                     "JavaScript": ["76%",null],
                     "TypeScript": ["72%",null]
                 }
@@ -92,7 +92,7 @@
             "Java": ["40.2%",null],
             "Bash/Shell/PowerShell": ["33.1%",null],
             "C#": ["31.4%",null],
-            "PHP": ["26.2%",null],
+            "Php": ["26.2%",null],
             "TypeScript": ["25.4%",null],
             "C++": ["23.9%",null],
             "C": ["21.8%",null],
@@ -171,7 +171,7 @@
             "VBA": [null,"51k"],
             "C": [null,"50k"],
             "Java": [null,"50k"],
-            "PHP": [null,"39k"],
+            "Php": [null,"39k"],
             "Dart": [null,"37k"],
             "isPickable": false
         }

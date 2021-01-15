@@ -2,6 +2,7 @@
 	<div>
 		<div v-for="generalStat of statsObj" :key="generalStat">
 			<StatisticsTable
+				:is-pickable-general="isPickableGeneral"
 				v-for="(stat, type) of generalStat"
 				:type="type"
 				:stat="stat"
@@ -22,6 +23,9 @@ export default {
 		statsObj: {
 			type: Object,
 			default: null,
+		},
+		isPickableGeneral: {
+			type: Boolean,
 		},
 	},
 	data() {

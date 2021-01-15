@@ -13,7 +13,7 @@
 					<label for="size" class="form-label">Startup size</label>
 					<select
 						class="form-select"
-						required
+
 						aria-label="select"
 						v-model="startupSize"
 					>
@@ -28,7 +28,6 @@
 					<label for="location" class="form-label">Startup Location</label>
 					<select
 						class="form-select"
-						required
 						aria-label="select"
 						v-model="startupLocation"
 					>
@@ -57,12 +56,17 @@
 					</select>
 					<div class="invalid-feedback">Please select</div>
 				</div>
+				<div class="mb-3">
+					<label for="budget" class="form-label">Startup Budget</label>
+					<input type="text" class="form-control form-label" placeholder="Startup Budget" aria-label="Budget" required v-model="startupBudget" @keypress="isNumber(event)">
+					<div class="form-text">Please include average annual salary per person.</div>
+				</div>
 
 				<div class="mb-3">
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupSize || !startupLocation || !startupField"
+						:disabled="!startupField || !startupBudget"
 					>
 						Submit form
 					</button>
@@ -114,6 +118,14 @@ export default {
 				this.$store.commit('startupData/UPDATE_FIELD', value);
 			},
 		},
+		startupBudget: {
+			get() {
+				return this.$store.state.startupData.budget;
+			},
+			set(value) {
+				this.$store.commit('startupData/UPDATE_BUDGET', value);
+			},
+		},
 	},
 	async created() {
 		await this.formInfos();
@@ -134,6 +146,15 @@ export default {
 			this.$store.commit('startupData/UPDATE_SIZE', '');
 			this.$store.commit('startupData/UPDATE_LOCATION', '');
 			this.$store.commit('startupData/UPDATE_FIELD', '');
+		},
+		isNumber(evt = window.event) {
+			const charCode = (evt.which) ? evt.which : evt.keyCode;
+			// eslint-disable-next-line no-magic-numbers
+			if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+				evt.preventDefault();
+			} else {
+				return true;
+			}
 		},
 	},
 };
