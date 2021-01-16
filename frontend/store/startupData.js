@@ -3,12 +3,16 @@ import router from '../router/router';
 export default {
 	namespaced: true,
 	state: {
+		name: '',
 		size: '',
 		location: '',
 		field: '',
 		budget: '',
 	},
 	mutations: {
+		UPDATE_NAME(state, newStartupName) {
+			state.name = newStartupName;
+		},
 		UPDATE_SIZE(state, newSizeValue) {
 			state.size = newSizeValue;
 		},

@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<form
-			class="was-validated startupForm"
+			class="startup-form"
 			@submit.prevent="submit"
 		>
 			<fieldset>
@@ -139,13 +139,7 @@ export default {
 		}),
 		async submit() {
 			await this.createStartupData();
-			this.resetForm();
 			this.isSubmitted = true;
-		},
-		resetForm() {
-			this.$store.commit('startupData/UPDATE_SIZE', '');
-			this.$store.commit('startupData/UPDATE_LOCATION', '');
-			this.$store.commit('startupData/UPDATE_FIELD', '');
 		},
 		isNumber(evt = window.event) {
 			const charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -161,7 +155,7 @@ export default {
 </script>
 
 <style scoped>
-.startupForm {
+.startup-form {
   margin: auto;
   margin-top: 5rem;
   padding: 15px 30px;

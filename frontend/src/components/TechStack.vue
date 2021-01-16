@@ -6,8 +6,10 @@
 		<TeamStatisticsAccordion :is-pickable-team="true" />
 	</div>
 	<div v-else>
-		Nothing to show, go to <router-link to="/form"> Form </router-link>to start
-		exploring!
+		<p style="margin:5rem auto">
+			Nothing to show, go to <router-link to="/form"> Form </router-link>to start
+			exploring!
+		</p>
 	</div>
 </template>
 
