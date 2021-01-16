@@ -30,8 +30,8 @@
 			<tbody>
 				<tr v-for="([index,choice]) of Object.entries(teamChoices)" :key="index">
 					<td scope="row">{{ parseInt(index) + 1 }}</td>
-					<td scope="row">{{ Object.keys(choice)[0] }}</td>
-					<td scope="row">{{ Object.keys(choice[Object.keys(choice)[0]])[0] }}</td>
+					<td scope="row">{{ convertToStartCase(Object.keys(choice)[0]) }}</td>
+					<td scope="row">{{ convertToStartCase(Object.keys(choice[Object.keys(choice)[0]])[0]) }}</td>
 					<td scope="row">{{ Object.values(choice[Object.keys(choice)[0]])[0] }}</td>
 				</tr>
 			</tbody>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
@@ -86,7 +86,11 @@ export default {
 
 	},
 	methods: {
+		...mapActions('userData', {
+			sendChoicesToBackend: 'sendChoicesToBackend',
+		}),
 		async saveToDatabse() {
+			await this.sendChoicesToBackend();
 		},
 	},
 };
