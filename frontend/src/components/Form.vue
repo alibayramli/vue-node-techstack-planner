@@ -139,13 +139,7 @@ export default {
 		}),
 		async submit() {
 			await this.createStartupData();
-			this.resetForm();
 			this.isSubmitted = true;
-		},
-		resetForm() {
-			this.$store.commit('startupData/UPDATE_SIZE', '');
-			this.$store.commit('startupData/UPDATE_LOCATION', '');
-			this.$store.commit('startupData/UPDATE_FIELD', '');
 		},
 		isNumber(evt = window.event) {
 			const charCode = (evt.which) ? evt.which : evt.keyCode;
