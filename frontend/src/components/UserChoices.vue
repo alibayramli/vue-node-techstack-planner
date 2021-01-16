@@ -40,7 +40,7 @@
 			class="was-validated save-choices"
 			@submit.prevent="saveToDatabse()"
 		>
-			<fieldset>
+			<fieldset v-if="!isChoicesSaved">
 				<legend>Ready? Save your preferences!</legend>
 				<div class="mb-3">
 					<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
@@ -56,6 +56,7 @@
 					</button>
 				</div>
 			</fieldset>
+			<button type="button" class="btn btn-success" v-if="isChoicesSaved" disabled>Saved</button>
 		</form>
 	</div>
 </template>
@@ -74,6 +75,7 @@ export default {
 		...mapState('userData', {
 			generalChoices: 'generalChoices',
 			teamChoices: 'teamChoices',
+			isChoicesSaved: 'isChoicesSaved',
 		}),
 		startupName: {
 			get() {
@@ -91,6 +93,14 @@ export default {
 		}),
 		async saveToDatabse() {
 			await this.sendChoicesToBackend();
+			await this.resetForm();
+		},
+		resetForm() {
+			this.$store.commit('startupData/UPDATE_NAME', '');
+			this.$store.commit('startupData/UPDATE_SIZE', '');
+			this.$store.commit('startupData/UPDATE_LOCATION', '');
+			this.$store.commit('startupData/UPDATE_FIELD', '');
+			this.$store.commit('startupData/UPDATE_BUDGET', '');
 		},
 	},
 };
@@ -103,8 +113,5 @@ export default {
   padding: 15px 30px;
   width: 40rem;
   background-color: #fff;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 </style>
