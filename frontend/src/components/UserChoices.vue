@@ -1,7 +1,7 @@
 <template>
 	<div v-if="Object.keys(generalChoices).length && Object.keys(teamChoices).length">
 		<h4 class="text-center py-4">General Choices</h4>
-		<table class="table table-striped" v-if="Object.keys(generalChoices).length">
+		<table class="table" v-if="Object.keys(generalChoices).length">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -18,7 +18,7 @@
 			</tbody>
 		</table>
 		<h4 class="text-center py-4">Team Choices</h4>
-		<table class="table table-striped">
+		<table class="table">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
