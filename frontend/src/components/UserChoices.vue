@@ -12,7 +12,7 @@
 			<tbody>
 				<tr v-for="([type,name], index) of Object.entries(generalChoices)" :key="index">
 					<th scope="row">{{ index + 1 }}</th>
-					<td>{{ type }}</td>
+					<td>{{ convertToStartCase(type) }}</td>
 					<td>{{ name }}</td>
 				</tr>
 			</tbody>
