@@ -11,16 +11,16 @@
 
 				<div class="mb-3">
 					<label for="name" class="form-label">Name</label>
-					<input type="text" class="form-control" placeholder="Enter Full Name" v-model="fullName">
+					<input type="text" class="form-control" v-model="fullName">
 				</div>
 
 				<div class="mb-3">
 					<label for="name" class="form-label">Email</label>
-					<input class="form-control" placeholder="Enter Email" v-model="email">
+					<input class="form-control" v-model="email">
 				</div>
 				<div class="mb-3">
 					<label for="name" class="form-label">Password</label>
-					<input class="form-control" placeholder="Enter Password" v-model="password">
+					<input class="form-control" v-model="password">
 				</div>
 
 				<div class="mb-3">
