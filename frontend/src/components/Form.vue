@@ -18,7 +18,7 @@
 						v-model="startupSize"
 					>
 						<option v-for="size in sizes" :key="size" :value="size">
-							{{ size }}
+							{{ convertToStartCase(size) }}
 						</option>
 					</select>
 					<div class="invalid-feedback">Please select</div>
