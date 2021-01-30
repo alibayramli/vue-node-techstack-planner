@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router/router';
 export default {
 	namespaced: true,
 	state: {
@@ -8,6 +9,7 @@ export default {
 		generalChoices: {},
 		teamChoices: [],
 		isChoicesSaved: false,
+		errorMessage: '',
 	},
 	getters: {
 		getFullName(state) {
@@ -18,6 +20,9 @@ export default {
 		},
 		getPassword(state) {
 			return state.password;
+		},
+		getErrorMessage(state) {
+			return state.errorMessage;
 		},
 		getGeneralChoices(state) {
 			return state.generalChoices;
@@ -36,6 +41,9 @@ export default {
 		UPDATE_PASSWORD(state, newPassword) {
 			state.password = newPassword;
 		},
+		UPDATE_ERROR_MESSAGE(state, newErrorMessage) {
+			state.errorMessage = newErrorMessage;
+		},
 		SET_GENERAL_CHOICES(state, { type, name }) {
 			state.generalChoices[type] = name;
 		},
@@ -47,12 +55,22 @@ export default {
 		},
 	},
 	actions: {
-		async sendSignupInfo({ state }) {
+		async sendSignupInfo({ commit, state }) {
 			try {
 				const { fullName, email, password } = state;
 				const newData = { fullName, email, password };
-				const data = await axios.post('http://localhost:5000/signup-data', newData);
-				console.log(data);
+				await axios.post('http://localhost:5000/user-data/signup', newData);
+				commit('UPDATE_ERROR_MESSAGE', '');
+				router.push('login');
+			} catch (err) {
+				commit('UPDATE_ERROR_MESSAGE', err.response.data.title);
+			}
+		},
+		async sendLoginInfo({ state }) {
+			try {
+				const { email, password } = state;
+				const newData = { email, password };
+				await axios.post('http://localhost:5000/user-data/login', newData);
 			} catch (err) {
 				// eslint-disable-next-line no-console
 				console.log(err);

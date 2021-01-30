@@ -6,9 +6,7 @@
 		>
 			<fieldset>
 				<legend>Sign up</legend>
-
 				<hr>
-
 				<div class="mb-3">
 					<label for="name" class="form-label">Name</label>
 					<input type="text" class="form-control" v-model="fullName">
@@ -29,22 +27,26 @@
 						type="submit"
 						:disabled="!fullName || !email || !password"
 					>
-						Submit form
+						Signup
 					</button>
 				</div>
+				<p class="form-text text-muted">{{ error }}</p>
 			</fieldset>
 		</form>
 	</div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
 	name: 'Signup',
 	data() {
 		return {};
 	},
 	computed: {
+		...mapGetters('userData', {
+			error: 'getErrorMessage',
+		}),
 		fullName: {
 			get() {
 				return this.$store.state.userData.fullName;
