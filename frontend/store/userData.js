@@ -2,11 +2,23 @@ import axios from 'axios';
 export default {
 	namespaced: true,
 	state: {
+		fullName: '',
+		email: '',
+		password: '',
 		generalChoices: {},
 		teamChoices: [],
 		isChoicesSaved: false,
 	},
 	getters: {
+		getFullName(state) {
+			return state.fullName;
+		},
+		getEmail(state) {
+			return state.email;
+		},
+		getPassword(state) {
+			return state.password;
+		},
 		getGeneralChoices(state) {
 			return state.generalChoices;
 		},
@@ -15,6 +27,15 @@ export default {
 		},
 	},
 	mutations: {
+		UPDATE_FULL_NAME(state, newFullName) {
+			state.fullName = newFullName;
+		},
+		UPDATE_EMAIL(state, newEmail) {
+			state.email = newEmail;
+		},
+		UPDATE_PASSWORD(state, newPassword) {
+			state.password = newPassword;
+		},
 		SET_GENERAL_CHOICES(state, { type, name }) {
 			state.generalChoices[type] = name;
 		},
@@ -26,6 +47,17 @@ export default {
 		},
 	},
 	actions: {
+		async sendSignupInfo({ state }) {
+			try {
+				const { fullName, email, password } = state;
+				const newData = { fullName, email, password };
+				const data = await axios.post('http://localhost:5000/signup-data', newData);
+				console.log(data);
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			}
+		},
 		async sendChoicesToBackend({ commit, state, rootState }) {
 			try {
 				const { generalChoices, teamChoices } = state;
