@@ -66,14 +66,16 @@ export default {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.title);
 			}
 		},
-		async sendLoginInfo({ state }) {
+		async sendLoginInfo({ commit, state }) {
 			try {
 				const { email, password } = state;
 				const newData = { email, password };
-				await axios.post('http://localhost:5000/user-data/login', newData);
+				const response = await axios.post('http://localhost:5000/user-data/login', newData);
+				commit('UPDATE_ERROR_MESSAGE', '');
+				localStorage.setItem('token', response.data.token);
+				router.push('form');
 			} catch (err) {
-				// eslint-disable-next-line no-console
-				console.log(err);
+				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
 			}
 		},
 		async sendChoicesToBackend({ commit, state, rootState }) {

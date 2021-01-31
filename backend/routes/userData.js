@@ -5,10 +5,12 @@ const INTERNAL_SERVER_ERROR = 500;
 const UNAUTHORIZED_STATUS = 401;
 const BAD_REQUEST = 400;
 const OK_STATUS = 200;
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const UserChoice = require('../models/userChoice.js');
 const mongoose = require('mongoose');
 const dbUrl = process.env.URL;
+const jwtSecretKey = process.env.JWT_SECRET;
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -80,6 +82,13 @@ router.post('/login', async (req, res) => {
 					error: 'invalid credentials',
 				});
 			}
+			const token = jwt.sign({ userId: user._id }, jwtSecretKey, {
+				expiresIn: '1h',
+			});
+			return res.status(OK_STATUS).json({
+				title: 'login successful',
+				token,
+			});
 		});
 	} catch (err) {
 		console.log(err);
