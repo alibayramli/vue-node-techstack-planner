@@ -1,4 +1,4 @@
-import axios from 'axios';
+import backend from '../src/middleware/axios';
 export default {
 	namespaced: true,
 	state: {
@@ -33,7 +33,7 @@ export default {
 	},
 	actions: {
 		async loadStatisticsInfos({ commit }) {
-			const response = await axios.get('http://localhost:5000/statistics-data');
+			const response = await backend.get('statistics-data');
 			commit('SET_GENERAL_STATISTICS', response.data.generalStatistics);
 			commit('SET_TEAM_STATISTICS', response.data.teamStatistics);
 		},

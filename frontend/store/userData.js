@@ -1,4 +1,4 @@
-import axios from 'axios';
+import backend from '../src/middleware/axios';
 import router from '../router/router';
 export default {
 	namespaced: true,
@@ -59,9 +59,9 @@ export default {
 			try {
 				const { fullName, email, password } = state;
 				const newData = { fullName, email, password };
-				await axios.post('http://localhost:5000/user-data/signup', newData);
+				await backend.post('user-data/signup', newData);
 				commit('UPDATE_ERROR_MESSAGE', '');
-				router.push('login');
+				router.push('/');
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.title);
 			}
@@ -70,7 +70,7 @@ export default {
 			try {
 				const { email, password } = state;
 				const newData = { email, password };
-				const response = await axios.post('http://localhost:5000/user-data/login', newData);
+				const response = await backend.post('user-data/login', newData);
 				commit('UPDATE_ERROR_MESSAGE', '');
 				localStorage.setItem('token', response.data.token);
 				router.push('form');
@@ -92,7 +92,7 @@ export default {
 						team: teamChoices,
 					},
 				};
-				await axios.post('http://localhost:5000/user-data', newData);
+				await backend.post('user-data', newData);
 				commit('UPDATE_IS_CHOICES_SAVED', true);
 			} catch (err) {
 				// eslint-disable-next-line no-console

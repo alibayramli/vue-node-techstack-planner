@@ -1,4 +1,4 @@
-import axios from 'axios';
+import backend from '../src/middleware/axios';
 import router from '../router/router';
 export default {
 	namespaced: true,
@@ -33,7 +33,7 @@ export default {
 				location: state.location,
 				field: state.field,
 			};
-			const response = await axios.post('http://localhost:5000/startup-data', newData);
+			const response = await backend.post('startup-data', newData);
 			const suggestedProgrammingLanguages = response.data;
 			commit('toolsData/SET_TOOLS', suggestedProgrammingLanguages, { root: true });
 			router.push('techstack');
