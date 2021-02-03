@@ -7,28 +7,33 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<router-link class="nav-link" to="/login">
+						<li class="nav-item" v-if="!isLoggedIn">
+							<router-link class="nav-link" to="/">
 								Login
 							</router-link>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" v-if="!isLoggedIn">
 							<router-link class="nav-link" to="/signup">
 								Signup
 							</router-link>
 						</li>
-						<li class="nav-item">
-							<router-link class="nav-link" to="/"> Home </router-link>
+						<li class="nav-item" v-if="isLoggedIn">
+							<a class="nav-link" style="cursor:pointer" @click="logout()">
+								Logout
+							</a>
 						</li>
 						<li class="nav-item">
+							<router-link class="nav-link" to="/home"> Home </router-link>
+						</li>
+						<li class="nav-item" v-if="isLoggedIn">
 							<router-link class="nav-link" to="/form"> Form </router-link>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" v-if="isLoggedIn">
 							<router-link class="nav-link" to="/techstack">
 								Tech Stack
 							</router-link>
 						</li>
-						<li class="nav-item" v-if="Object.keys(generalChoices).length && Object.keys(teamChoices).length">
+						<li class="nav-item" v-if="isLoggedIn && Object.keys(generalChoices).length && Object.keys(teamChoices).length">
 							<router-link class="nav-link" to="/choices">
 								Your choices
 							</router-link>
@@ -42,7 +47,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
+import backend from '../src/middleware/axios';
 export default {
 	name: 'App',
 	data() {
@@ -53,6 +59,9 @@ export default {
 			generalChoices: 'generalChoices',
 			teamChoices: 'teamChoices',
 		}),
+		...mapGetters('userData', {
+			isLoggedIn: 'isLoggedIn',
+		}),
 
 	},
 	async created() {
@@ -62,6 +71,12 @@ export default {
 		...mapActions('statisticsData', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
+		logout() {
+			this.$store.commit('userData/SET_LOG_OUT');
+			localStorage.removeItem('token');
+			delete backend.defaults.headers.common.Authorization;
+			this.$router.push('/');
+		},
 	},
 };
 </script>

@@ -6,6 +6,7 @@ export default {
 		fullName: '',
 		email: '',
 		password: '',
+		token: '',
 		generalChoices: {},
 		teamChoices: [],
 		isChoicesSaved: false,
@@ -30,6 +31,9 @@ export default {
 		getTeamChoices(state) {
 			return state.teamChoices;
 		},
+		isLoggedIn(state) {
+			return !!state.token;
+		},
 	},
 	mutations: {
 		UPDATE_FULL_NAME(state, newFullName) {
@@ -49,6 +53,12 @@ export default {
 		},
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
+		},
+		SET_TOKEN(state, token) {
+			state.token = token;
+		},
+		SET_LOG_OUT(state) {
+			state.token = '';
 		},
 		UPDATE_IS_CHOICES_SAVED(state, newIsChoicesSavedValue) {
 			state.isChoicesSaved = newIsChoicesSavedValue;
@@ -71,9 +81,11 @@ export default {
 				const { email, password } = state;
 				const newData = { email, password };
 				const response = await backend.post('user-data/login', newData);
+				commit('SET_TOKEN', response.data.token);
 				commit('UPDATE_ERROR_MESSAGE', '');
 				localStorage.setItem('token', response.data.token);
-				router.push('form');
+				backend.defaults.headers.common.Authorization = response.data.token;
+				router.push('/form');
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
 			}

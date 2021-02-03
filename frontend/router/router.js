@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { store } from '../store/index';
 import Home from '../src/components/Home.vue';
 import Form from '../src/components/Form.vue';
 import TechStack from '../src/components/TechStack.vue';
@@ -9,28 +10,8 @@ export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
 		{
-			name: 'home',
-			path: '/',
-			component: Home,
-		},
-		{
-			name: 'form',
-			path: '/form',
-			component: Form,
-		},
-		{
-			name: 'techstack',
-			path: '/techstack',
-			component: TechStack,
-		},
-		{
-			name: 'choices',
-			path: '/choices',
-			component: UserChoices,
-		},
-		{
 			name: 'login',
-			path: '/login',
+			path: '/',
 			component: Login,
 		},
 		{
@@ -38,6 +19,46 @@ export const router = createRouter({
 			path: '/signup',
 			component: Signup,
 		},
+		{
+			name: 'home',
+			path: '/home',
+			component: Home,
+		},
+		{
+			name: 'form',
+			path: '/form',
+			component: Form,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
+			name: 'techstack',
+			path: '/techstack',
+			component: TechStack,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
+			name: 'choices',
+			path: '/choices',
+			component: UserChoices,
+			meta: {
+				requiresAuth: true,
+			},
+		},
 	],
+});
+router.beforeEach((to, from, next) => {
+	if (to.matched.some(record => record.meta.requiresAuth)) {
+		if (store.getters['userData/isLoggedIn']) {
+			next();
+			return;
+		}
+		next('/');
+	} else {
+		next();
+	}
 });
 export default router;
