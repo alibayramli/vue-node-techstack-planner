@@ -13,11 +13,17 @@ export const router = createRouter({
 			name: 'login',
 			path: '/',
 			component: Login,
+			meta: {
+				guest: true,
+			},
 		},
 		{
 			name: 'signup',
 			path: '/signup',
 			component: Signup,
+			meta: {
+				guest: true,
+			},
 		},
 		{
 			name: 'home',
@@ -56,7 +62,13 @@ router.beforeEach((to, from, next) => {
 			next();
 			return;
 		}
-		next('/');
+		next('/home');
+	} else if (to.matched.some(record => record.meta.guest)) {
+		if (store.getters['userData/isLoggedIn']) {
+			next('/home');
+			return;
+		}
+		next();
 	} else {
 		next();
 	}
