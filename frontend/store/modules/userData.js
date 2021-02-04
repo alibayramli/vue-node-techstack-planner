@@ -1,5 +1,5 @@
-import backend from '../src/middleware/axios';
-import router from '../router/router';
+import backend from '../../src/middleware/axios';
+import router from '../../router/router';
 export default {
 	namespaced: true,
 	state: {
