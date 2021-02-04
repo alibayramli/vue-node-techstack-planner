@@ -1,4 +1,17 @@
 import axios from 'axios';
-export default axios.create({
+import { store } from '../../store/index';
+const instance = axios.create({
 	baseURL: 'http://localhost:5000',
+	headers: {
+		Accept: 'application/json',
+		'Content-Type': 'application/json',
+	},
 });
+instance.interceptors.request.use(function (config) {
+	const token = store.getters['userData/getToken'];
+	config.headers.Authorization = 'Bearer ' + token;
+	return config;
+}, function (error) {
+	return Promise.reject(error);
+});
+export default instance;
