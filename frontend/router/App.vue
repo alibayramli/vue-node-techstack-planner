@@ -48,7 +48,6 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
-import backend from '../src/middleware/axios';
 export default {
 	name: 'App',
 	data() {
@@ -65,17 +64,21 @@ export default {
 
 	},
 	async created() {
-		await this.statisticsInfos();
+		await Promise.all([
+			this.statisticsInfos(),
+			this.formInfos(),
+		]);
 	},
 	methods: {
 		...mapActions('statisticsData', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
+		...mapActions('formData', {
+			formInfos: 'loadFormInfos',
+		}),
 		logout() {
-			this.$store.commit('userData/SET_LOG_OUT');
 			localStorage.removeItem('token');
-			delete backend.defaults.headers.common.Authorization;
-			this.$router.push('/');
+			this.$router.go();
 		},
 	},
 };
