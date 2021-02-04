@@ -31,6 +31,9 @@ export default {
 		getTeamChoices(state) {
 			return state.teamChoices;
 		},
+		getToken(state) {
+			return state.token;
+		},
 		isLoggedIn(state) {
 			return !!state.token;
 		},
@@ -56,9 +59,6 @@ export default {
 		},
 		SET_TOKEN(state, token) {
 			state.token = token;
-		},
-		SET_LOG_OUT(state) {
-			state.token = '';
 		},
 		UPDATE_IS_CHOICES_SAVED(state, newIsChoicesSavedValue) {
 			state.isChoicesSaved = newIsChoicesSavedValue;

@@ -6,6 +6,17 @@ export default {
 		availableLocations: [],
 		availableFields: [],
 	},
+	getters: {
+		getAvailableSizes(state) {
+			return state.availableSizes;
+		},
+		getAvailableLocations(state) {
+			return state.availableLocations;
+		},
+		getAvailableFields(state) {
+			return state.availableFields;
+		},
+	},
 	mutations: {
 		SET_AVAILABLE_SIZES(state, sizes) {
 			state.availableSizes = sizes;

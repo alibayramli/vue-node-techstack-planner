@@ -9,6 +9,23 @@ export default {
 		field: '',
 		budget: '',
 	},
+	getters: {
+		getName(state) {
+			return state.name;
+		},
+		getSize(state) {
+			return state.size;
+		},
+		getLocation(state) {
+			return state.location;
+		},
+		getField(state) {
+			return state.field;
+		},
+		getBudget(state) {
+			return state.budget;
+		},
+	},
 	mutations: {
 		UPDATE_NAME(state, newStartupName) {
 			state.name = newStartupName;

@@ -5,6 +5,11 @@ export default {
 		name,
 		details: [],
 	},
+	getters: {
+		getDetails(state) {
+			return state.details;
+		},
+	},
 	mutations: {
 		UPDATE_NAME(state, newName) {
 			state.name = newName;
