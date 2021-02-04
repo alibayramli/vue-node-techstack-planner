@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
@@ -89,14 +89,14 @@ export default {
 		};
 	},
 	computed: {
-		...mapState('formData', {
-			locations: 'availableLocations',
-			sizes: 'availableSizes',
-			fields: 'availableFields',
+		...mapGetters('formData', {
+			locations: 'getAvailableLocations',
+			sizes: 'getAvailableSizes',
+			fields: 'getAvailableFields',
 		}),
 		startupSize: {
 			get() {
-				return this.$store.state.startupData.size;
+				return this.$store.getters['startupData/getSize'];
 			},
 			set(value) {
 				this.$store.commit('startupData/UPDATE_SIZE', value);
@@ -104,7 +104,7 @@ export default {
 		},
 		startupLocation: {
 			get() {
-				return this.$store.state.startupData.location;
+				return this.$store.getters['startupData/getLocation'];
 			},
 			set(value) {
 				this.$store.commit('startupData/UPDATE_LOCATION', value);
@@ -112,7 +112,7 @@ export default {
 		},
 		startupField: {
 			get() {
-				return this.$store.state.startupData.field;
+				return this.$store.getters['startupData/getField'];
 			},
 			set(value) {
 				this.$store.commit('startupData/UPDATE_FIELD', value);
@@ -120,20 +120,14 @@ export default {
 		},
 		startupBudget: {
 			get() {
-				return this.$store.state.startupData.budget;
+				return this.$store.getters['startupData/getBudget'];
 			},
 			set(value) {
 				this.$store.commit('startupData/UPDATE_BUDGET', value);
 			},
 		},
 	},
-	async created() {
-		await this.formInfos();
-	},
 	methods: {
-		...mapActions('formData', {
-			formInfos: 'loadFormInfos',
-		}),
 		...mapActions('startupData', {
 			createStartupData: 'createData',
 		}),

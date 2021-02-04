@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import caseConverterMixin from '../mixins/caseConverter';
 export default {
 	name: 'ProgLangInfo',
@@ -44,8 +44,8 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('programmingLanguagesData', {
-			details: 'details',
+		...mapGetters('programmingLanguagesData', {
+			details: 'getDetails',
 		}),
 	},
 	methods: {
