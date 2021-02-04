@@ -6,7 +6,7 @@ export default {
 		fullName: '',
 		email: '',
 		password: '',
-		token: '',
+		token: localStorage.getItem('token') || '',
 		generalChoices: {},
 		teamChoices: [],
 		isChoicesSaved: false,
