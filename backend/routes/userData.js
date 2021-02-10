@@ -10,7 +10,10 @@ const User = require('../models/user');
 const UserChoice = require('../models/userChoice.js');
 const mongoose = require('mongoose');
 const dbUrl = process.env.URL;
-const jwtSecretKey = process.env.JWT_SECRET;
+const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
+const accessTokenLife = process.env.JWT_ACCESS_TOKEN_LIFE;
+const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET;
+const refreshTokenLife = process.env.JWT_REFRESH_TOKEN_LIFE;
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -82,12 +85,16 @@ router.post('/login', async (req, res) => {
 					error: 'invalid credentials',
 				});
 			}
-			const token = jwt.sign({ userId: user._id }, jwtSecretKey, {
-				expiresIn: '1h',
+			const accessToken = jwt.sign({ userId: user._id }, accessTokenSecret, {
+				// expiresIn: accessTokenLife,
 			});
+			const refreshToken = jwt.sign({ userId: user._id }, refreshTokenSecret, {
+				expiresIn: refreshTokenLife,
+			});
+
 			return res.status(OK_STATUS).json({
 				title: 'login successful',
-				token,
+				accessToken,
 			});
 		});
 	} catch (err) {

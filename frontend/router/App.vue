@@ -63,11 +63,11 @@ export default {
 		}),
 
 	},
-	async created() {
-		await Promise.all([
-			this.statisticsInfos(),
-			this.formInfos(),
-		]);
+	async mounted() {
+		await this.statisticsInfos();
+		if (this.isLoggedIn) {
+			await this.formInfos();
+		}
 	},
 	methods: {
 		...mapActions('statisticsData', {

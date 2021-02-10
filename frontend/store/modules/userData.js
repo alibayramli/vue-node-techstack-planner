@@ -81,11 +81,11 @@ export default {
 				const { email, password } = state;
 				const newData = { email, password };
 				const response = await backend.post('user-data/login', newData);
-				commit('SET_TOKEN', response.data.token);
+				const accessToken = response.data.accessToken;
+				commit('SET_TOKEN', accessToken);
 				commit('UPDATE_ERROR_MESSAGE', '');
-				localStorage.setItem('token', response.data.token);
-				backend.defaults.headers.common.Authorization = response.data.token;
-				router.push('/form');
+				localStorage.setItem('token', accessToken);
+				router.go();
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
 			}
