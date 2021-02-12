@@ -1,10 +1,21 @@
-import axios from 'axios';
+import backend from '../../src/middleware/axios';
 export default {
 	namespaced: true,
 	state: {
 		availableSizes: [],
 		availableLocations: [],
 		availableFields: [],
+	},
+	getters: {
+		getAvailableSizes(state) {
+			return state.availableSizes;
+		},
+		getAvailableLocations(state) {
+			return state.availableLocations;
+		},
+		getAvailableFields(state) {
+			return state.availableFields;
+		},
 	},
 	mutations: {
 		SET_AVAILABLE_SIZES(state, sizes) {
@@ -19,10 +30,10 @@ export default {
 	},
 	actions: {
 		async loadFormInfos({ commit }) {
-			const formInfosResponse = await axios.get('http://localhost:5000/form-data');
+			const formInfosResponse = await backend.get('form-data');
 			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
 			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
-			const fieldResponse = await axios.get('http://localhost:5000/statistics-data');
+			const fieldResponse = await backend.get('statistics-data');
 			const fields = fieldResponse.data.typesOfSoftware;
 			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);

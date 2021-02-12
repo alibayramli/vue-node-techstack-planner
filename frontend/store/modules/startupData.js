@@ -1,5 +1,5 @@
-import axios from 'axios';
-import router from '../router/router';
+import backend from '../../src/middleware/axios';
+import router from '../../router/router';
 export default {
 	namespaced: true,
 	state: {
@@ -8,6 +8,23 @@ export default {
 		location: '',
 		field: '',
 		budget: '',
+	},
+	getters: {
+		getName(state) {
+			return state.name;
+		},
+		getSize(state) {
+			return state.size;
+		},
+		getLocation(state) {
+			return state.location;
+		},
+		getField(state) {
+			return state.field;
+		},
+		getBudget(state) {
+			return state.budget;
+		},
 	},
 	mutations: {
 		UPDATE_NAME(state, newStartupName) {
@@ -33,7 +50,7 @@ export default {
 				location: state.location,
 				field: state.field,
 			};
-			const response = await axios.post('http://localhost:5000/startup-data', newData);
+			const response = await backend.post('startup-data', newData);
 			const suggestedProgrammingLanguages = response.data;
 			commit('toolsData/SET_TOOLS', suggestedProgrammingLanguages, { root: true });
 			router.push('techstack');

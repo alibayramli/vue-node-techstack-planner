@@ -19,9 +19,7 @@ app.use('/programming-languages-data', programmingLanguagesDataRoutes);
 app.use('/user-data', userDataRoutes);
 
 app.listen(port, (err) => {
-	if (err) {
-		return console.error('Error while starting server:', err);
-	}
-
-	console.log(`Server is listening on port ${port}`);
+	return err
+		? console.error('Error while starting server:', err)
+		: console.log(`Server is listening on port ${port}`);
 });

@@ -1,10 +1,10 @@
 import { createStore } from 'vuex';
-import statisticsData from './statisticsData';
-import startupData from './startupData';
-import formData from './formData';
-import toolsData from './toolsData';
-import programmingLanguagesData from './programmingLanguagesData';
-import userData from './userData';
+import statisticsData from './modules/statisticsData';
+import startupData from './modules/startupData';
+import formData from './modules/formData';
+import toolsData from './modules/toolsData';
+import programmingLanguagesData from './modules/programmingLanguagesData';
+import userData from './modules/userData';
 export const store = createStore({
 	modules: {
 		statisticsData,
