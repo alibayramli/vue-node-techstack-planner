@@ -18,16 +18,19 @@
 				</div>
 				<div class="mb-3">
 					<label for="name" class="form-label">Password</label>
-					<input class="form-control" v-model="password">
+					<input type="password" class="form-control" v-model="password">
 				</div>
 
-				<div class="mb-3">
+				<div v-if="!getToken">
 					<button
 						class="btn btn-primary"
 						type="submit"
 						:disabled="!fullName || !email || !password"
 					>
 						Signup
+						<div class="spinner-border spinner-border-sm" role="status"
+							v-if="isSignupSpinnerActive"
+						/>
 					</button>
 				</div>
 				<p class="form-text text-muted">{{ error }}</p>
@@ -41,11 +44,14 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
 	name: 'Signup',
 	data() {
-		return {};
+		return {
+			isSignupSpinnerActive: false,
+		};
 	},
 	computed: {
 		...mapGetters('userData', {
 			error: 'getErrorMessage',
+			getToken: 'getToken',
 		}),
 		fullName: {
 			get() {
@@ -78,7 +84,9 @@ export default {
 			sendSignupInfo: 'sendSignupInfo',
 		}),
 		async onSubmitSignup() {
+			this.isSignupSpinnerActive = true;
 			await this.sendSignupInfo();
+			this.isSignupSpinnerActive = false;
 		},
 	},
 
