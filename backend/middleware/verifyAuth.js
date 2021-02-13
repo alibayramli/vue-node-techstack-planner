@@ -7,7 +7,6 @@ const BAD_REQUEST = 400;
 const OK_STATUS = 200;
 exports.verify = function (req, res, next) {
 	const [, accessToken] = req.headers.authorization.split(' ');
-	// if there is no token stored in cookies, the request is unauthorized
 	if (!accessToken) {
 		return res.status(UNAUTHORIZED_STATUS).send();
 	}

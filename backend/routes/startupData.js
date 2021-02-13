@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const { verify } = require('../middleware/verifyAuth');
 const statisticsFile = '../data/statistics.json';
 const INTERNAL_SERVER_ERROR = 500;
-router.post('/', (req, res) => {
+router.post('/', verify, (req, res) => {
 	try {
 		const statistics = JSON.parse(fs.readFileSync(statisticsFile, 'utf8'));
 		const { size, location, field } = req.body;
