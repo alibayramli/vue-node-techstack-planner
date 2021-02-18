@@ -1,9 +1,6 @@
 <template>
 	<div>
-		<form
-			class="login-form"
-			@submit.prevent="onSubmitLogin"
-		>
+		<form class="login-form" @submit.prevent="onSubmitLogin">
 			<fieldset>
 				<legend>Login</legend>
 				<hr>
@@ -20,10 +17,12 @@
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!email || !password"
+						:disabled="!email || !password || isLoginButtonClicked"
 					>
 						Login
-						<div class="spinner-border spinner-border-sm" role="status"
+						<div
+							class="spinner-border spinner-border-sm"
+							role="status"
 							v-if="isLoginSpinnerActive"
 						/>
 					</button>
@@ -41,6 +40,7 @@ export default {
 	data() {
 		return {
 			isLoginSpinnerActive: false,
+			isLoginButtonClicked: false,
 		};
 	},
 	computed: {
@@ -64,7 +64,6 @@ export default {
 				this.$store.commit('userData/UPDATE_PASSWORD', value);
 			},
 		},
-
 	},
 	methods: {
 		...mapActions('userData', {
@@ -72,11 +71,12 @@ export default {
 		}),
 		async onSubmitLogin() {
 			this.isLoginSpinnerActive = true;
+			this.isLoginButtonClicked = true;
 			await this.sendLoginInfo();
 			this.isLoginSpinnerActive = false;
+			this.isLoginButtonClicked = false;
 		},
 	},
-
 };
 </script>
 
