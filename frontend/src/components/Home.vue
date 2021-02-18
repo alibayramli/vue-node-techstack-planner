@@ -4,8 +4,8 @@
 			Those statistics are taken from StackOverflow and Jetbrains Developer
 			Surveys. Feel free to get to know about the trends before going the form
 		</h5>
-		<GeneralStatisticsAccordion :stats-obj="generalStats" />
-		<TeamStatisticsAccordion />
+		<GeneralStatisticsAccordion :stats-obj="generalStats" :is-pickable-general="false" />
+		<TeamStatisticsAccordion :is-pickable-team="false" />
 	</div>
 </template>
 
