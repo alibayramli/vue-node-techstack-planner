@@ -55,6 +55,7 @@ export default {
 		async getDetails(name) {
 			this.$store.commit('programmingLanguagesData/UPDATE_NAME', name);
 			await this.languageDetails();
+			this.$router.push(`/prog-lang/${name}`);
 		},
 	},
 };
