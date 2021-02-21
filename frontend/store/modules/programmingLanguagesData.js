@@ -2,7 +2,7 @@ import backend from '../../src/middleware/axios';
 export default {
 	namespaced: true,
 	state: {
-		name,
+		name: '',
 		details: [],
 	},
 	getters: {
