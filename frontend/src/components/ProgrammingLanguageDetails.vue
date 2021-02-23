@@ -1,16 +1,34 @@
 <template>
 	<div>
-		prog lang: {{ id }}
-		<div class="card" v-for="detailType of Object.keys(languageDetails)" :key="detailType">
-			<div class="card-header">
-				{{ convertToStartCase(detailType) }}
-			</div>
-			<p class="card-text"
-				v-for="detail of languageDetails[detailType]"
-				:key="detail"
+		<div class="d-flex p-3 container">
+			<button type="button" class="btn btn-secondary"
+				@click="goBackToPreviousLink()"
 			>
-				{{ detail[0] }}
-			</p>
+				Go back
+			</button>
+		</div>
+		<div v-if="!Object.keys(languageDetails).length">
+			<div class="d-flex justify-content-center">
+				no data :(
+			</div>
+		</div>
+		<div class="container">
+			<div class="card" v-for="detailType of Object.keys(languageDetails)" :key="detailType">
+				<div class="card-header">
+					{{ convertToStartCase(detailType) }}
+				</div>
+				<p class="card-text"
+					v-for="detail of languageDetails[detailType]"
+					:key="detail"
+				>
+					{{ detail[0] }}
+				</p>
+			</div>
+			<div v-if="isSpinnerActive">
+				<div class="d-flex justify-content-center">
+					<div class="spinner-border" role="status" />
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -30,7 +48,7 @@ export default {
 	},
 	data() {
 		return {
-
+			isSpinnerActive: false,
 		};
 	},
 	computed: {
@@ -39,7 +57,9 @@ export default {
 		}),
 	},
 	async created() {
+		this.isSpinnerActive = true;
 		await this.getProgLangDetails(this.id);
+		this.isSpinnerActive = false;
 	},
 	methods: {
 		...mapActions('programmingLanguagesData', {
@@ -48,6 +68,11 @@ export default {
 		async getProgLangDetails(progName) {
 			this.$store.commit('programmingLanguagesData/UPDATE_NAME', progName);
 			await this.loadLanguageDetails();
+		},
+		goBackToPreviousLink() {
+			const backwardsSteps = -1;
+			this.$router.go(backwardsSteps);
+			this.$store.commit('programmingLanguagesData/UPDATE_DETAILS', []);
 		},
 	},
 };
