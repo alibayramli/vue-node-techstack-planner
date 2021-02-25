@@ -46,20 +46,19 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
+			children: [
+				{
+					name: 'prog-lang',
+					path: 'prog-lang/:id',
+					props: true,
+					components: { progDetails: ProgrammingLanguageDetails },
+				},
+			],
 		},
 		{
 			name: 'choices',
 			path: '/choices',
 			component: UserChoices,
-			meta: {
-				requiresAuth: true,
-			},
-		},
-		{
-			name: 'prog-lang',
-			path: '/prog-lang/:id',
-			component: ProgrammingLanguageDetails,
-			props: true,
 			meta: {
 				requiresAuth: true,
 			},
