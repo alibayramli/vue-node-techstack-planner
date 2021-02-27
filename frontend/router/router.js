@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { store } from '../store/index';
+import Login from '../src/components/Login.vue';
+import Signup from '../src/components/Signup.vue';
 import Home from '../src/components/Home.vue';
 import Form from '../src/components/Form.vue';
 import TechStack from '../src/components/TechStack.vue';
 import UserChoices from '../src/components/UserChoices.vue';
-import Login from '../src/components/Login.vue';
-import Signup from '../src/components/Signup.vue';
+import ProgrammingLanguageDetails from '../src/components/ProgrammingLanguageDetails.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -45,6 +46,14 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
+			children: [
+				{
+					name: 'prog-lang',
+					path: 'prog-lang/:id',
+					props: true,
+					components: { progDetails: ProgrammingLanguageDetails },
+				},
+			],
 		},
 		{
 			name: 'choices',
