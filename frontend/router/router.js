@@ -46,14 +46,15 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
-			children: [
-				{
-					name: 'prog-lang',
-					path: 'prog-lang/:id',
-					props: true,
-					components: { progDetails: ProgrammingLanguageDetails },
-				},
-			],
+		},
+		{
+			name: 'prog-lang',
+			path: '/prog-lang/:id',
+			props: true,
+			component: ProgrammingLanguageDetails,
+			meta: {
+				requiresAuth: true,
+			},
 		},
 		{
 			name: 'choices',
