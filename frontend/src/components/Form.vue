@@ -66,9 +66,14 @@
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupField || !startupBudget"
+						:disabled="!startupField || !startupBudget|| isSubmitFormClicked"
 					>
 						Submit form
+						<div
+							class="spinner-border spinner-border-sm"
+							role="status"
+							v-if="isSubmitFormSpinnerActive"
+						/>
 					</button>
 				</div>
 			</fieldset>
@@ -86,6 +91,8 @@ export default {
 	data() {
 		return {
 			isSubmitted: false,
+			isSubmitFormSpinnerActive: false,
+			isSubmitFormClicked: false,
 		};
 	},
 	computed: {
@@ -132,8 +139,12 @@ export default {
 			createStartupData: 'createData',
 		}),
 		async submit() {
+			this.isSubmitFormSpinnerActive = true;
+			this.isSubmitFormClicked = true;
 			await this.createStartupData();
 			this.isSubmitted = true;
+			this.isSubmitFormSpinnerActive = false;
+			this.isSubmitFormClicked = false;
 		},
 		isNumber(evt = window.event) {
 			const charCode = (evt.which) ? evt.which : evt.keyCode;

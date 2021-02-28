@@ -228,10 +228,11 @@ export default {
 .tooltip-add .tooltip-text-add {
   visibility: hidden;
   width: 120px;
-  background-color: navy;
+  background-color: #0d6efd;
   color: #fff;
   text-align: center;
   border-radius: 6px;
+  margin: 0 5px;
   padding: 5px 0;
 
   /* Position the tooltip */
