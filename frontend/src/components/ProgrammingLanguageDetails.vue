@@ -70,8 +70,7 @@ export default {
 			await this.loadLanguageDetails();
 		},
 		goBackToPreviousLink() {
-			const backwardsSteps = -1;
-			this.$router.go(backwardsSteps);
+			this.$router.back();
 			this.$store.commit('programmingLanguagesData/UPDATE_DETAILS', []);
 		},
 	},
