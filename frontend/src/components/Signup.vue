@@ -12,10 +12,13 @@
 				<div class="mb-3">
 					<label for="name" class="form-label">Email</label>
 					<input class="form-control" v-model="email">
+					<div v-if="email && !isValidEmail" class="form-text">Invalid email.</div>
 				</div>
+
 				<div class="mb-3">
 					<label for="name" class="form-label">Password</label>
 					<input type="password" class="form-control" v-model="password">
+					<div v-if="password && !isValidPassword" class="form-text">Invalid password.</div>
 				</div>
 
 				<div v-if="!getToken">
@@ -23,7 +26,7 @@
 						class="btn btn-primary"
 						type="submit"
 						:disabled="
-							!fullName || !email || !password || isSignupButtonClicked
+							!fullName || !isValidEmail || !isValidPassword || isSignupButtonClicked
 						"
 					>
 						Signup
@@ -48,6 +51,9 @@ export default {
 		return {
 			isSignupSpinnerActive: false,
 			isSignupButtonClicked: false,
+			emailRegex: new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]{2,}$'),
+			// at least a number, at least a special character, min length 6
+			passwordRegex: new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$'),
 		};
 	},
 	computed: {
@@ -78,6 +84,12 @@ export default {
 			set(value) {
 				this.$store.commit('userData/UPDATE_PASSWORD', value);
 			},
+		},
+		isValidEmail() {
+			return this.emailRegex.test(this.email);
+		},
+		isValidPassword() {
+			return this.passwordRegex.test(this.password);
 		},
 	},
 	methods: {
