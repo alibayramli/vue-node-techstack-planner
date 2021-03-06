@@ -18,7 +18,18 @@
 				<div class="mb-3">
 					<label for="name" class="form-label">Password</label>
 					<input type="password" class="form-control" v-model="password">
-					<div v-if="password && !isValidPassword" class="form-text">Invalid password.</div>
+					<div v-if="password && !isValidPassword" class="form-text">
+						<span>Please include:</span> <br>
+						<span v-if="!passwordContainsCapitalLetter"> capital letter(s) </span>
+						<span v-if="!passwordContainsNumber">number(s) </span>
+						<span v-if="!passwordContainsSpecialLetter"> special character(s) </span>
+						<span v-if="!passwordContainsMinCharacters"> min length of
+							{{ minPasswordCharacters }} characters
+						</span>
+					</div>
+					<div v-if="isValidPassword" class="form-text">
+						Good to go :)
+					</div>
 				</div>
 
 				<div v-if="!getToken">
@@ -52,8 +63,7 @@ export default {
 			isSignupSpinnerActive: false,
 			isSignupButtonClicked: false,
 			emailRegex: new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]{2,}$'),
-			// at least a number, at least a special character, min length 6
-			passwordRegex: new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$'),
+			minPasswordCharacters: 6,
 		};
 	},
 	computed: {
@@ -88,8 +98,23 @@ export default {
 		isValidEmail() {
 			return this.emailRegex.test(this.email);
 		},
+		passwordContainsCapitalLetter() {
+			return (new RegExp('[A-Z]+').test(this.password));
+		},
+		passwordContainsNumber() {
+			return (new RegExp('[0-9]+').test(this.password));
+		},
+		passwordContainsSpecialLetter() {
+			return (new RegExp('[!@#$%^&*]+').test(this.password));
+		},
+		passwordContainsMinCharacters() {
+			return (this.password.length >= this.minPasswordCharacters);
+		},
 		isValidPassword() {
-			return this.passwordRegex.test(this.password);
+			return this.passwordContainsCapitalLetter
+				&& this.passwordContainsNumber
+				&& this.passwordContainsSpecialLetter
+				&& this.passwordContainsMinCharacters;
 		},
 	},
 	methods: {
