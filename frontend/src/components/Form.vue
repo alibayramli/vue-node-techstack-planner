@@ -58,8 +58,12 @@
 				</div>
 				<div class="mb-3">
 					<label for="budget" class="form-label">Startup Budget</label>
-					<input type="text" class="form-control form-label" placeholder="Startup Budget" aria-label="Budget" required v-model="startupBudget" @keypress="isNumber(event)">
-					<div class="form-text">Please include average annual salary per person.</div>
+					<input type="text" class="form-control form-label"
+						placeholder="Startup Budget" aria-label="Budget"
+						required v-model="startupBudget"
+						@keypress="isValidStartupBudget"
+					>
+					<div class="form-text">Please include average annual salary per person. (e.g 65 -> 65000 USD)</div>
 				</div>
 
 				<div class="mb-3">
@@ -146,13 +150,18 @@ export default {
 			this.isSubmitFormSpinnerActive = false;
 			this.isSubmitFormClicked = false;
 		},
-		isNumber(evt = window.event) {
-			const charCode = (evt.which) ? evt.which : evt.keyCode;
+		isValidStartupBudget(event) {
+			// allow numbers and one dot
+			const keyCode = (event.keyCode ? event.keyCode : event.which);
 			// eslint-disable-next-line no-magic-numbers
-			if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-				evt.preventDefault();
-			} else {
-				return true;
+			if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.startupBudget.indexOf('.') !== -1)) {
+				event.preventDefault();
+			}
+			// allow up to 2 decimal places
+			if (this.startupBudget !== null
+				&& this.startupBudget.indexOf('.') > 0
+				&& (this.startupBudget.split('.')[1].length > 1)) {
+				event.preventDefault();
 			}
 		},
 	},
