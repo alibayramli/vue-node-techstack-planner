@@ -33,7 +33,6 @@ export default {
 .tooltip-view {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
 }
 
 .tooltip-view  .tooltip-text-view{
