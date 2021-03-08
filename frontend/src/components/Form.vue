@@ -63,7 +63,7 @@
 						required v-model="startupBudget"
 						@keypress="isValidStartupBudget"
 					>
-					<div class="form-text">Please include average annual salary per person.</div>
+					<div class="form-text">Please include average annual salary per person. (e.g 65 -> 65000 USD)</div>
 				</div>
 
 				<div class="mb-3">
