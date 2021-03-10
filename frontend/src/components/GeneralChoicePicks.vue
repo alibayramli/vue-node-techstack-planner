@@ -1,21 +1,21 @@
 <template>
 	<div v-if="type === 'developerType'">
 		<button class="tooltip-add" v-if="hasEnoughBudgetToPick" @click="selectGeneralChoice(type,name)">
-			<AddChoicesIcon type="addChoice" />
+			<ChoiceIcons type="addChoice" />
 		</button>
 		<button class="tooltip-add" v-else>
-			<AddChoicesIcon type="notEnoughBudget" :name="name" />
+			<ChoiceIcons type="notEnoughBudget" :name="name" />
 		</button>
 		<div v-if="isGeneralChoiceAdded">
-			<AddChoicesIcon type="choiceAdded" />
+			<ChoiceIcons type="choiceAdded" />
 		</div>
 	</div>
 	<div v-else>
 		<button class="tooltip-add" @click="selectGeneralChoice(type,name)">
-			<AddChoicesIcon type="addChoice" />
+			<ChoiceIcons type="addChoice" />
 		</button>
 		<div v-if="isGeneralChoiceAdded">
-			<AddChoicesIcon type="choiceAdded" />
+			<ChoiceIcons type="choiceAdded" />
 		</div>
 	</div>
 </template>
@@ -23,12 +23,12 @@
 <script>
 import { mapGetters } from 'vuex';
 import caseConverterMixin from '../mixins/caseConverter';
-import AddChoicesIcon from './AddChoicesIcon.vue';
+import ChoiceIcons from './ChoiceIcons.vue';
 
 export default {
 	name: 'GeneralChoicePicks',
 	components: {
-		AddChoicesIcon,
+		ChoiceIcons,
 	},
 	mixins: [ caseConverterMixin ],
 	props: {
@@ -81,7 +81,6 @@ button {
   position: relative;
   display: inline-block;
 }
-
 .tooltip-add .tooltip-text-add {
   visibility: hidden;
   width: 120px;

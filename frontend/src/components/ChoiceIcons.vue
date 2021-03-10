@@ -20,6 +20,12 @@
 				<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z" />
 			</svg>
 		</div>
+		<div v-if="type === 'viewDetails'">
+			<span class="tooltip-text-view">Click to view the details</span>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#32CD32" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+				<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+			</svg>
+		</div>
 	</div>
 </template>
 
@@ -28,7 +34,7 @@ import { mapGetters } from 'vuex';
 import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
-	name: 'AddChoicesIcon',
+	name: 'ChoiceIcons',
 	mixins: [ caseConverterMixin ],
 	props: {
 		name: {
@@ -73,4 +79,24 @@ export default {
 .tooltip-add:hover .tooltip-text-add {
   visibility: visible;
 }
+.tooltip-text-view{
+  visibility: hidden;
+  width: 120px;
+  background-color:#0d6efd;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  margin: 0 5px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+.tooltip-view:hover .tooltip-text-view{
+  visibility: visible;
+}
+
 </style>

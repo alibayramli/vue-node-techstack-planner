@@ -1,22 +1,22 @@
 <template>
 	<div>
 		<button class="tooltip-add" @click="selectTeamChoice(header,type,name)">
-			<AddChoicesIcon type="addChoice" />
+			<ChoiceIcons type="addChoice" />
 		</button>
 		<div v-if="isTeamChoiceAdded">
-			<AddChoicesIcon type="choiceAdded" />
+			<ChoiceIcons type="choiceAdded" />
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import AddChoicesIcon from './AddChoicesIcon.vue';
+import ChoiceIcons from './ChoiceIcons.vue';
 
 export default {
 	name: 'TeamChoicePicks',
 	components: {
-		AddChoicesIcon,
+		ChoiceIcons,
 	},
 	props: {
 		header: {
