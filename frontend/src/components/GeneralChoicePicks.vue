@@ -1,7 +1,8 @@
 <template>
 	<div v-if="type === 'developerType'">
-		<button class="tooltip-add" v-if="hasEnoughBudgetToPick" @click="selectGeneralChoice(type,name)">
-			<ChoiceIcons type="addChoice" />
+		<button class="tooltip-add tooltip-view" v-if="hasEnoughBudgetToPick" @click="selectGeneralChoice(type,name)">
+			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
+			<ChoiceIcons v-if="isGeneralChoiceAdded" type="deleteChoice" :name="name" />
 		</button>
 		<button class="tooltip-add" v-else>
 			<ChoiceIcons type="notEnoughBudget" :name="name" />
@@ -11,8 +12,9 @@
 		</div>
 	</div>
 	<div v-else>
-		<button class="tooltip-add" @click="selectGeneralChoice(type,name)">
-			<ChoiceIcons type="addChoice" />
+		<button class="tooltip-add tooltip-view" @click="selectGeneralChoice(type,name)">
+			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
+			<ChoiceIcons v-if="isGeneralChoiceAdded" type="deleteChoice" :name="name" />
 		</button>
 		<div v-if="isGeneralChoiceAdded">
 			<ChoiceIcons type="choiceAdded" />

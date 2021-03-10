@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<button class="tooltip-add" @click="selectTeamChoice(header,type,name)">
-			<ChoiceIcons type="addChoice" />
+		<button class="tooltip-add tooltip-view" @click="selectTeamChoice(header,type,name)">
+			<ChoiceIcons v-if="!isTeamChoiceAdded" type="addChoice" />
+			<ChoiceIcons v-if="isTeamChoiceAdded" type="deleteChoice" :name="name" />
 		</button>
 		<div v-if="isTeamChoiceAdded">
 			<ChoiceIcons type="choiceAdded" />
