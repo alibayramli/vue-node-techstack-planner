@@ -54,6 +54,9 @@ export default {
 		SET_GENERAL_CHOICES(state, { type, name }) {
 			state.generalChoices[type] = name;
 		},
+		DELETE_GENERAL_CHOICE(state, { type }) {
+			delete state.generalChoices[type];
+		},
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
 		},

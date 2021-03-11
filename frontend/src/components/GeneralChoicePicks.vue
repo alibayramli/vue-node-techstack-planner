@@ -1,8 +1,14 @@
 <template>
 	<div v-if="type === 'developerType'">
-		<button class="tooltip-add tooltip-view" v-if="hasEnoughBudgetToPick" @click="selectGeneralChoice(type,name)">
+		<button class="tooltip-add tooltip-view"
+			v-if="hasEnoughBudgetToPick"
+			@click="selectGeneralChoice(type,name)"
+		>
 			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isGeneralChoiceAdded" type="deleteChoice" :name="name" />
+			<ChoiceIcons v-if="isGeneralChoiceAdded"
+				@click.stop="deleteGeneralChoice(type)"
+				type="deleteChoice" :name="name"
+			/>
 		</button>
 		<button class="tooltip-add" v-else>
 			<ChoiceIcons type="notEnoughBudget" :name="name" />
@@ -12,9 +18,14 @@
 		</div>
 	</div>
 	<div v-else>
-		<button class="tooltip-add tooltip-view" @click="selectGeneralChoice(type,name)">
+		<button class="tooltip-add tooltip-view"
+			@click="selectGeneralChoice(type,name)"
+		>
 			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isGeneralChoiceAdded" type="deleteChoice" :name="name" />
+			<ChoiceIcons v-if="isGeneralChoiceAdded"
+				@click.stop="deleteGeneralChoice(type)"
+				type="deleteChoice" :name="name"
+			/>
 		</button>
 		<div v-if="isGeneralChoiceAdded">
 			<ChoiceIcons type="choiceAdded" />
@@ -68,6 +79,9 @@ export default {
 	methods: {
 		selectGeneralChoice(type, name) {
 			this.$store.commit('userData/SET_GENERAL_CHOICES', { type, name });
+		},
+		deleteGeneralChoice(type) {
+			this.$store.commit('userData/DELETE_GENERAL_CHOICE', { type });
 		},
 	},
 };
