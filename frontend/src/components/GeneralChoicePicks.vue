@@ -6,7 +6,6 @@
 					type="deleteChoice" :name="name"
 					@click.stop="deleteGeneralChoice(type)"
 				/>
-				<ChoiceIcons type="choiceAdded" />
 			</span>
 			<span v-if="!isGeneralChoiceAdded">
 				<ChoiceIcons
@@ -14,6 +13,7 @@
 					@click.stop="selectGeneralChoice(type,name)"
 				/>
 			</span>
+			<ChoiceIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
 		</div>
 		<ChoiceIcons class="tooltip-add" v-else
 			type="notEnoughBudget" :name="name"
@@ -26,7 +26,6 @@
 					type="deleteChoice" :name="name"
 					@click.stop="deleteGeneralChoice(type)"
 				/>
-				<ChoiceIcons type="choiceAdded" />
 			</span>
 			<span v-if="!isGeneralChoiceAdded">
 				<ChoiceIcons
@@ -34,6 +33,7 @@
 					@click.stop="selectGeneralChoice(type,name)"
 				/>
 			</span>
+			<ChoiceIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
 		</div>
 	</div>
 </template>
