@@ -60,6 +60,11 @@ export default {
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
 		},
+		DELETE_TEAM_CHOICE(state, { header, type, name }) {
+			const teamChoiceIdxToDelete = state.teamChoices
+				.findIndex(choice => choice[header] && choice[header][type] === name);
+			delete state.teamChoices.splice(teamChoiceIdxToDelete, 1);
+		},
 		SET_TOKEN(state, token) {
 			state.token = token;
 		},

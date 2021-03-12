@@ -1,11 +1,20 @@
 <template>
 	<div>
-		<button class="tooltip-add tooltip-view" @click="selectTeamChoice(header,type,name)">
-			<ChoiceIcons v-if="!isTeamChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isTeamChoiceAdded" type="deleteChoice" :name="name" />
-		</button>
-		<div v-if="isTeamChoiceAdded">
-			<ChoiceIcons type="choiceAdded" />
+		<div class="tooltip-add tooltip-view">
+			<span v-if="isTeamChoiceAdded">
+				<ChoiceIcons
+					type="deleteChoice" :name="name"
+					@click.stop="deleteTeamChoice(header,type,name)"
+				/>
+
+			</span>
+			<span v-if="!isTeamChoiceAdded">
+				<ChoiceIcons
+					type="addChoice"
+					@click.stop="selectTeamChoice(header,type,name)"
+				/>
+			</span>
+			<ChoiceIcons type="choiceAdded" v-if="isTeamChoiceAdded" />
 		</div>
 	</div>
 </template>
@@ -49,11 +58,17 @@ export default {
 		selectTeamChoice(header, type, name) {
 			this.$store.commit('userData/SET_TEAM_CHOICES', { header, type, name });
 		},
+		deleteTeamChoice(header, type, name) {
+			this.$store.commit('userData/DELETE_TEAM_CHOICE', { header, type, name });
+		},
 	},
 };
 </script>
 
 <style scoped>
+div span{
+	cursor: pointer;
+}
 button {
   outline: none;
   background: transparent;
