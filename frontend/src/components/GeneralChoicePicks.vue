@@ -1,34 +1,39 @@
 <template>
 	<div v-if="type === 'developerType'">
-		<button class="tooltip-add tooltip-view"
-			v-if="hasEnoughBudgetToPick"
-			@click="selectGeneralChoice(type,name)"
-		>
-			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isGeneralChoiceAdded"
-				@click.stop="deleteGeneralChoice(type)"
-				type="deleteChoice" :name="name"
-			/>
-		</button>
-		<button class="tooltip-add" v-else>
-			<ChoiceIcons type="notEnoughBudget" :name="name" />
-		</button>
-		<div v-if="isGeneralChoiceAdded">
-			<ChoiceIcons type="choiceAdded" />
+		<div class="tooltip-add tooltip-view" v-if="hasEnoughBudgetToPick">
+			<span v-if="isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="deleteChoice" :name="name"
+					@click.stop="deleteGeneralChoice(type)"
+				/>
+				<ChoiceIcons type="choiceAdded" />
+			</span>
+			<span v-if="!isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="addChoice"
+					@click.stop="selectGeneralChoice(type,name)"
+				/>
+			</span>
 		</div>
+		<ChoiceIcons class="tooltip-add" v-else
+			type="notEnoughBudget" :name="name"
+		/>
 	</div>
 	<div v-else>
-		<button class="tooltip-add tooltip-view"
-			@click="selectGeneralChoice(type,name)"
-		>
-			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isGeneralChoiceAdded"
-				@click.stop="deleteGeneralChoice(type)"
-				type="deleteChoice" :name="name"
-			/>
-		</button>
-		<div v-if="isGeneralChoiceAdded">
-			<ChoiceIcons type="choiceAdded" />
+		<div class="tooltip-add tooltip-view">
+			<span v-if="isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="deleteChoice" :name="name"
+					@click.stop="deleteGeneralChoice(type)"
+				/>
+				<ChoiceIcons type="choiceAdded" />
+			</span>
+			<span v-if="!isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="addChoice"
+					@click.stop="selectGeneralChoice(type,name)"
+				/>
+			</span>
 		</div>
 	</div>
 </template>
@@ -88,6 +93,9 @@ export default {
 </script>
 
 <style scoped>
+div span{
+	cursor: pointer;
+}
 button {
   outline: none;
   background: transparent;
