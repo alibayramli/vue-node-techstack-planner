@@ -54,8 +54,16 @@ export default {
 		SET_GENERAL_CHOICES(state, { type, name }) {
 			state.generalChoices[type] = name;
 		},
+		DELETE_GENERAL_CHOICE(state, { type }) {
+			delete state.generalChoices[type];
+		},
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
+		},
+		DELETE_TEAM_CHOICE(state, { header, type, name }) {
+			const teamChoiceIdxToDelete = state.teamChoices
+				.findIndex(choice => choice[header] && choice[header][type] === name);
+			delete state.teamChoices.splice(teamChoiceIdxToDelete, 1);
 		},
 		SET_TOKEN(state, token) {
 			state.token = token;

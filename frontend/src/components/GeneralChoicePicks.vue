@@ -1,23 +1,39 @@
 <template>
 	<div v-if="type === 'developerType'">
-		<button class="tooltip-add tooltip-view" v-if="hasEnoughBudgetToPick" @click="selectGeneralChoice(type,name)">
-			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isGeneralChoiceAdded" type="deleteChoice" :name="name" />
-		</button>
-		<button class="tooltip-add" v-else>
-			<ChoiceIcons type="notEnoughBudget" :name="name" />
-		</button>
-		<div v-if="isGeneralChoiceAdded">
-			<ChoiceIcons type="choiceAdded" />
+		<div class="tooltip-add tooltip-view" v-if="hasEnoughBudgetToPick">
+			<span v-if="isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="deleteChoice" :name="name"
+					@click.stop="deleteGeneralChoice(type)"
+				/>
+			</span>
+			<span v-if="!isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="addChoice"
+					@click.stop="selectGeneralChoice(type,name)"
+				/>
+			</span>
+			<ChoiceIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
 		</div>
+		<ChoiceIcons class="tooltip-add" v-else
+			type="notEnoughBudget" :name="name"
+		/>
 	</div>
 	<div v-else>
-		<button class="tooltip-add tooltip-view" @click="selectGeneralChoice(type,name)">
-			<ChoiceIcons v-if="!isGeneralChoiceAdded" type="addChoice" />
-			<ChoiceIcons v-if="isGeneralChoiceAdded" type="deleteChoice" :name="name" />
-		</button>
-		<div v-if="isGeneralChoiceAdded">
-			<ChoiceIcons type="choiceAdded" />
+		<div class="tooltip-add tooltip-view">
+			<span v-if="isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="deleteChoice" :name="name"
+					@click.stop="deleteGeneralChoice(type)"
+				/>
+			</span>
+			<span v-if="!isGeneralChoiceAdded">
+				<ChoiceIcons
+					type="addChoice"
+					@click.stop="selectGeneralChoice(type,name)"
+				/>
+			</span>
+			<ChoiceIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
 		</div>
 	</div>
 </template>
@@ -69,11 +85,17 @@ export default {
 		selectGeneralChoice(type, name) {
 			this.$store.commit('userData/SET_GENERAL_CHOICES', { type, name });
 		},
+		deleteGeneralChoice(type) {
+			this.$store.commit('userData/DELETE_GENERAL_CHOICE', { type });
+		},
 	},
 };
 </script>
 
 <style scoped>
+div span{
+	cursor: pointer;
+}
 button {
   outline: none;
   background: transparent;
