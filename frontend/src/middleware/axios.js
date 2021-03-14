@@ -8,7 +8,7 @@ const instance = axios.create({
 	},
 });
 instance.interceptors.request.use(function (config) {
-	const token = store.getters['userData/getToken'];
+	const token = store.getters['authData/getToken'];
 	config.headers.Authorization = 'Bearer ' + token;
 	return config;
 }, function (error) {

@@ -58,7 +58,7 @@ export default {
 			generalChoices: 'generalChoices',
 			teamChoices: 'teamChoices',
 		}),
-		...mapGetters('userData', {
+		...mapGetters('authData', {
 			isLoggedIn: 'isLoggedIn',
 		}),
 

@@ -67,32 +67,32 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('userData', {
+		...mapGetters('authData', {
 			error: 'getErrorMessage',
 			getToken: 'getToken',
 		}),
 		fullName: {
 			get() {
-				return this.$store.state.userData.fullName;
+				return this.$store.state.authData.fullName;
 			},
 			set(value) {
-				this.$store.commit('userData/UPDATE_FULL_NAME', value);
+				this.$store.commit('authData/UPDATE_FULL_NAME', value);
 			},
 		},
 		email: {
 			get() {
-				return this.$store.state.userData.email;
+				return this.$store.state.authData.email;
 			},
 			set(value) {
-				this.$store.commit('userData/UPDATE_EMAIL', value);
+				this.$store.commit('authData/UPDATE_EMAIL', value);
 			},
 		},
 		password: {
 			get() {
-				return this.$store.state.userData.password;
+				return this.$store.state.authData.password;
 			},
 			set(value) {
-				this.$store.commit('userData/UPDATE_PASSWORD', value);
+				this.$store.commit('authData/UPDATE_PASSWORD', value);
 			},
 		},
 		isValidEmail() {
@@ -118,7 +118,7 @@ export default {
 		},
 	},
 	methods: {
-		...mapActions('userData', {
+		...mapActions('authData', {
 			sendSignupInfo: 'sendSignupInfo',
 		}),
 		async onSubmitSignup() {
