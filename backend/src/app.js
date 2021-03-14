@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const statisticsDataRoutes = require('../routes/statisticsData');
 const startupDataRoutes = require('../routes/startupData');
 const formDataRoutes = require('../routes/formData');
@@ -9,9 +8,7 @@ const userDataRoutes = require('../routes/userData');
 const port = 5000;
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
+app.use(express.json());
 app.use('/statistics-data', statisticsDataRoutes);
 app.use('/startup-data', startupDataRoutes);
 app.use('/form-data', formDataRoutes);
