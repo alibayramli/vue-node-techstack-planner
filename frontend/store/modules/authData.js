@@ -51,7 +51,7 @@ export default {
 			try {
 				const { fullName, email, password } = state;
 				const newData = { fullName, email, password };
-				await backend.post('user-data/signup', newData);
+				await backend.post('auth-data/signup', newData);
 				commit('UPDATE_ERROR_MESSAGE', '');
 				router.push('/');
 			} catch (err) {
@@ -62,7 +62,7 @@ export default {
 			try {
 				const { email, password } = state;
 				const newData = { email, password };
-				const response = await backend.post('user-data/login', newData);
+				const response = await backend.post('auth-data/login', newData);
 				const accessToken = response.data.accessToken;
 				commit('SET_TOKEN', accessToken);
 				commit('UPDATE_ERROR_MESSAGE', '');
