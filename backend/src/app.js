@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+require('../helpers/init_mongodb');
 const statisticsDataRoutes = require('../routes/statisticsData');
 const startupDataRoutes = require('../routes/startupData');
 const formDataRoutes = require('../routes/formData');
