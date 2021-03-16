@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const { verify } = require('../middleware/verifyAuth');
+const { verifyAccessToken } = require('../helpers/jwt');
 const formDataFile = '../data/formData.json';
 const INTERNAL_SERVER_ERROR = 500;
 
-router.get('/', verify, (req, res) => {
+router.get('/', verifyAccessToken, (req, res) => {
 	try {
 		const formData = JSON.parse(fs.readFileSync(formDataFile, 'utf8'));
 		res.send(formData);

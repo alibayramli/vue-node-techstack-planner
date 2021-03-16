@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const { verify } = require('../middleware/verifyAuth');
+const { verifyAccessToken } = require('../helpers/jwt');
 const languagesFile = '../data/programmingLanguages.json';
 const INTERNAL_SERVER_ERROR = 500;
-router.post('/', verify, (req, res) => {
+router.post('/', verifyAccessToken, (req, res) => {
 	try {
 		const languages = JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
 		const { name } = req.body;
