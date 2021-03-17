@@ -7,7 +7,7 @@ export default {
 		email: '',
 		password: '',
 		accessToken: localStorage.getItem('accessToken') || '',
-		refreshToken: '',
+		refreshToken: localStorage.getItem('refreshToken') || '',
 		errorMessage: '',
 	},
 	getters: {
@@ -40,9 +40,6 @@ export default {
 		UPDATE_PASSWORD(state, newPassword) {
 			state.password = newPassword;
 		},
-		SET_ACCESS_TOKEN(state, token) {
-			state.accessToken = token;
-		},
 		UPDATE_ERROR_MESSAGE(state, newErrorMessage) {
 			state.errorMessage = newErrorMessage;
 		},
@@ -65,10 +62,24 @@ export default {
 				const newData = { email, password };
 				const response = await backend.post('auth-data/login', newData);
 				const accessToken = response.data.accessToken;
-				commit('SET_ACCESS_TOKEN', accessToken);
+				const refreshToken = response.data.refreshToken;
 				commit('UPDATE_ERROR_MESSAGE', '');
 				localStorage.setItem('accessToken', accessToken);
+				localStorage.setItem('refreshToken', refreshToken);
 				router.go();
+			} catch (err) {
+				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
+			}
+		},
+		async refreshTokens({ commit, state }) {
+			try {
+				const refreshToken = state.refreshToken;
+				const response = await backend.post('auth-data/refresh-token', { refreshToken });
+				const newAccessToken = response.data.accessToken;
+				const newRefreshToken = response.data.refreshToken;
+				localStorage.setItem('accessToken', newAccessToken);
+				localStorage.setItem('refreshToken', newRefreshToken);
+				return newAccessToken;
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
 			}
