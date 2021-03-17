@@ -1,4 +1,4 @@
-import backend from '../../src/middleware/axios';
+import backend from '../../helpers/interceptors';
 import router from '../../router/router';
 export default {
 	namespaced: true,
