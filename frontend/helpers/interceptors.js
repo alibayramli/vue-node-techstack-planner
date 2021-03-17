@@ -9,7 +9,9 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(function (config) {
 	const accessToken = store.getters['authData/getAccessToken'];
-	config.headers.Authorization = 'Bearer ' + accessToken;
+	if (accessToken) {
+		config.headers.Authorization = 'Bearer ' + accessToken;
+	}
 	return config;
 }, function (error) {
 	return Promise.reject(error);
