@@ -32,7 +32,7 @@
 					</div>
 				</div>
 
-				<div v-if="!getToken">
+				<div v-if="!getAccessToken">
 					<button
 						class="btn btn-primary"
 						type="submit"
@@ -69,7 +69,7 @@ export default {
 	computed: {
 		...mapGetters('authData', {
 			error: 'getErrorMessage',
-			getToken: 'getToken',
+			getAccessToken: 'getAccessToken',
 		}),
 		fullName: {
 			get() {

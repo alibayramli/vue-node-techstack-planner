@@ -8,8 +8,8 @@ const instance = axios.create({
 	},
 });
 instance.interceptors.request.use(function (config) {
-	const token = store.getters['authData/getToken'];
-	config.headers.Authorization = 'Bearer ' + token;
+	const accessToken = store.getters['authData/getAccessToken'];
+	config.headers.Authorization = 'Bearer ' + accessToken;
 	return config;
 }, function (error) {
 	return Promise.reject(error);

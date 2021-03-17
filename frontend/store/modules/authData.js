@@ -6,7 +6,8 @@ export default {
 		fullName: '',
 		email: '',
 		password: '',
-		token: localStorage.getItem('token') || '',
+		accessToken: localStorage.getItem('accessToken') || '',
+		refreshToken: '',
 		errorMessage: '',
 	},
 	getters: {
@@ -19,11 +20,11 @@ export default {
 		getPassword(state) {
 			return state.password;
 		},
-		getToken(state) {
-			return state.token;
+		getAccessToken(state) {
+			return state.accessToken;
 		},
 		isLoggedIn(state) {
-			return !!state.token;
+			return !!state.accessToken;
 		},
 		getErrorMessage(state) {
 			return state.errorMessage;
@@ -39,8 +40,8 @@ export default {
 		UPDATE_PASSWORD(state, newPassword) {
 			state.password = newPassword;
 		},
-		SET_TOKEN(state, token) {
-			state.token = token;
+		SET_ACCESS_TOKEN(state, token) {
+			state.accessToken = token;
 		},
 		UPDATE_ERROR_MESSAGE(state, newErrorMessage) {
 			state.errorMessage = newErrorMessage;
@@ -64,9 +65,9 @@ export default {
 				const newData = { email, password };
 				const response = await backend.post('auth-data/login', newData);
 				const accessToken = response.data.accessToken;
-				commit('SET_TOKEN', accessToken);
+				commit('SET_ACCESS_TOKEN', accessToken);
 				commit('UPDATE_ERROR_MESSAGE', '');
-				localStorage.setItem('token', accessToken);
+				localStorage.setItem('accessToken', accessToken);
 				router.go();
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);

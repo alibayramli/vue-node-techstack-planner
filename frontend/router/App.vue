@@ -77,7 +77,7 @@ export default {
 			formInfos: 'loadFormInfos',
 		}),
 		logout() {
-			localStorage.removeItem('token');
+			localStorage.removeItem('accessToken');
 			this.$router.go();
 		},
 	},
