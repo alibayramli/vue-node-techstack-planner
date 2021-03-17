@@ -78,6 +78,7 @@ export default {
 		}),
 		logout() {
 			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
 			this.$router.go();
 		},
 	},
