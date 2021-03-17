@@ -1,92 +1,102 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const User = require('../models/user');
+const { authSchemaSignup, authSchemaLogin } = require('../helpers/validation');
+const { signAccessToken, signRefreshToken, verifyRefreshToken } = require('../helpers/jwt');
 const INTERNAL_SERVER_ERROR = 500;
 const UNAUTHORIZED_STATUS = 401;
+const UNPROCESSABLE_ENTITY = 422;
 const BAD_REQUEST = 400;
+const NOT_FOUND = 404;
 const OK_STATUS = 200;
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
-const mongoose = require('mongoose');
-const dbUrl = process.env.URL;
-const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
-const accessTokenLife = process.env.JWT_ACCESS_TOKEN_LIFE;
-const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET;
-const refreshTokenLife = process.env.JWT_REFRESH_TOKEN_LIFE;
-mongoose.connect(dbUrl, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useCreateIndex: true,
-	useFindAndModify: false,
-});
-const db = mongoose.connection;
-db.once('open', function () {
-	console.log('Connected to mongoDB');
-});
-db.on('error', function (err) {
-	console.log('Error in connection:');
-	console.log(err);
-});
+
+// eslint-disable-next-line max-statements
 router.post('/signup', async (req, res) => {
 	try {
-		const { fullName, email, password } = req.body;
-		const saltRounds = 10;
-		const salt = bcrypt.genSaltSync(saltRounds);
+		const resultObj = await authSchemaSignup.validateAsync(req.body);
+		const { fullName, email, password } = resultObj;
+		const doesUserExist = await User.findOne({ email });
+		if (doesUserExist) {
+			return res.status(BAD_REQUEST).json({
+				title: 'email is in use',
+			});
+		}
 		const newUser = new User({
 			fullName,
 			email,
-			password: bcrypt.hashSync(password, salt),
+			password,
 		});
-		await newUser.save((err) => {
-			if (err) {
-				return res.status(BAD_REQUEST).json({
-					title: 'email is in use',
-				});
-			}
-			return res.status(OK_STATUS).json({
-				title: 'successful signup',
+		await newUser.save();
+		return res.status(OK_STATUS).json({
+			title: 'signup successful',
+
+		});
+	} catch (err) {
+		console.log(err);
+		if (err.isJoi === true) {
+			res.status(UNPROCESSABLE_ENTITY).send(err);
+		}
+		res.status(INTERNAL_SERVER_ERROR).send(err);
+	}
+});
+// eslint-disable-next-line max-statements
+router.post('/login', async (req, res) => {
+	try {
+		const resultObj = await authSchemaLogin.validateAsync(req.body);
+		const { email, password } = resultObj;
+		const user = await User.findOne({ email });
+		if (!user) {
+			return res.status(NOT_FOUND).json({
+				title: 'not found',
+				error: 'User has not been registered yet',
 			});
+		}
+		const isMathced = await user.isValidPassword(password);
+		if (!isMathced) {
+			return res.status(UNAUTHORIZED_STATUS).json({
+				title: 'login failed',
+				error: 'invalid credentials',
+			});
+		}
+		const accessToken = await signAccessToken(String(user._id));
+		const refreshToken = await signRefreshToken(String(user._id));
+		return res.status(OK_STATUS).json({
+			title: 'login successful',
+			accessToken,
+			refreshToken,
+		});
+	} catch (err) {
+		console.log(err);
+		if (err.isJoi === true) {
+			return res.status(BAD_REQUEST).json({
+				title: 'login failed',
+				error: 'invalid credentials',
+			});
+		}
+		res.status(INTERNAL_SERVER_ERROR).send(err);
+	}
+});
+router.post('/refresh-token', async (req, res) => {
+	try {
+		const { refreshToken } = req.body;
+		if (!refreshToken) {
+			res.status(BAD_REQUEST).send();
+		}
+		const userId = await verifyRefreshToken(refreshToken);
+		const newAccessToken = await signAccessToken(userId);
+		const newRefreshToken = await signRefreshToken(userId);
+		return res.status(OK_STATUS).json({
+			accessToken: newAccessToken,
+			refreshToken: newRefreshToken,
 		});
 	} catch (err) {
 		console.log(err);
 		res.status(INTERNAL_SERVER_ERROR).send(err);
 	}
 });
-router.post('/login', async (req, res) => {
+router.delete('/logout', async (req, res) => {
 	try {
-		const { email, password } = req.body;
-		await User.findOne({ email }, (err, user) => {
-			if (err) {
-				return res.status(INTERNAL_SERVER_ERROR).json({
-					title: 'server error',
-					error: err,
-				});
-			}
-			if (!user) {
-				return res.status(UNAUTHORIZED_STATUS).json({
-					title: 'user not found',
-					error: 'invalid credentials',
-				});
-			}
-			// if password is incorrect
-			if (!bcrypt.compareSync(password, user.password)) {
-				return res.status(UNAUTHORIZED_STATUS).json({
-					title: 'login failed',
-					error: 'invalid credentials',
-				});
-			}
-			const accessToken = jwt.sign({ userId: user._id }, accessTokenSecret, {
-				// expiresIn: accessTokenLife,
-			});
-			const refreshToken = jwt.sign({ userId: user._id }, refreshTokenSecret, {
-				expiresIn: refreshTokenLife,
-			});
-
-			return res.status(OK_STATUS).json({
-				title: 'login successful',
-				accessToken,
-			});
-		});
+		res.send('logout route');
 	} catch (err) {
 		console.log(err);
 		res.status(INTERNAL_SERVER_ERROR).send(err);
