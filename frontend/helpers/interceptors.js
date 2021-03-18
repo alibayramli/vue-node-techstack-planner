@@ -24,7 +24,9 @@ instance.interceptors.response.use(
 	},
 	async function (error) {
 		const originalRequest = error.config;
-		if (error.response.status === UNAUTHORIZED_STATUS && !originalRequest._retry) {
+		const authUrls = ['auth-data/login', 'auth-data/signup'];
+		if (error.response.status === UNAUTHORIZED_STATUS
+			&& !originalRequest._retry && !authUrls.includes(originalRequest.url)) {
 			originalRequest._retry = true;
 			const newAccessToken = await store.dispatch('authData/refreshTokens');
 			originalRequest.headers.Authorization = 'Bearer ' + newAccessToken;
