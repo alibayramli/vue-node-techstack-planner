@@ -68,13 +68,13 @@ export const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
 	if (to.matched.some(record => record.meta.requiresAuth)) {
-		if (store.getters['userData/isLoggedIn']) {
+		if (store.getters['authData/isLoggedIn']) {
 			next();
 			return;
 		}
 		next('/home');
 	} else if (to.matched.some(record => record.meta.guest)) {
-		if (store.getters['userData/isLoggedIn']) {
+		if (store.getters['authData/isLoggedIn']) {
 			next('/home');
 			return;
 		}

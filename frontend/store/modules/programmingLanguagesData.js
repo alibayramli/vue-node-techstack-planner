@@ -1,4 +1,4 @@
-import backend from '../../src/middleware/axios';
+import backend from '../../helpers/interceptors';
 export default {
 	namespaced: true,
 	state: {

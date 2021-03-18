@@ -58,7 +58,7 @@ export default {
 			generalChoices: 'generalChoices',
 			teamChoices: 'teamChoices',
 		}),
-		...mapGetters('userData', {
+		...mapGetters('authData', {
 			isLoggedIn: 'isLoggedIn',
 		}),
 
@@ -77,7 +77,8 @@ export default {
 			formInfos: 'loadFormInfos',
 		}),
 		logout() {
-			localStorage.removeItem('token');
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
 			this.$router.go();
 		},
 	},

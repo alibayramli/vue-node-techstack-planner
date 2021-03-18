@@ -5,6 +5,7 @@ import formData from './modules/formData';
 import toolsData from './modules/toolsData';
 import programmingLanguagesData from './modules/programmingLanguagesData';
 import userData from './modules/userData';
+import authData from './modules/authData';
 export const store = createStore({
 	modules: {
 		statisticsData,
@@ -13,5 +14,6 @@ export const store = createStore({
 		toolsData,
 		programmingLanguagesData,
 		userData,
+		authData,
 	},
 });
