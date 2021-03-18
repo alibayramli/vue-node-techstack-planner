@@ -23,20 +23,18 @@
 					</div>
 				</div>
 
-				<div v-if="!isLoggedIn">
-					<button
-						class="btn btn-primary"
-						type="submit"
-						:disabled="!isValidEmail || !isValidPassword || isLoginButtonClicked"
-					>
-						Login
-						<div
-							class="spinner-border spinner-border-sm"
-							role="status"
-							v-if="isLoginSpinnerActive"
-						/>
-					</button>
-				</div>
+				<button
+					class="btn btn-primary"
+					type="submit"
+					:disabled="!isValidEmail || !isValidPassword || isLoginButtonClicked"
+				>
+					Login
+					<div
+						class="spinner-border spinner-border-sm"
+						role="status"
+						v-if="isLoginSpinnerActive"
+					/>
+				</button>
 				<p class="form-text text-muted">{{ error }}</p>
 			</fieldset>
 		</form>
@@ -58,7 +56,6 @@ export default {
 	computed: {
 		...mapGetters('authData', {
 			error: 'getErrorMessage',
-			isLoggedIn: 'getAccessToken',
 		}),
 		email: {
 			get() {
