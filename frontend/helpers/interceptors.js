@@ -28,7 +28,8 @@ instance.interceptors.response.use(
 		if (error.response.status === UNAUTHORIZED_STATUS
 			&& !originalRequest._retry && !authUrls.includes(originalRequest.url)) {
 			originalRequest._retry = true;
-			const newAccessToken = await store.dispatch('authData/refreshTokens');
+			await store.dispatch('authData/refreshTokens');
+			const newAccessToken = store.getters['authData/getAccessToken'];
 			originalRequest.headers.Authorization = 'Bearer ' + newAccessToken;
 			return axios(originalRequest);
 		}

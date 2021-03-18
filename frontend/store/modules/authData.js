@@ -43,6 +43,12 @@ export default {
 		UPDATE_ERROR_MESSAGE(state, newErrorMessage) {
 			state.errorMessage = newErrorMessage;
 		},
+		SET_ACCESS_TOKEN(state, accessToken) {
+			state.accessToken = accessToken;
+		},
+		SET_REFRESH_TOKEN(state, refreshToken) {
+			state.refreshToken = refreshToken;
+		},
 	},
 	actions: {
 		async sendSignupInfo({ commit, state }) {
@@ -63,6 +69,8 @@ export default {
 				const response = await backend.post('auth-data/login', newData);
 				const accessToken = response.data.accessToken;
 				const refreshToken = response.data.refreshToken;
+				commit('SET_ACCESS_TOKEN', accessToken);
+				commit('SET_REFRESH_TOKEN', refreshToken);
 				commit('UPDATE_ERROR_MESSAGE', '');
 				localStorage.setItem('accessToken', accessToken);
 				localStorage.setItem('refreshToken', refreshToken);
@@ -77,9 +85,10 @@ export default {
 				const response = await backend.post('auth-data/refresh-token', { refreshToken });
 				const newAccessToken = response.data.accessToken;
 				const newRefreshToken = response.data.refreshToken;
+				commit('SET_ACCESS_TOKEN', newAccessToken);
+				commit('SET_REFRESH_TOKEN', newRefreshToken);
 				localStorage.setItem('accessToken', newAccessToken);
 				localStorage.setItem('refreshToken', newRefreshToken);
-				return newAccessToken;
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
 			}
