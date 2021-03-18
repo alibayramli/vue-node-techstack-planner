@@ -23,7 +23,7 @@
 					</div>
 				</div>
 
-				<div v-if="!getAccessToken">
+				<div v-if="!isLoggedIn">
 					<button
 						class="btn btn-primary"
 						type="submit"
@@ -58,7 +58,7 @@ export default {
 	computed: {
 		...mapGetters('authData', {
 			error: 'getErrorMessage',
-			getAccessToken: 'getAccessToken',
+			isLoggedIn: 'getAccessToken',
 		}),
 		email: {
 			get() {

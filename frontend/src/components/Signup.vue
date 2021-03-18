@@ -32,22 +32,21 @@
 					</div>
 				</div>
 
-				<div v-if="!getAccessToken">
-					<button
-						class="btn btn-primary"
-						type="submit"
-						:disabled="
-							!fullName || !isValidEmail || !isValidPassword || isSignupButtonClicked
-						"
-					>
-						Signup
-						<div
-							class="spinner-border spinner-border-sm"
-							role="status"
-							v-if="isSignupSpinnerActive"
-						/>
-					</button>
-				</div>
+				<button
+					class="btn btn-primary"
+					type="submit"
+					:disabled="
+						!fullName || !isValidEmail || !isValidPassword || isSignupButtonClicked
+					"
+				>
+					Signup
+					<div
+						class="spinner-border spinner-border-sm"
+						role="status"
+						v-if="isSignupSpinnerActive"
+					/>
+				</button>
+
 				<p class="form-text text-muted">{{ error }}</p>
 			</fieldset>
 		</form>
@@ -69,7 +68,6 @@ export default {
 	computed: {
 		...mapGetters('authData', {
 			error: 'getErrorMessage',
-			getAccessToken: 'getAccessToken',
 		}),
 		fullName: {
 			get() {
