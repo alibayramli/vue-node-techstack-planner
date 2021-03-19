@@ -76,10 +76,11 @@ export default {
 		...mapActions('formData', {
 			formInfos: 'loadFormInfos',
 		}),
-		logout() {
-			localStorage.removeItem('accessToken');
-			localStorage.removeItem('refreshToken');
-			this.$router.go();
+		...mapActions('authData', {
+			sendLogOutInfo: 'sendLogOutInfo',
+		}),
+		async logout() {
+			await this.sendLogOutInfo();
 		},
 	},
 };
