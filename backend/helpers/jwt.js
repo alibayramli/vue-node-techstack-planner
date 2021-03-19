@@ -1,4 +1,6 @@
 const JWT = require('jsonwebtoken');
+const client = require('./init_redis');
+
 const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
 const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET;
 const UNAUTHORIZED_STATUS = 401;
@@ -50,7 +52,16 @@ module.exports = {
 					// respond with error code in future
 					return reject(err);
 				}
-				resolve(token);
+				// eslint-disable-next-line no-magic-numbers
+				const refreshTokenExpiryDate = 365 * 24 * 60 * 60;
+				client.SET(userId, token, 'EX', refreshTokenExpiryDate, (error, reply) => {
+					if (error) {
+						console.log(error.message);
+						// respond with error code in future
+						return reject(error);
+					}
+					resolve(token);
+				});
 			});
 		});
 	},
@@ -63,7 +74,16 @@ module.exports = {
 					return reject(err);
 				}
 				const userId = payload.aud;
-				resolve(userId);
+				client.GET(userId, (error, result) => {
+					if (error) {
+						console.log(error.message);
+						return reject(error);
+					}
+					if (refreshToken === result) {
+						return resolve(userId);
+					}
+					return reject(error);
+				});
 			});
 		});
 	},

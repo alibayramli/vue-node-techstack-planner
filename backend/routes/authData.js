@@ -3,12 +3,14 @@ const router = express.Router();
 const User = require('../models/user');
 const { authSchemaSignup, authSchemaLogin } = require('../helpers/validation');
 const { signAccessToken, signRefreshToken, verifyRefreshToken } = require('../helpers/jwt');
+const client = require('../helpers/init_redis');
 const INTERNAL_SERVER_ERROR = 500;
 const UNAUTHORIZED_STATUS = 401;
 const UNPROCESSABLE_ENTITY = 422;
 const BAD_REQUEST = 400;
 const NOT_FOUND = 404;
 const OK_STATUS = 200;
+const NO_CONTENT_STATUS = 204;
 
 // eslint-disable-next-line max-statements
 router.post('/signup', async (req, res) => {
@@ -96,7 +98,22 @@ router.post('/refresh-token', async (req, res) => {
 });
 router.delete('/logout', async (req, res) => {
 	try {
-		res.send('logout route');
+		const { refreshToken } = req.query;
+		if (!refreshToken) {
+			return res.status(BAD_REQUEST).json({
+				title: 'no refresh token',
+				error: 'please provide with a refresh token',
+			});
+		}
+		const userId = await verifyRefreshToken(refreshToken);
+		client.DEL(userId, (err, value) => {
+			if (err) {
+				console.log(err.message);
+				res.status(INTERNAL_SERVER_ERROR).send(err);
+			}
+			console.log(value);
+			res.sendStatus(NO_CONTENT_STATUS);
+		});
 	} catch (err) {
 		console.log(err);
 		res.status(INTERNAL_SERVER_ERROR).send(err);

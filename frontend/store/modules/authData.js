@@ -49,6 +49,10 @@ export default {
 		SET_REFRESH_TOKEN(state, refreshToken) {
 			state.refreshToken = refreshToken;
 		},
+		DESTROY_TOKENS(state) {
+			state.accessToken = '';
+			state.refreshToken = '';
+		},
 	},
 	actions: {
 		async sendSignupInfo({ commit, state }) {
@@ -74,6 +78,18 @@ export default {
 				commit('UPDATE_ERROR_MESSAGE', '');
 				localStorage.setItem('accessToken', accessToken);
 				localStorage.setItem('refreshToken', refreshToken);
+				router.go();
+			} catch (err) {
+				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
+			}
+		},
+		async sendLogOutInfo({ commit, state }) {
+			try {
+				const { refreshToken } = state;
+				await backend.delete('auth-data/logout', { params: { refreshToken } });
+				commit('DESTROY_TOKENS');
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');
 				router.go();
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
