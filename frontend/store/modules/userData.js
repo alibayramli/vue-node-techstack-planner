@@ -2,7 +2,7 @@ import backend from '../../helpers/interceptors';
 export default {
 	namespaced: true,
 	state: {
-		generalChoices: {},
+		generalChoices: [],
 		teamChoices: [],
 		isChoicesSaved: false,
 	},
@@ -16,7 +16,7 @@ export default {
 	},
 	mutations: {
 		SET_GENERAL_CHOICES(state, { type, name }) {
-			state.generalChoices[type] = name;
+			state.generalChoices.push({ [type]: name }) ;
 		},
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
@@ -24,13 +24,15 @@ export default {
 		UPDATE_IS_CHOICES_SAVED(state, newIsChoicesSavedValue) {
 			state.isChoicesSaved = newIsChoicesSavedValue;
 		},
-		DELETE_GENERAL_CHOICE(state, { type }) {
-			delete state.generalChoices[type];
+		DELETE_GENERAL_CHOICE(state, { type, name }) {
+			const generalChoiceIdxToDelete = state.generalChoices
+				.findIndex(choice => choice[type] && choice[type] === name);
+			state.generalChoices.splice(generalChoiceIdxToDelete, 1);
 		},
 		DELETE_TEAM_CHOICE(state, { header, type, name }) {
 			const teamChoiceIdxToDelete = state.teamChoices
 				.findIndex(choice => choice[header] && choice[header][type] === name);
-			delete state.teamChoices.splice(teamChoiceIdxToDelete, 1);
+			state.teamChoices.splice(teamChoiceIdxToDelete, 1);
 		},
 	},
 	actions: {

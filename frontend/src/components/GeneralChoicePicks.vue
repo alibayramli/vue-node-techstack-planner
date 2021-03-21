@@ -4,7 +4,7 @@
 			<span v-if="isGeneralChoiceAdded">
 				<ChoiceIcons
 					type="deleteChoice" :name="name"
-					@click.stop="deleteGeneralChoice(type)"
+					@click.stop="deleteGeneralChoice(type,name)"
 				/>
 			</span>
 			<span v-if="!isGeneralChoiceAdded">
@@ -24,7 +24,7 @@
 			<span v-if="isGeneralChoiceAdded">
 				<ChoiceIcons
 					type="deleteChoice" :name="name"
-					@click.stop="deleteGeneralChoice(type)"
+					@click.stop="deleteGeneralChoice(type,name)"
 				/>
 			</span>
 			<span v-if="!isGeneralChoiceAdded">
@@ -78,15 +78,16 @@ export default {
 			return this.startupBudget >= this.cost;
 		},
 		isGeneralChoiceAdded() {
-			return this.generalChoices[this.type] === this.name;
+			return this.generalChoices
+				.some(choice => choice[this.type] === this.name);
 		},
 	},
 	methods: {
 		selectGeneralChoice(type, name) {
 			this.$store.commit('userData/SET_GENERAL_CHOICES', { type, name });
 		},
-		deleteGeneralChoice(type) {
-			this.$store.commit('userData/DELETE_GENERAL_CHOICE', { type });
+		deleteGeneralChoice(type, name) {
+			this.$store.commit('userData/DELETE_GENERAL_CHOICE', { type, name });
 		},
 	},
 };

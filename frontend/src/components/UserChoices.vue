@@ -10,10 +10,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="([type,name], index) of Object.entries(generalChoices)" :key="index">
-					<th scope="row">{{ index + 1 }}</th>
-					<td>{{ convertToStartCase(type) }}</td>
-					<td>{{ name }}</td>
+				<tr v-for="([index,choice]) of Object.entries(generalChoices)" :key="index">
+					<td scope="row">{{ parseInt(index) + 1 }}</td>
+					<td scope="row">{{ Object.keys(choice)[0] }}</td>
+					<td scope="row">{{ Object.values(choice)[0] }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -38,7 +38,7 @@
 		</table>
 		<form
 			class="was-validated save-choices"
-			@submit.prevent="saveToDatabse()"
+			@submit.prevent="saveToDatabase()"
 		>
 			<fieldset v-if="!isChoicesSaved">
 				<legend>Ready? Save your preferences!</legend>
@@ -91,9 +91,9 @@ export default {
 		...mapActions('userData', {
 			sendChoicesToBackend: 'sendChoicesToBackend',
 		}),
-		async saveToDatabse() {
+		async saveToDatabase() {
 			await this.sendChoicesToBackend();
-			await this.resetForm();
+			this.resetForm();
 		},
 		resetForm() {
 			this.$store.commit('startupData/UPDATE_NAME', '');
