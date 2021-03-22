@@ -1,82 +1,39 @@
 <template>
-	<div v-if="Object.keys(generalChoices).length && Object.keys(teamChoices).length">
-		<h4 class="text-center py-4">General Choices</h4>
-		<table class="table" v-if="Object.keys(generalChoices).length">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Type</th>
-					<th scope="col">Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="([index,choice]) of Object.entries(generalChoices)" :key="index">
-					<td scope="row">{{ parseInt(index) + 1 }}</td>
-					<td scope="row">{{ Object.keys(choice)[0] }}</td>
-					<td scope="row">{{ Object.values(choice)[0] }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<h4 class="text-center py-4">Team Choices</h4>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Header</th>
-					<th scope="col">Type</th>
-					<th scope="col">Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="([index,choice]) of Object.entries(teamChoices)" :key="index">
-					<td scope="row">{{ parseInt(index) + 1 }}</td>
-					<td scope="row">{{ convertToStartCase(Object.keys(choice)[0]) }}</td>
-					<td scope="row">{{ convertToStartCase(Object.keys(choice[Object.keys(choice)[0]])[0]) }}</td>
-					<td scope="row">{{ Object.values(choice[Object.keys(choice)[0]])[0] }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<form
-			class="was-validated save-choices"
-			@submit.prevent="saveToDatabase()"
-		>
-			<fieldset v-if="!isChoicesSaved">
-				<legend>Ready? Save your preferences!</legend>
-				<div class="mb-3">
-					<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Name of the startup</h5>
+						<p class="card-text">Creation date:</p>
+						<router-link to="/choices/one">Open </router-link>
+					</div>
 				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Name of the startup</h5>
+						<p class="card-text">Creation date:</p>
+						<router-link to="/choices/one">Open </router-link>
+					</div>
+				</div>
+			</div>
+		</div>
 
-				<div class="mb-3">
-					<button
-						class="btn btn-primary"
-						type="submit"
-						:disabled="!startupName"
-					>
-						Save choices
-					</button>
-				</div>
-			</fieldset>
-			<button type="button" class="btn btn-success" v-if="isChoicesSaved" disabled>Saved</button>
-		</form>
+		<router-view />
 	</div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
+import { mapActions } from 'vuex';
 
 export default {
 	name: 'UserChoices',
-	mixins: [ caseConverterMixin ],
 	data() {
 		return {};
 	},
 	computed: {
-		...mapState('userData', {
-			generalChoices: 'generalChoices',
-			teamChoices: 'teamChoices',
-			isChoicesSaved: 'isChoicesSaved',
-		}),
 		startupName: {
 			get() {
 				return this.$store.state.startupData.name;
@@ -86,22 +43,6 @@ export default {
 			},
 		},
 
-	},
-	methods: {
-		...mapActions('userData', {
-			sendChoicesToBackend: 'sendChoicesToBackend',
-		}),
-		async saveToDatabase() {
-			await this.sendChoicesToBackend();
-			this.resetForm();
-		},
-		resetForm() {
-			this.$store.commit('startupData/UPDATE_NAME', '');
-			this.$store.commit('startupData/UPDATE_SIZE', '');
-			this.$store.commit('startupData/UPDATE_LOCATION', '');
-			this.$store.commit('startupData/UPDATE_FIELD', '');
-			this.$store.commit('startupData/UPDATE_BUDGET', '');
-		},
 	},
 };
 </script>
