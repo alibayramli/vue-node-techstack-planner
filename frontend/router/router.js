@@ -7,6 +7,8 @@ import Form from '../src/components/Form.vue';
 import TechStack from '../src/components/TechStack.vue';
 import UserChoices from '../src/components/UserChoices.vue';
 import ProgrammingLanguageDetails from '../src/components/ProgrammingLanguageDetails.vue';
+import ChoicesPicked from '../src/components/ChoicesPicked.vue';
+import { RouterView } from 'vue-router';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -63,6 +65,21 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
+		},
+		{
+			name: 'prefix',
+			path: '/choices',
+			component: RouterView,
+			meta: {
+				requiresAuth: true,
+			},
+			children: [
+				{
+					name: 'one',
+					path: 'one',
+					component: ChoicesPicked,
+				},
+			],
 		},
 	],
 });
