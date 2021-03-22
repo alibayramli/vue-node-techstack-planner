@@ -18,7 +18,7 @@
 						v-model="startupSize"
 					>
 						<option v-for="size in sizes" :key="size" :value="size">
-							{{ convertToStartCase(size) }}
+							{{ $convertToStartCase(size) }}
 						</option>
 					</select>
 					<div class="invalid-feedback">Please select</div>
@@ -51,7 +51,7 @@
 						v-model="startupField"
 					>
 						<option v-for="field in fields" :key="field" :value="field">
-							{{ convertToStartCase(field) }}
+							{{ $convertToStartCase(field) }}
 						</option>
 					</select>
 					<div class="invalid-feedback">Please select</div>
@@ -87,11 +87,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
 	name: 'Form',
-	mixins: [ caseConverterMixin ],
 	data() {
 		return {
 			isSubmitted: false,

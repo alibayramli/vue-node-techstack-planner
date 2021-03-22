@@ -20,7 +20,6 @@ import { mapState, mapGetters } from 'vuex';
 import StatisticsTable from './StatisticsTable.vue';
 import GeneralStatisticsAccordion from './GeneralStatisticsAccordion.vue';
 import TeamStatisticsAccordion from './TeamStatisticsAccordion.vue';
-import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
 	name: 'TechStack',
@@ -29,7 +28,6 @@ export default {
 		GeneralStatisticsAccordion,
 		TeamStatisticsAccordion,
 	},
-	mixins: [ caseConverterMixin ],
 	data() {
 		return {};
 	},

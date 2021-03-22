@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="card" v-for="detailType of Object.keys(languageDetails)" :key="detailType">
 				<div class="card-header">
-					{{ convertToStartCase(detailType) }}
+					{{ $convertToStartCase(detailType) }}
 				</div>
 				<p class="card-text"
 					v-for="detail of languageDetails[detailType]"
@@ -35,11 +35,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
 	name: 'ProgrammingLanguageDetails',
-	mixins: [ caseConverterMixin ],
 	props: {
 		id: {
 			type: String,

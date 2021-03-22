@@ -40,7 +40,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
 import ChoiceIcons from './ChoiceIcons.vue';
 
 export default {
@@ -48,7 +47,6 @@ export default {
 	components: {
 		ChoiceIcons,
 	},
-	mixins: [ caseConverterMixin ],
 	props: {
 		name: {
 			type: String,
