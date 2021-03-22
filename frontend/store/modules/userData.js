@@ -1,4 +1,5 @@
 import backend from '../../helpers/interceptors';
+import router from '../../router/router';
 export default {
 	namespaced: true,
 	state: {
@@ -12,6 +13,38 @@ export default {
 		},
 		getTeamChoices(state) {
 			return state.teamChoices;
+		},
+		getIsChoicesSaved(state) {
+			return state.isChoicesSaved;
+		},
+		getGeneralChoicesByTypes(state) {
+			const choicesByTypes = {} ;
+			state.generalChoices.forEach((choice) => {
+				const [type, value] = Object.entries(choice)[0];
+				if (!choicesByTypes[type]) {
+					choicesByTypes[type] = [ value ];
+				} else {
+					choicesByTypes[type].push(value);
+				}
+			});
+			return Object.entries(choicesByTypes);
+		},
+		getTeamChoicesByTypes(state) {
+			const choicesByTypes = {} ;
+			state.teamChoices.forEach((choice) => {
+				const [header, typeValObj] = Object.entries(choice)[0];
+				const [type, value] = Object.entries(typeValObj)[0];
+				if (!choicesByTypes[header]) {
+					choicesByTypes[header] = { [type]: [ value ] };
+				} else if (choicesByTypes[header] && !choicesByTypes[header][type]) {
+					choicesByTypes[header][type] = [ value ] ;
+				} else {
+					choicesByTypes[header][type].push(value);
+				}
+			});
+			return Object.entries(choicesByTypes).map((choiceArr) => {
+				return [choiceArr[0], Object.entries(choiceArr[1])];
+			});
 		},
 	},
 	mutations: {
@@ -52,6 +85,7 @@ export default {
 				};
 				await backend.post('user-data', newData);
 				commit('UPDATE_IS_CHOICES_SAVED', true);
+				router.go();
 			} catch (err) {
 				// eslint-disable-next-line no-console
 				console.log(err);
