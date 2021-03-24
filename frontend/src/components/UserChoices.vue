@@ -34,6 +34,9 @@ export default {
 		return {};
 	},
 	computed: {
+		...mapActions('userData', {
+			savedChoices: 'getSavedChoices',
+		}),
 		startupName: {
 			get() {
 				return this.$store.state.startupData.name;
@@ -43,6 +46,14 @@ export default {
 			},
 		},
 
+	},
+	async mounted() {
+		await this.loadSavedUserChoices();
+	},
+	methods: {
+		...mapActions('userData', {
+			loadSavedUserChoices: 'loadSavedChoices',
+		}),
 	},
 };
 </script>

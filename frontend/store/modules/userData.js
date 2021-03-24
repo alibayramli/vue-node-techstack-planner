@@ -5,6 +5,7 @@ export default {
 	state: {
 		generalChoices: [],
 		teamChoices: [],
+		savedChoices: [],
 		isChoicesSaved: false,
 	},
 	getters: {
@@ -16,6 +17,9 @@ export default {
 		},
 		getIsChoicesSaved(state) {
 			return state.isChoicesSaved;
+		},
+		getSavedChoices(state) {
+			return state.savedChoices;
 		},
 		getGeneralChoicesByTypes(state) {
 			const choicesByTypes = {} ;
@@ -69,6 +73,15 @@ export default {
 		},
 	},
 	actions: {
+		async loadSavedChoices({ commit, state }) {
+			try {
+				const response = await backend.get('user-data/startup-choices');
+				console.log(response.data);
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			}
+		},
 		async sendChoicesToBackend({ commit, state, rootState }) {
 			try {
 				const { generalChoices, teamChoices } = state;
