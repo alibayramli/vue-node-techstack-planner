@@ -94,7 +94,7 @@ export default {
 	actions: {
 		async loadSavedChoices({ commit }) {
 			try {
-				const response = await backend.get('user-data/startup-choices');
+				const response = await backend.get('user-data/user-startups');
 				commit('SET_SAVED_CHOICES', response.data);
 			} catch (err) {
 				// eslint-disable-next-line no-console
@@ -104,18 +104,18 @@ export default {
 		async sendChoicesToBackend({ commit, rootState, getters }) {
 			try {
 				const newData = {
-					startupName: rootState.startupData.name,
-					startupSize: rootState.startupData.size,
-					startupLocation: rootState.startupData.location,
-					startupField: rootState.startupData.field,
-					startupBudget: rootState.startupData.budget + 'k',
+					startupName: rootState.startupFormData.name,
+					startupSize: rootState.startupFormData.size,
+					startupLocation: rootState.startupFormData.location,
+					startupField: rootState.startupFormData.field,
+					startupBudget: rootState.startupFormData.budget + 'k',
 					creationDate: new Date(),
 					choices: {
 						general: getters.getGeneralChoicesByTypes,
 						team: getters.getTeamChoicesByTypes,
 					},
 				};
-				await backend.post('user-data', newData);
+				await backend.post('user-data/new-startup', newData);
 				commit('UPDATE_IS_CHOICES_SAVED', true);
 				router.go();
 			} catch (err) {
