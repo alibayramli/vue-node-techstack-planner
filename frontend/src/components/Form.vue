@@ -8,6 +8,9 @@
 				<legend>Tech Stack Specification Form</legend>
 
 				<hr>
+				<div class="mb-3">
+					<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
+				</div>
 
 				<div class="mb-3">
 					<label for="size" class="form-label">Startup size</label>
@@ -70,7 +73,7 @@
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupField || !startupBudget|| isSubmitFormClicked"
+						:disabled="!startupName || !startupField || !startupBudget|| isSubmitFormClicked"
 					>
 						Submit form
 						<div
@@ -103,6 +106,14 @@ export default {
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
 		}),
+		startupName: {
+			get() {
+				return this.$store.state.startupData.name;
+			},
+			set(value) {
+				this.$store.commit('startupData/UPDATE_NAME', value);
+			},
+		},
 		startupSize: {
 			get() {
 				return this.$store.getters['startupData/getSize'];
