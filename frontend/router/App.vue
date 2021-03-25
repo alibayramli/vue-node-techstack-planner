@@ -34,7 +34,7 @@
 							</router-link>
 						</li>
 						<li class="nav-item" v-if="isLoggedIn">
-							<router-link class="nav-link" to="/all-startups">
+							<router-link class="nav-link" to="/user-startups">
 								Your Startups
 							</router-link>
 						</li>
@@ -73,7 +73,7 @@ export default {
 		...mapActions('statisticsData', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
-		...mapActions('formData', {
+		...mapActions('startupFormData', {
 			formInfos: 'loadFormInfos',
 		}),
 		...mapActions('authData', {

@@ -58,8 +58,8 @@ export const router = createRouter({
 			},
 		},
 		{
-			name: 'allStartups',
-			path: '/all-startups',
+			name: 'userStartups',
+			path: '/user-startups',
 			component: UserChoices,
 			meta: {
 				requiresAuth: true,
