@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-const userChoiceSchema = new mongoose.Schema({
+const detailSchema = new mongoose.Schema({
+	author: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'user',
+	},
 	startupName: {
 		type: String,
 		unique: true,
@@ -19,6 +23,9 @@ const userChoiceSchema = new mongoose.Schema({
 	startupBudget: {
 		type: String,
 	},
+	creationDate: {
+		type: Date,
+	},
 	choices: {
 		general: {
 			type: Object,
@@ -29,4 +36,4 @@ const userChoiceSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model('Choice', userChoiceSchema);
+module.exports = mongoose.model('detail', detailSchema);
