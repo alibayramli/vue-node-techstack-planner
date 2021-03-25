@@ -48,14 +48,9 @@
 			<fieldset v-if="!isChoicesSaved">
 				<legend>Ready? Save your preferences!</legend>
 				<div class="mb-3">
-					<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
-				</div>
-
-				<div class="mb-3">
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupName"
 					>
 						Save choices
 					</button>
@@ -70,25 +65,21 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	name: 'ChoicesPicked',
+	props: {
+		id: {
+			type: String,
+			required: true,
+		},
+	},
 	data() {
 		return {};
 	},
 	computed: {
 		...mapGetters('userData', {
-			generalChoices: 'getGeneralChoices',
-			teamChoices: 'getTeamChoices',
 			isChoicesSaved: 'getIsChoicesSaved',
 			generalChoicesByTypes: 'getGeneralChoicesByTypes',
 			teamChoicesByTypes: 'getTeamChoicesByTypes',
 		}),
-		startupName: {
-			get() {
-				return this.$store.state.startupData.name;
-			},
-			set(value) {
-				this.$store.commit('startupData/UPDATE_NAME', value);
-			},
-		},
 	},
 	methods: {
 		...mapActions('userData', {
