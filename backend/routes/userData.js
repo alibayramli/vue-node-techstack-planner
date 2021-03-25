@@ -4,34 +4,30 @@ const INTERNAL_SERVER_ERROR = 500;
 const { verifyAccessToken } = require('../helpers/jwt');
 const Detail = require('../models/detail.js');
 
-router.get('/startup-choices', verifyAccessToken, (req, res) => {
+router.get('/user-startups', verifyAccessToken, async (req, res) => {
 	try {
-		Detail
-			.find({})
-			.populate('author', { choices: 1 })
-			.exec((err, results) => {
-				const userChoices = results.map((result) => {
-					return {
-						startupId: result._id,
-						startupName: result.startupName,
-						creationDate: result.creationDate,
-						choices: result.choices,
-					};
-				});
-				res.send(userChoices);
-			});
+		const details = await Detail.find({ author: req.user.aud });
+		const startupDetails = details.map((detail) => {
+			return {
+				startupId: detail._id,
+				startupName: detail.startupName,
+				creationDate: detail.creationDate,
+				choices: detail.choices,
+			};
+		});
+		res.send(startupDetails);
 	} catch (err) {
 		console.log(err);
 		res.status(INTERNAL_SERVER_ERROR).send(err);
 	}
 });
 
-router.post('/', verifyAccessToken, async (req, res) => {
+router.post('/new-startup', verifyAccessToken, async (req, res) => {
 	try {
 		req.body.author = req.user.aud;
-		const newStartupChoice = new Detail(req.body);
-		await newStartupChoice.save();
-		res.send(newStartupChoice);
+		const newStartupInfo = new Detail(req.body);
+		await newStartupInfo.save();
+		res.send(newStartupInfo);
 	} catch (err) {
 		console.log(err);
 		res.status(INTERNAL_SERVER_ERROR).send(err);
