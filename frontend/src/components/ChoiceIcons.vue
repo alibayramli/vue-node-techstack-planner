@@ -56,7 +56,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('startupData', {
+		...mapGetters('startupFormData', {
 			startupBudget: 'getBudget',
 		}),
 	},

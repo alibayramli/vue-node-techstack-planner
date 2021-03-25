@@ -53,15 +53,15 @@ export default {
 		...mapGetters('startupChoicesData', {
 			savedStartups: 'getSavedChoices',
 		}),
-		...mapGetters('startupData', {
+		...mapGetters('startupFormData', {
 			draftStartupName: 'getName',
 		}),
 		startupName: {
 			get() {
-				return this.$store.state.startupData.name;
+				return this.$store.state.startupFormData.name;
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_NAME', value);
+				this.$store.commit('startupFormData/UPDATE_NAME', value);
 			},
 		},
 

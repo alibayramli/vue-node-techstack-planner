@@ -101,60 +101,60 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('formData', {
+		...mapGetters('startupFormData', {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
 		}),
 		startupName: {
 			get() {
-				return this.$store.state.startupData.name;
+				return this.$store.state.startupFormData.name;
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_NAME', value);
+				this.$store.commit('startupFormData/UPDATE_NAME', value);
 			},
 		},
 		startupSize: {
 			get() {
-				return this.$store.getters['startupData/getSize'];
+				return this.$store.getters['startupFormData/getSize'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_SIZE', value);
+				this.$store.commit('startupFormData/UPDATE_SIZE', value);
 			},
 		},
 		startupLocation: {
 			get() {
-				return this.$store.getters['startupData/getLocation'];
+				return this.$store.getters['startupFormData/getLocation'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_LOCATION', value);
+				this.$store.commit('startupFormData/UPDATE_LOCATION', value);
 			},
 		},
 		startupField: {
 			get() {
-				return this.$store.getters['startupData/getField'];
+				return this.$store.getters['startupFormData/getField'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_FIELD', value);
+				this.$store.commit('startupFormData/UPDATE_FIELD', value);
 			},
 		},
 		startupBudget: {
 			get() {
-				return this.$store.getters['startupData/getBudget'];
+				return this.$store.getters['startupFormData/getBudget'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_BUDGET', value);
+				this.$store.commit('startupFormData/UPDATE_BUDGET', value);
 			},
 		},
 	},
 	methods: {
-		...mapActions('startupData', {
-			createStartupData: 'createData',
+		...mapActions('startupFormData', {
+			createStartupQuery: 'createStartupQuery',
 		}),
 		async submit() {
 			this.isSubmitFormSpinnerActive = true;
 			this.isSubmitFormClicked = true;
-			await this.createStartupData();
+			await this.createStartupQuery();
 			this.isSubmitted = true;
 			this.isSubmitFormSpinnerActive = false;
 			this.isSubmitFormClicked = false;

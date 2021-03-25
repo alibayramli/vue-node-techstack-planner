@@ -8,6 +8,9 @@ export default {
 		location: '',
 		field: '',
 		budget: '',
+		availableSizes: [],
+		availableLocations: [],
+		availableFields: [],
 	},
 	getters: {
 		getName(state) {
@@ -24,6 +27,15 @@ export default {
 		},
 		getBudget(state) {
 			return state.budget;
+		},
+		getAvailableSizes(state) {
+			return state.availableSizes;
+		},
+		getAvailableLocations(state) {
+			return state.availableLocations;
+		},
+		getAvailableFields(state) {
+			return state.availableFields;
 		},
 	},
 	mutations: {
@@ -42,9 +54,28 @@ export default {
 		UPDATE_BUDGET(state, newBudgetValue) {
 			state.budget = newBudgetValue;
 		},
+		SET_AVAILABLE_SIZES(state, sizes) {
+			state.availableSizes = sizes;
+		},
+		SET_AVAILABLE_LOCATIONS(state, locations) {
+			state.availableLocations = locations;
+		},
+		SET_AVAILABLE_FIELDS(state, fields) {
+			state.availableFields = fields;
+		},
 	},
 	actions: {
-		async createData({ commit, state }) {
+		async loadFormInfos({ commit }) {
+			const formInfosResponse = await backend.get('form-data');
+			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
+			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
+			const fieldResponse = await backend.get('statistics-data');
+			const fields = fieldResponse.data.typesOfSoftware;
+			commit('SET_AVAILABLE_SIZES', sizes);
+			commit('SET_AVAILABLE_LOCATIONS', locations);
+			commit('SET_AVAILABLE_FIELDS', fields);
+		},
+		async createStartupQuery({ commit, state }) {
 			const newData = {
 				size: state.size,
 				location: state.location,
