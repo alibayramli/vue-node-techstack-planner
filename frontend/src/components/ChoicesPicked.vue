@@ -46,7 +46,6 @@
 			@submit.prevent="saveChoices()"
 		>
 			<fieldset v-if="!isChoicesSaved">
-				<legend>Ready? Save your preferences!</legend>
 				<div class="mb-3">
 					<button
 						class="btn btn-primary"
@@ -95,7 +94,6 @@ export default {
 <style scoped>
 .save-choices {
   margin: auto;
-  margin-top: 5rem;
   padding: 15px 30px;
   width: 40rem;
   background-color: #fff;
