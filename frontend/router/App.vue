@@ -54,7 +54,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('userData', {
+		...mapState('startupChoicesData', {
 			generalChoices: 'generalChoices',
 			teamChoices: 'teamChoices',
 		}),

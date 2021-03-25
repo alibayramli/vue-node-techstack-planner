@@ -50,7 +50,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('userData', {
+		...mapGetters('startupChoicesData', {
 			savedStartups: 'getSavedChoices',
 		}),
 		...mapGetters('startupData', {
@@ -70,7 +70,7 @@ export default {
 		await this.loadSavedUserChoices();
 	},
 	methods: {
-		...mapActions('userData', {
+		...mapActions('startupChoicesData', {
 			loadSavedUserChoices: 'loadSavedChoices',
 		}),
 		viewStartup(startupId) {

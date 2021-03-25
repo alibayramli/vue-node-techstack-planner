@@ -75,14 +75,14 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('userData', {
+		...mapGetters('startupChoicesData', {
 			isChoicesSaved: 'getIsChoicesSaved',
 			generalChoicesByTypes: 'getGeneralChoicesByTypes',
 			teamChoicesByTypes: 'getTeamChoicesByTypes',
 		}),
 	},
 	methods: {
-		...mapActions('userData', {
+		...mapActions('startupChoicesData', {
 			sendChoicesToBackend: 'sendChoicesToBackend',
 		}),
 		async saveChoices() {

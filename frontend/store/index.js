@@ -4,7 +4,7 @@ import startupData from './modules/startupData';
 import formData from './modules/formData';
 import toolsData from './modules/toolsData';
 import programmingLanguagesData from './modules/programmingLanguagesData';
-import userData from './modules/userData';
+import startupChoicesData from './modules/startupChoicesData';
 import authData from './modules/authData';
 export const store = createStore({
 	modules: {
@@ -13,7 +13,7 @@ export const store = createStore({
 		formData,
 		toolsData,
 		programmingLanguagesData,
-		userData,
+		startupChoicesData,
 		authData,
 	},
 });

@@ -37,8 +37,8 @@ export default {
 				});
 				return Object.entries(choicesByTypes);
 			} else {
-				const savedStartup = state.savedChoices.filter(startup => startup.startupId === routerId);
-				return savedStartup[0].choices.general;
+				const savedStartup = state.savedChoices.find(startup => startup.startupId === routerId);
+				return savedStartup.choices.general;
 			}
 		},
 		getTeamChoicesByTypes(state) {
@@ -62,8 +62,8 @@ export default {
 					return [choiceArr[0], Object.entries(choiceArr[1])];
 				});
 			} else {
-				const savedStartup = state.savedChoices.filter(startup => startup.startupId === routerId);
-				return savedStartup[0].choices.team;
+				const savedStartup = state.savedChoices.find(startup => startup.startupId === routerId);
+				return savedStartup.choices.team;
 			}
 		},
 	},
