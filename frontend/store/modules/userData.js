@@ -22,33 +22,49 @@ export default {
 			return state.savedChoices;
 		},
 		getGeneralChoicesByTypes(state) {
-			const choicesByTypes = {} ;
-			state.generalChoices.forEach((choice) => {
-				const [type, value] = Object.entries(choice)[0];
-				if (!choicesByTypes[type]) {
-					choicesByTypes[type] = [ value ];
-				} else {
-					choicesByTypes[type].push(value);
-				}
-			});
-			return Object.entries(choicesByTypes);
+			const fullRouteName = router.currentRoute._rawValue.fullPath;
+			const routerId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
+			const isDraftRoute = routerId === 'draft';
+			if (isDraftRoute) {
+				const choicesByTypes = {} ;
+				state.generalChoices.forEach((choice) => {
+					const [type, value] = Object.entries(choice)[0];
+					if (!choicesByTypes[type]) {
+						choicesByTypes[type] = [ value ];
+					} else {
+						choicesByTypes[type].push(value);
+					}
+				});
+				return Object.entries(choicesByTypes);
+			} else {
+				const savedStartup = state.savedChoices.filter(startup => startup.startupId === routerId);
+				return savedStartup[0].choices.general;
+			}
 		},
 		getTeamChoicesByTypes(state) {
-			const choicesByTypes = {} ;
-			state.teamChoices.forEach((choice) => {
-				const [header, typeValObj] = Object.entries(choice)[0];
-				const [type, value] = Object.entries(typeValObj)[0];
-				if (!choicesByTypes[header]) {
-					choicesByTypes[header] = { [type]: [ value ] };
-				} else if (choicesByTypes[header] && !choicesByTypes[header][type]) {
-					choicesByTypes[header][type] = [ value ] ;
-				} else {
-					choicesByTypes[header][type].push(value);
-				}
-			});
-			return Object.entries(choicesByTypes).map((choiceArr) => {
-				return [choiceArr[0], Object.entries(choiceArr[1])];
-			});
+			const fullRouteName = router.currentRoute._rawValue.fullPath;
+			const routerId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
+			const isDraftRoute = routerId === 'draft';
+			if (isDraftRoute) {
+				const choicesByTypes = {} ;
+				state.teamChoices.forEach((choice) => {
+					const [header, typeValObj] = Object.entries(choice)[0];
+					const [type, value] = Object.entries(typeValObj)[0];
+					if (!choicesByTypes[header]) {
+						choicesByTypes[header] = { [type]: [ value ] };
+					} else if (choicesByTypes[header] && !choicesByTypes[header][type]) {
+						choicesByTypes[header][type] = [ value ] ;
+					} else {
+						choicesByTypes[header][type].push(value);
+					}
+				});
+				return Object.entries(choicesByTypes).map((choiceArr) => {
+					return [choiceArr[0], Object.entries(choiceArr[1])];
+				});
+			} else {
+				const savedStartup = state.savedChoices.filter(startup => startup.startupId === routerId);
+				return savedStartup[0].choices.team;
+			}
 		},
 	},
 	mutations: {
@@ -60,6 +76,9 @@ export default {
 		},
 		UPDATE_IS_CHOICES_SAVED(state, newIsChoicesSavedValue) {
 			state.isChoicesSaved = newIsChoicesSavedValue;
+		},
+		SET_SAVED_CHOICES(state, choices) {
+			state.savedChoices = choices;
 		},
 		DELETE_GENERAL_CHOICE(state, { type, name }) {
 			const generalChoiceIdxToDelete = state.generalChoices
@@ -73,27 +92,27 @@ export default {
 		},
 	},
 	actions: {
-		async loadSavedChoices({ commit, state }) {
+		async loadSavedChoices({ commit }) {
 			try {
 				const response = await backend.get('user-data/startup-choices');
-				console.log(response.data);
+				commit('SET_SAVED_CHOICES', response.data);
 			} catch (err) {
 				// eslint-disable-next-line no-console
 				console.log(err);
 			}
 		},
-		async sendChoicesToBackend({ commit, state, rootState }) {
+		async sendChoicesToBackend({ commit, rootState, getters }) {
 			try {
-				const { generalChoices, teamChoices } = state;
 				const newData = {
 					startupName: rootState.startupData.name,
 					startupSize: rootState.startupData.size,
 					startupLocation: rootState.startupData.location,
 					startupField: rootState.startupData.field,
 					startupBudget: rootState.startupData.budget + 'k',
+					creationDate: new Date(),
 					choices: {
-						general: generalChoices,
-						team: teamChoices,
+						general: getters.getGeneralChoicesByTypes,
+						team: getters.getTeamChoicesByTypes,
 					},
 				};
 				await backend.post('user-data', newData);
