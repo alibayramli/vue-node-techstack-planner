@@ -34,8 +34,8 @@
 							</router-link>
 						</li>
 						<li class="nav-item" v-if="isLoggedIn">
-							<router-link class="nav-link" to="/choices">
-								Your choices
+							<router-link class="nav-link" to="/all-startups">
+								Your Startups
 							</router-link>
 						</li>
 					</ul>
