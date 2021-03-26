@@ -87,6 +87,13 @@ export default {
 		SET_AVAILABLE_FIELDS(state, fields) {
 			state.availableFields = fields;
 		},
+		RESET_STARTUP_FORM(state) {
+			state.name = '';
+			state.size = '';
+			state.location = '';
+			state.field = '';
+			state.budget = '';
+		},
 	},
 	actions: {
 		async loadFormInfos({ commit }) {

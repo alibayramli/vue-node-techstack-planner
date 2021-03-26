@@ -86,6 +86,10 @@ export default {
 				.findIndex(choice => choice[header] && choice[header][type] === name);
 			state.teamChoices.splice(teamChoiceIdxToDelete, 1);
 		},
+		RESET_STARTUP_CHOICES(state) {
+			state.generalChoices = [];
+			state.teamChoices = [];
+		},
 	},
 	actions: {
 		async loadSavedChoices({ commit }) {
@@ -97,7 +101,7 @@ export default {
 				console.log(err);
 			}
 		},
-		async createStartup({ rootState, getters }) {
+		async createStartup({ rootState, getters, commit }) {
 			try {
 				const newData = {
 					startupName: rootState.startupFormData.name,
@@ -112,6 +116,8 @@ export default {
 					},
 				};
 				await backend.post('user-data/new-startup', newData);
+				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
+				commit('RESET_STARTUP_CHOICES');
 				router.push('/user-startups');
 			} catch (err) {
 				// eslint-disable-next-line no-console

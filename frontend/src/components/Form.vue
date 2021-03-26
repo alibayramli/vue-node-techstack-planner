@@ -152,6 +152,7 @@ export default {
 			createStartupQuery: 'createStartupQuery',
 		}),
 		async submit() {
+			this.$store.commit('startupChoicesData/RESET_STARTUP_CHOICES');
 			this.isSubmitFormSpinnerActive = true;
 			this.isSubmitFormClicked = true;
 			await this.createStartupQuery();
