@@ -37,6 +37,30 @@ export default {
 		getAvailableFields(state) {
 			return state.availableFields;
 		},
+		getStartupFormData(state, getters, rootState) {
+			const fullRouteName = router.currentRoute._rawValue.fullPath;
+			const startupId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
+			const isDraftStartup = startupId === 'draft';
+			if (isDraftStartup) {
+				return {
+					name: getters.getName,
+					size: getters.getSize,
+					location: getters.getLocation,
+					field: getters.getField,
+					budget: getters.getBudget,
+				};
+			} else {
+				const savedStartup = rootState.startupChoicesData.savedChoices
+					.find(startup => startup.startupId === startupId);
+				return {
+					name: savedStartup.startupName,
+					size: savedStartup.startupSize,
+					location: savedStartup.startupLocation,
+					field: savedStartup.startupField,
+					budget: savedStartup.startupBudget,
+				};
+			}
+		},
 	},
 	mutations: {
 		UPDATE_NAME(state, newStartupName) {

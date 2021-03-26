@@ -6,7 +6,6 @@ export default {
 		generalChoices: [],
 		teamChoices: [],
 		savedChoices: [],
-		isChoicesSaved: false,
 	},
 	getters: {
 		getGeneralChoices(state) {
@@ -15,17 +14,14 @@ export default {
 		getTeamChoices(state) {
 			return state.teamChoices;
 		},
-		getIsChoicesSaved(state) {
-			return state.isChoicesSaved;
-		},
 		getSavedChoices(state) {
 			return state.savedChoices;
 		},
 		getGeneralChoicesByTypes(state) {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
-			const routerId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
-			const isDraftRoute = routerId === 'draft';
-			if (isDraftRoute) {
+			const startupId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
+			const isDraftStartup = startupId === 'draft';
+			if (isDraftStartup) {
 				const choicesByTypes = {} ;
 				state.generalChoices.forEach((choice) => {
 					const [type, value] = Object.entries(choice)[0];
@@ -37,15 +33,17 @@ export default {
 				});
 				return Object.entries(choicesByTypes);
 			} else {
-				const savedStartup = state.savedChoices.find(startup => startup.startupId === routerId);
+				const savedStartup = state.savedChoices
+					.find(startup => startup.startupId === startupId);
 				return savedStartup.choices.general;
 			}
 		},
 		getTeamChoicesByTypes(state) {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
-			const routerId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
-			const isDraftRoute = routerId === 'draft';
-			if (isDraftRoute) {
+			const startupId = fullRouteName
+				.substring(fullRouteName.lastIndexOf('/') + 1);
+			const isDraftStartup = startupId === 'draft';
+			if (isDraftStartup) {
 				const choicesByTypes = {} ;
 				state.teamChoices.forEach((choice) => {
 					const [header, typeValObj] = Object.entries(choice)[0];
@@ -62,7 +60,8 @@ export default {
 					return [choiceArr[0], Object.entries(choiceArr[1])];
 				});
 			} else {
-				const savedStartup = state.savedChoices.find(startup => startup.startupId === routerId);
+				const savedStartup = state.savedChoices
+					.find(startup => startup.startupId === startupId);
 				return savedStartup.choices.team;
 			}
 		},
@@ -73,9 +72,6 @@ export default {
 		},
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
-		},
-		UPDATE_IS_CHOICES_SAVED(state, newIsChoicesSavedValue) {
-			state.isChoicesSaved = newIsChoicesSavedValue;
 		},
 		SET_SAVED_CHOICES(state, choices) {
 			state.savedChoices = choices;
@@ -101,14 +97,14 @@ export default {
 				console.log(err);
 			}
 		},
-		async sendChoicesToBackend({ commit, rootState, getters }) {
+		async createStartup({ rootState, getters }) {
 			try {
 				const newData = {
 					startupName: rootState.startupFormData.name,
 					startupSize: rootState.startupFormData.size,
 					startupLocation: rootState.startupFormData.location,
 					startupField: rootState.startupFormData.field,
-					startupBudget: rootState.startupFormData.budget + 'k',
+					startupBudget: rootState.startupFormData.budget,
 					creationDate: new Date(),
 					choices: {
 						general: getters.getGeneralChoicesByTypes,
@@ -116,8 +112,38 @@ export default {
 					},
 				};
 				await backend.post('user-data/new-startup', newData);
-				commit('UPDATE_IS_CHOICES_SAVED', true);
-				router.go();
+				router.push('/user-startups');
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			}
+		},
+		async updateStartup({ getters }, formInfo) {
+			try {
+				const fullRouteName = router.currentRoute._rawValue.fullPath;
+				const startupId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
+				const newData = {
+					startupName: formInfo.name,
+					startupSize: formInfo.size,
+					startupLocation: formInfo.location,
+					startupField: formInfo.field,
+					startupBudget: formInfo.budget,
+					choices: {
+						general: getters.getGeneralChoicesByTypes,
+						team: getters.getTeamChoicesByTypes,
+					},
+				};
+				await backend.patch(`user-data/edit-startup/${startupId}`, newData);
+				router.push('/user-startups');
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			}
+		},
+		async deleteStartup({ }, startupId) {
+			try {
+				await backend.delete(`user-	data/delete-startup/${startupId}`);
+				router.push('/user-startups');
 			} catch (err) {
 				// eslint-disable-next-line no-console
 				console.log(err);
