@@ -7,7 +7,7 @@ import Form from '../src/components/Form.vue';
 import TechStack from '../src/components/TechStack.vue';
 import UserChoices from '../src/components/UserChoices.vue';
 import ProgrammingLanguageDetails from '../src/components/ProgrammingLanguageDetails.vue';
-import ChoicesPicked from '../src/components/ChoicesPicked.vue';
+import StartupDetails from '../src/components/StartupDetails.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -69,7 +69,7 @@ export const router = createRouter({
 			name: 'startup',
 			path: '/startup/:id',
 			props: true,
-			component: ChoicesPicked,
+			component: StartupDetails,
 			meta: {
 				requiresAuth: true,
 			},
