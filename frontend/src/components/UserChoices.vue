@@ -1,106 +1,88 @@
 <template>
-	<div v-if="Object.keys(generalChoices).length && Object.keys(teamChoices).length">
-		<h4 class="text-center py-4">General Choices</h4>
-		<table class="table" v-if="Object.keys(generalChoices).length">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Type</th>
-					<th scope="col">Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="([index,choice]) of Object.entries(generalChoices)" :key="index">
-					<td scope="row">{{ parseInt(index) + 1 }}</td>
-					<td scope="row">{{ Object.keys(choice)[0] }}</td>
-					<td scope="row">{{ Object.values(choice)[0] }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<h4 class="text-center py-4">Team Choices</h4>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Header</th>
-					<th scope="col">Type</th>
-					<th scope="col">Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="([index,choice]) of Object.entries(teamChoices)" :key="index">
-					<td scope="row">{{ parseInt(index) + 1 }}</td>
-					<td scope="row">{{ convertToStartCase(Object.keys(choice)[0]) }}</td>
-					<td scope="row">{{ convertToStartCase(Object.keys(choice[Object.keys(choice)[0]])[0]) }}</td>
-					<td scope="row">{{ Object.values(choice[Object.keys(choice)[0]])[0] }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<form
-			class="was-validated save-choices"
-			@submit.prevent="saveToDatabase()"
-		>
-			<fieldset v-if="!isChoicesSaved">
-				<legend>Ready? Save your preferences!</legend>
-				<div class="mb-3">
-					<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
-				</div>
-
-				<div class="mb-3">
-					<button
+	<div class="container">
+		<div class="row">
+			<h1>Draft Startups</h1>
+			<div class="card" v-if="draftStartupName">
+				<div class="card-body">
+					<h5 class="card-title">Name of the startup: <b>{{ draftStartupName }}</b></h5>
+					<button type="button"
 						class="btn btn-primary"
-						type="submit"
-						:disabled="!startupName"
+						@click="viewStartup('draft')"
 					>
-						Save choices
+						View
 					</button>
 				</div>
-			</fieldset>
-			<button type="button" class="btn btn-success" v-if="isChoicesSaved" disabled>Saved</button>
-		</form>
+			</div>
+			<div v-else>
+				No draft data,  <router-link to="/form">start adding</router-link>
+			</div>
+		</div>
+		<hr>
+		<h1>Saved Startups</h1>
+		<div v-if="savedStartups.length">
+			<div class="row" v-for="startup of savedStartups" :key="startup">
+				<div>
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Name of the startup: <b>{{ startup.startupName }}</b></h5>
+							<p class="card-text">Creation date:  <b>{{ showCreationDate(startup.creationDate) }}</b></p>
+							<button type="button"
+								class="btn btn-primary"
+								@click="viewStartup(startup.startupId)"
+							>
+								View
+							</button>
+						</div>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div v-else>
+			No saved data,  <router-link to="/form">start adding</router-link>
+		</div>
+		<hr>
+		<router-view />
 	</div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'UserChoices',
-	mixins: [ caseConverterMixin ],
 	data() {
 		return {};
 	},
 	computed: {
-		...mapState('userData', {
-			generalChoices: 'generalChoices',
-			teamChoices: 'teamChoices',
-			isChoicesSaved: 'isChoicesSaved',
+		...mapGetters('startupChoicesData', {
+			savedStartups: 'getSavedChoices',
+		}),
+		...mapGetters('startupFormData', {
+			draftStartupName: 'getName',
 		}),
 		startupName: {
 			get() {
-				return this.$store.state.startupData.name;
+				return this.$store.state.startupFormData.name;
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_NAME', value);
+				this.$store.commit('startupFormData/UPDATE_NAME', value);
 			},
 		},
 
 	},
+	async mounted() {
+		await this.loadSavedUserChoices();
+	},
 	methods: {
-		...mapActions('userData', {
-			sendChoicesToBackend: 'sendChoicesToBackend',
+		...mapActions('startupChoicesData', {
+			loadSavedUserChoices: 'loadSavedChoices',
 		}),
-		async saveToDatabase() {
-			await this.sendChoicesToBackend();
-			this.resetForm();
+		viewStartup(startupId) {
+			this.$router.push({ name: 'startup', params: { id: startupId } });
 		},
-		resetForm() {
-			this.$store.commit('startupData/UPDATE_NAME', '');
-			this.$store.commit('startupData/UPDATE_SIZE', '');
-			this.$store.commit('startupData/UPDATE_LOCATION', '');
-			this.$store.commit('startupData/UPDATE_FIELD', '');
-			this.$store.commit('startupData/UPDATE_BUDGET', '');
+		showCreationDate(dateStr) {
+			return new Date(dateStr).toLocaleString();
 		},
 	},
 };

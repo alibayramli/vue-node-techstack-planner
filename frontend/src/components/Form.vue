@@ -8,6 +8,9 @@
 				<legend>Tech Stack Specification Form</legend>
 
 				<hr>
+				<div class="mb-3">
+					<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
+				</div>
 
 				<div class="mb-3">
 					<label for="size" class="form-label">Startup size</label>
@@ -18,7 +21,7 @@
 						v-model="startupSize"
 					>
 						<option v-for="size in sizes" :key="size" :value="size">
-							{{ convertToStartCase(size) }}
+							{{ $convertToStartCase(size) }}
 						</option>
 					</select>
 					<div class="invalid-feedback">Please select</div>
@@ -51,7 +54,7 @@
 						v-model="startupField"
 					>
 						<option v-for="field in fields" :key="field" :value="field">
-							{{ convertToStartCase(field) }}
+							{{ $convertToStartCase(field) }}
 						</option>
 					</select>
 					<div class="invalid-feedback">Please select</div>
@@ -61,7 +64,7 @@
 					<input type="text" class="form-control form-label"
 						placeholder="Startup Budget" aria-label="Budget"
 						required v-model="startupBudget"
-						@keypress="isValidStartupBudget"
+						@keypress=" $isValidStartupBudget($event,startupBudget)"
 					>
 					<div class="form-text">Please include average annual salary per person. (e.g 65 -> 65000 USD)</div>
 				</div>
@@ -70,7 +73,7 @@
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupField || !startupBudget|| isSubmitFormClicked"
+						:disabled="!startupName || !startupField || !startupBudget|| isSubmitFormClicked"
 					>
 						Submit form
 						<div
@@ -87,11 +90,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
 	name: 'Form',
-	mixins: [ caseConverterMixin ],
 	data() {
 		return {
 			isSubmitted: false,
@@ -100,69 +101,64 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('formData', {
+		...mapGetters('startupFormData', {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
 		}),
-		startupSize: {
+		startupName: {
 			get() {
-				return this.$store.getters['startupData/getSize'];
+				return this.$store.state.startupFormData.name;
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_SIZE', value);
+				this.$store.commit('startupFormData/UPDATE_NAME', value);
+			},
+		},
+		startupSize: {
+			get() {
+				return this.$store.getters['startupFormData/getSize'];
+			},
+			set(value) {
+				this.$store.commit('startupFormData/UPDATE_SIZE', value);
 			},
 		},
 		startupLocation: {
 			get() {
-				return this.$store.getters['startupData/getLocation'];
+				return this.$store.getters['startupFormData/getLocation'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_LOCATION', value);
+				this.$store.commit('startupFormData/UPDATE_LOCATION', value);
 			},
 		},
 		startupField: {
 			get() {
-				return this.$store.getters['startupData/getField'];
+				return this.$store.getters['startupFormData/getField'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_FIELD', value);
+				this.$store.commit('startupFormData/UPDATE_FIELD', value);
 			},
 		},
 		startupBudget: {
 			get() {
-				return this.$store.getters['startupData/getBudget'];
+				return this.$store.getters['startupFormData/getBudget'];
 			},
 			set(value) {
-				this.$store.commit('startupData/UPDATE_BUDGET', value);
+				this.$store.commit('startupFormData/UPDATE_BUDGET', value);
 			},
 		},
 	},
 	methods: {
-		...mapActions('startupData', {
-			createStartupData: 'createData',
+		...mapActions('startupFormData', {
+			createStartupQuery: 'createStartupQuery',
 		}),
 		async submit() {
+			this.$store.commit('startupChoicesData/RESET_STARTUP_CHOICES');
 			this.isSubmitFormSpinnerActive = true;
 			this.isSubmitFormClicked = true;
-			await this.createStartupData();
+			await this.createStartupQuery();
 			this.isSubmitted = true;
 			this.isSubmitFormSpinnerActive = false;
 			this.isSubmitFormClicked = false;
-		},
-		isValidStartupBudget(event) {
-			// allow numbers and one dot
-			const keyCode = (event.keyCode ? event.keyCode : event.which);
-			// eslint-disable-next-line no-magic-numbers
-			if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.startupBudget.indexOf('.') !== -1)) {
-				event.preventDefault();
-			}
-			// allow up to 2 decimal places
-			if (this.startupBudget !== null
-				&& this.startupBudget.indexOf('.') > 0
-				&& (this.startupBudget.split('.')[1].length > 1)) {
-				event.preventDefault();
-			}
 		},
 	},
 };

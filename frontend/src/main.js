@@ -2,9 +2,13 @@ import { createApp } from 'vue';
 import App from '../router/App.vue';
 import { store } from '../store/index';
 import { router } from '../router/router';
+import caseConverter from '../plugins/caseConverter';
+import budgetValidator from '../plugins/budgetValidator';
 import './index.css';
 
 const app = createApp(App);
 app.use(store);
 app.use(router);
+app.use(caseConverter);
+app.use(budgetValidator);
 app.mount('#app');

@@ -33,9 +33,9 @@
 								Tech Stack
 							</router-link>
 						</li>
-						<li class="nav-item" v-if="isLoggedIn && Object.keys(generalChoices).length && Object.keys(teamChoices).length">
-							<router-link class="nav-link" to="/choices">
-								Your choices
+						<li class="nav-item" v-if="isLoggedIn">
+							<router-link class="nav-link" to="/user-startups">
+								Your Startups
 							</router-link>
 						</li>
 					</ul>
@@ -54,7 +54,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('userData', {
+		...mapState('startupChoicesData', {
 			generalChoices: 'generalChoices',
 			teamChoices: 'teamChoices',
 		}),
@@ -73,7 +73,7 @@ export default {
 		...mapActions('statisticsData', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
-		...mapActions('formData', {
+		...mapActions('startupFormData', {
 			formInfos: 'loadFormInfos',
 		}),
 		...mapActions('authData', {

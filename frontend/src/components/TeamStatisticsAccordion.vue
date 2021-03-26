@@ -12,7 +12,7 @@
 							aria-expanded="false"
 							:aria-controls="['#collapse-' + statName]"
 						>
-							{{ convertToStartCase(statName) }}
+							{{ $convertToStartCase(statName) }}
 						</button>
 					</h2>
 					<div
@@ -41,13 +41,11 @@
 <script>
 import { mapState } from 'vuex';
 import StatisticsTable from './StatisticsTable.vue';
-import caseConverterMixin from '../mixins/caseConverter';
 export default {
 	name: 'TeamStatisticsAccordion',
 	components: {
 		StatisticsTable,
 	},
-	mixins: [ caseConverterMixin ],
 	props: {
 		isPickableTeam: {
 			type: Boolean,

@@ -40,7 +40,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
 import ChoiceIcons from './ChoiceIcons.vue';
 
 export default {
@@ -48,7 +47,6 @@ export default {
 	components: {
 		ChoiceIcons,
 	},
-	mixins: [ caseConverterMixin ],
 	props: {
 		name: {
 			type: String,
@@ -67,11 +65,11 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('userData', {
+		...mapGetters('startupChoicesData', {
 			generalChoices: 'getGeneralChoices',
 			teamChoices: 'getTeamChoices',
 		}),
-		...mapGetters('startupData', {
+		...mapGetters('startupFormData', {
 			startupBudget: 'getBudget',
 		}),
 		hasEnoughBudgetToPick() {
@@ -84,10 +82,10 @@ export default {
 	},
 	methods: {
 		selectGeneralChoice(type, name) {
-			this.$store.commit('userData/SET_GENERAL_CHOICES', { type, name });
+			this.$store.commit('startupChoicesData/SET_GENERAL_CHOICES', { type, name });
 		},
 		deleteGeneralChoice(type, name) {
-			this.$store.commit('userData/DELETE_GENERAL_CHOICE', { type, name });
+			this.$store.commit('startupChoicesData/DELETE_GENERAL_CHOICE', { type, name });
 		},
 	},
 };

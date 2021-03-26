@@ -11,7 +11,7 @@
 						aria-expanded="false"
 						:aria-controls="['#collapse-' + type]"
 					>
-						{{ convertToStartCase(type) }}
+						{{ $convertToStartCase(type) }}
 					</button>
 				</h2>
 				<div
@@ -41,7 +41,7 @@
 								>
 									<td scope="row">{{ index + 1 }}</td>
 									<td scope="row">
-										{{ type === 'developerType' ? convertToStartCase(name) : name }}
+										{{ type === 'developerType' ? $convertToStartCase(name) : name }}
 										<ProgLangInfo v-if="hasDetailsCard" :name="name" />
 										<GeneralChoicePicks v-if="isPickableGeneral" :name="name" :type="type" :cost="parseInt(cost)" />
 										<TeamChoicePicks v-if="isPickableTeam" :header="header" :type="type" :name="name" />
@@ -84,7 +84,6 @@
 </template>
 
 <script>
-import caseConverterMixin from '../mixins/caseConverter';
 import ProgLangInfo from './ProgLangInfo.vue';
 import GeneralChoicePicks from './GeneralChoicePicks.vue';
 import TeamChoicePicks from './TeamChoicePicks.vue';
@@ -96,7 +95,6 @@ export default {
 		TeamChoicePicks,
 
 	},
-	mixins: [ caseConverterMixin ],
 	props: {
 		stat: {
 			type: Object,

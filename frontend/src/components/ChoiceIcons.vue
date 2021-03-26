@@ -15,13 +15,13 @@
 			</a>
 		</div>
 		<div v-if="type === 'deleteChoice'">
-			<span class="tooltip-text-view">Delete choice:  <strong>{{ convertToStartCase(name) }}</strong> </span>
+			<span class="tooltip-text-view">Delete choice:  <strong>{{ $convertToStartCase(name) }}</strong> </span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#DC143C" class="bi bi-trash-fill" viewBox="0 0 16 16">
 				<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
 			</svg>
 		</div>
 		<div v-if="type === 'notEnoughBudget'">
-			<span class="tooltip-text-add">budget ({{ startupBudget + 'k' }}) is not enough to pick: <strong>{{ convertToStartCase(name) }}</strong> </span>
+			<span class="tooltip-text-add">budget ({{ startupBudget + 'k' }}) is not enough to pick: <strong>{{ $convertToStartCase(name) }}</strong> </span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="lightgray" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
 				<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z" />
 			</svg>
@@ -37,11 +37,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import caseConverterMixin from '../mixins/caseConverter';
 
 export default {
 	name: 'ChoiceIcons',
-	mixins: [ caseConverterMixin ],
 	props: {
 		name: {
 			type: String,
@@ -58,7 +56,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('startupData', {
+		...mapGetters('startupFormData', {
 			startupBudget: 'getBudget',
 		}),
 	},
