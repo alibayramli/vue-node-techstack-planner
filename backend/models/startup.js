@@ -36,4 +36,4 @@ const detailSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model('detail', detailSchema);
+module.exports = mongoose.model('startup', detailSchema);
