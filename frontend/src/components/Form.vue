@@ -64,7 +64,7 @@
 					<input type="text" class="form-control form-label"
 						placeholder="Startup Budget" aria-label="Budget"
 						required v-model="startupBudget"
-						@keypress="isValidStartupBudget"
+						@keypress=" $isValidStartupBudget($event,startupBudget)"
 					>
 					<div class="form-text">Please include average annual salary per person. (e.g 65 -> 65000 USD)</div>
 				</div>
@@ -158,20 +158,6 @@ export default {
 			this.isSubmitted = true;
 			this.isSubmitFormSpinnerActive = false;
 			this.isSubmitFormClicked = false;
-		},
-		isValidStartupBudget(event) {
-			// allow numbers and one dot
-			const keyCode = (event.keyCode ? event.keyCode : event.which);
-			// eslint-disable-next-line no-magic-numbers
-			if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.startupBudget.indexOf('.') !== -1)) {
-				event.preventDefault();
-			}
-			// allow up to 2 decimal places
-			if (this.startupBudget !== null
-				&& this.startupBudget.indexOf('.') > 0
-				&& (this.startupBudget.split('.')[1].length > 1)) {
-				event.preventDefault();
-			}
 		},
 	},
 };
