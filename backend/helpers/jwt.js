@@ -1,15 +1,16 @@
 const JWT = require('jsonwebtoken');
 const client = require('./init_redis');
-
 const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
 const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET;
+const accessTokenLife = process.env.JWT_ACCESS_TOKEN_LIFE;
+const refreshTokenLife = process.env.JWT_REFRESH_TOKEN_LIFE;
 const UNAUTHORIZED_STATUS = 401;
 module.exports = {
 	signAccessToken: (userId) => {
 		return new Promise((resolve, reject) => {
 			const payload = {};
 			const options = {
-				expiresIn: '30m',
+				expiresIn: accessTokenLife,
 				issuer: 'techstackplanner',
 				audience: userId,
 			};
@@ -52,9 +53,7 @@ module.exports = {
 					// respond with error code in future
 					return reject(err);
 				}
-				// eslint-disable-next-line no-magic-numbers
-				const refreshTokenExpiryDate = 365 * 24 * 60 * 60;
-				client.SET(userId, token, 'EX', refreshTokenExpiryDate, (error, reply) => {
+				client.SET(userId, token, 'EX', refreshTokenLife, (error) => {
 					if (error) {
 						console.log(error.message);
 						// respond with error code in future
