@@ -1,8 +1,11 @@
 {
   "name": "tech-stack-planner-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
-    "dev": "cd src && nodemon -r dotenv/config app.js",
+    "dev": "nodemon -r dotenv/config app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,7 +17,8 @@
   ],
   "devDependencies": {
     "eslint": "^7.21.0",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-node": "^11.1.0",
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
