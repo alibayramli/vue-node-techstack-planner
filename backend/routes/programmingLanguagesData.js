@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const { verifyAccessToken } = require('../helpers/jwt');
-const languagesFile = '../data/programmingLanguages.json';
+const languagesFile = './data/programmingLanguages.json';
 const INTERNAL_SERVER_ERROR = 500;
 router.post('/', verifyAccessToken, (req, res) => {
 	try {
