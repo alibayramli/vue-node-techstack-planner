@@ -8,9 +8,11 @@ export default {
 		location: '',
 		field: '',
 		budget: '',
+		hasFormSubmitted: false,
 		availableSizes: [],
 		availableLocations: [],
 		availableFields: [],
+		tools: [],
 	},
 	getters: {
 		getName(state) {
@@ -28,6 +30,9 @@ export default {
 		getBudget(state) {
 			return state.budget;
 		},
+		hasFormSubmitted(state) {
+			return state.hasFormSubmitted;
+		},
 		getAvailableSizes(state) {
 			return state.availableSizes;
 		},
@@ -36,6 +41,9 @@ export default {
 		},
 		getAvailableFields(state) {
 			return state.availableFields;
+		},
+		getTools(state) {
+			return state.tools;
 		},
 		getStartupFormData(state, getters, rootState) {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
@@ -78,6 +86,9 @@ export default {
 		UPDATE_BUDGET(state, newBudgetValue) {
 			state.budget = newBudgetValue;
 		},
+		UPDATE_HAS_FORM_SUBMITTED(state, newTruthyValue) {
+			state.hasFormSubmitted = newTruthyValue;
+		},
 		SET_AVAILABLE_SIZES(state, sizes) {
 			state.availableSizes = sizes;
 		},
@@ -86,6 +97,9 @@ export default {
 		},
 		SET_AVAILABLE_FIELDS(state, fields) {
 			state.availableFields = fields;
+		},
+		SET_TOOLS(state, tools) {
+			state.tools = tools;
 		},
 		RESET_STARTUP_FORM(state) {
 			state.name = '';
@@ -97,10 +111,10 @@ export default {
 	},
 	actions: {
 		async loadFormInfos({ commit }) {
-			const formInfosResponse = await backend.get('form-data');
+			const formInfosResponse = await backend.get('techstack-data/available-form-dropdowns');
 			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
 			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
-			const fieldResponse = await backend.get('statistics-data');
+			const fieldResponse = await backend.get('techstack-data/all-statistics');
 			const fields = fieldResponse.data.typesOfSoftware;
 			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);
@@ -112,9 +126,10 @@ export default {
 				location: state.location,
 				field: state.field,
 			};
-			const response = await backend.post('startup-data', newData);
+			const response = await backend.post('techstack-data/startup-form-query', newData);
 			const suggestedProgrammingLanguages = response.data;
-			commit('toolsData/SET_TOOLS', suggestedProgrammingLanguages, { root: true });
+			commit('SET_TOOLS', suggestedProgrammingLanguages);
+			commit('UPDATE_HAS_FORM_SUBMITTED', true);
 			router.push('techstack');
 		},
 	},

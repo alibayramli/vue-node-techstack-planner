@@ -47,16 +47,16 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'App',
 	data() {
 		return {};
 	},
 	computed: {
-		...mapState('startupChoicesData', {
-			generalChoices: 'generalChoices',
-			teamChoices: 'teamChoices',
+		...mapGetters('startupChoicesData', {
+			generalChoices: 'getGeneralChoices',
+			teamChoices: 'getTeamChoices',
 		}),
 		...mapGetters('authData', {
 			isLoggedIn: 'isLoggedIn',

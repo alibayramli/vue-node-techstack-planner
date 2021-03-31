@@ -50,7 +50,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('programmingLanguagesData', {
+		...mapGetters('progLangInfoData', {
 			languageDetails: 'getDetails',
 		}),
 	},
@@ -60,16 +60,16 @@ export default {
 		this.isSpinnerActive = false;
 	},
 	methods: {
-		...mapActions('programmingLanguagesData', {
+		...mapActions('progLangInfoData', {
 			loadLanguageDetails: 'loadProgrammingLanguageDetails',
 		}),
 		async getProgLangDetails(progName) {
-			this.$store.commit('programmingLanguagesData/UPDATE_NAME', progName);
+			this.$store.commit('progLangInfoData/UPDATE_NAME', progName);
 			await this.loadLanguageDetails();
 		},
 		goBackToPreviousLink() {
 			this.$router.back();
-			this.$store.commit('programmingLanguagesData/UPDATE_DETAILS', []);
+			this.$store.commit('progLangInfoData/UPDATE_DETAILS', []);
 		},
 	},
 };

@@ -1,80 +1,922 @@
 {
     "c": {
-        "typesOfSoftware": [["Utilities","22%"], ["System software","20%"], ["Hardware","17%"], ["Libraries/Frameworks","14%"]],
-        "editors": [["Visual Studio Code","29%"], ["Visual Studio","18%"], ["CLion","18%"], ["Vi/Vim","12%"]]
+        "typesOfSoftware": [
+            [
+                "Utilities",
+                "22%"
+            ],
+            [
+                "System software",
+                "20%"
+            ],
+            [
+                "Hardware",
+                "17%"
+            ],
+            [
+                "Libraries/Frameworks",
+                "14%"
+            ]
+        ],
+        "editors": [
+            [
+                "Visual Studio Code",
+                "29%"
+            ],
+            [
+                "Visual Studio",
+                "18%"
+            ],
+            [
+                "CLion",
+                "18%"
+            ],
+            [
+                "Vi/Vim",
+                "12%"
+            ]
+        ]
     },
     "c#": {
-        "topLibrariesAndFrameworks":[["ASP.NET Core","55%"], ["Entity Framework","43%"], ["ASP.NET MVC","42%"], ["Windows Forms","31%"]],
-        "editors": [["Visual Studio","65%"], ["JetBrains Rider","20%"], ["Visual Studio Code","11%"], ["Visual Studio for Mac","2%"]]
+        "topLibrariesAndFrameworks": [
+            [
+                "ASP.NET Core",
+                "55%"
+            ],
+            [
+                "Entity Framework",
+                "43%"
+            ],
+            [
+                "ASP.NET MVC",
+                "42%"
+            ],
+            [
+                "Windows Forms",
+                "31%"
+            ]
+        ],
+        "editors": [
+            [
+                "Visual Studio",
+                "65%"
+            ],
+            [
+                "JetBrains Rider",
+                "20%"
+            ],
+            [
+                "Visual Studio Code",
+                "11%"
+            ],
+            [
+                "Visual Studio for Mac",
+                "2%"
+            ]
+        ]
     },
     "c++": {
-        "editors": [["Visual Studio","26%"], ["CLion","22%"], ["Visual Studio Code","22%"], ["Vi/Vim","7%"]]    
+        "editors": [
+            [
+                "Visual Studio",
+                "26%"
+            ],
+            [
+                "CLion",
+                "22%"
+            ],
+            [
+                "Visual Studio Code",
+                "22%"
+            ],
+            [
+                "Vi/Vim",
+                "7%"
+            ]
+        ]
     },
     "go": {
-        "typesOfSoftware": [["Websites","36%"], ["Utilities","31%"], ["IT Infrastructure","26%"], ["Libraries/Frameworks","24%"]],
-        "topLibrariesAndFrameworks":[["Gin","41%"], ["Echo","11%"], ["Beego","9%"], ["Revel","3%"]]
+        "typesOfSoftware": [
+            [
+                "Websites",
+                "36%"
+            ],
+            [
+                "Utilities",
+                "31%"
+            ],
+            [
+                "IT Infrastructure",
+                "26%"
+            ],
+            [
+                "Libraries/Frameworks",
+                "24%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Gin",
+                "41%"
+            ],
+            [
+                "Echo",
+                "11%"
+            ],
+            [
+                "Beego",
+                "9%"
+            ],
+            [
+                "Revel",
+                "3%"
+            ]
+        ]
     },
     "java": {
-        "typesOfSoftware": [["Websites","36%"], ["Utilities","25%"], ["System Software","19%"], ["Database/Data Storage","17%"]],
-        "topLibrariesAndFrameworks":[["Spring Boot","61%"], ["Spring MVC","42%"], ["JSF","6%"], ["Struts","4%"]],
-        "editors": [["IntelliJ IDEA","72%"], ["Eclipse/Eclipse Based","13%"], ["Android Studio","6%"], ["Visual Studio Code","4%"]]
+        "typesOfSoftware": [
+            [
+                "Websites",
+                "36%"
+            ],
+            [
+                "Utilities",
+                "25%"
+            ],
+            [
+                "System Software",
+                "19%"
+            ],
+            [
+                "Database/Data Storage",
+                "17%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Spring Boot",
+                "61%"
+            ],
+            [
+                "Spring MVC",
+                "42%"
+            ],
+            [
+                "JSF",
+                "6%"
+            ],
+            [
+                "Struts",
+                "4%"
+            ]
+        ],
+        "editors": [
+            [
+                "IntelliJ IDEA",
+                "72%"
+            ],
+            [
+                "Eclipse/Eclipse Based",
+                "13%"
+            ],
+            [
+                "Android Studio",
+                "6%"
+            ],
+            [
+                "Visual Studio Code",
+                "4%"
+            ]
+        ]
     },
     "javaScript": {
-        "typesOfSoftware": [["Websites","36%"], ["Utilities","25%"], ["System Software","19%"], ["Database/Data Storage","17%"]],
-        "topLibrariesAndFrameworks":[["React","64%"], ["Express","43%"], ["Vue.js","32%"], ["Angular","24%"]],
-        "editors": [["Visual Studio Code","57%"], ["WebStorm","33%"], ["Visual Studio","3%"], ["Sublime Text","2%"]]
+        "typesOfSoftware": [
+            [
+                "Websites",
+                "36%"
+            ],
+            [
+                "Utilities",
+                "25%"
+            ],
+            [
+                "System Software",
+                "19%"
+            ],
+            [
+                "Database/Data Storage",
+                "17%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "React",
+                "64%"
+            ],
+            [
+                "Express",
+                "43%"
+            ],
+            [
+                "Vue.js",
+                "32%"
+            ],
+            [
+                "Angular",
+                "24%"
+            ]
+        ],
+        "editors": [
+            [
+                "Visual Studio Code",
+                "57%"
+            ],
+            [
+                "WebStorm",
+                "33%"
+            ],
+            [
+                "Visual Studio",
+                "3%"
+            ],
+            [
+                "Sublime Text",
+                "2%"
+            ]
+        ]
     },
     "kotlin": {
-        "targets": [["JVM","60%"], ["Android","60%"], ["Native","7%"], ["Kotlin for JavaScript","6%"]],
-        "typesOfSoftware": [["Mobile","57%"], ["Web Back End","47%"], ["Library or Framework","28%"], ["Tooling","20%"]],
-        "topLibrariesAndFrameworks":[["Kotlinx.coroutines","52%"], ["Kotlinx.serialization","22%"], ["Ktor","21%"], ["Kotlin.test","18%"]],
-        "editors": [["Intellij IDEA Ultimate","42%"], ["Android Studio","39%"], ["IntelliJ IDEA Community","18%"], ["Other","1%"]]
+        "targets": [
+            [
+                "JVM",
+                "60%"
+            ],
+            [
+                "Android",
+                "60%"
+            ],
+            [
+                "Native",
+                "7%"
+            ],
+            [
+                "Kotlin for JavaScript",
+                "6%"
+            ]
+        ],
+        "typesOfSoftware": [
+            [
+                "Mobile",
+                "57%"
+            ],
+            [
+                "Web Back End",
+                "47%"
+            ],
+            [
+                "Library or Framework",
+                "28%"
+            ],
+            [
+                "Tooling",
+                "20%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Kotlinx.coroutines",
+                "52%"
+            ],
+            [
+                "Kotlinx.serialization",
+                "22%"
+            ],
+            [
+                "Ktor",
+                "21%"
+            ],
+            [
+                "Kotlin.test",
+                "18%"
+            ]
+        ],
+        "editors": [
+            [
+                "Intellij IDEA Ultimate",
+                "42%"
+            ],
+            [
+                "Android Studio",
+                "39%"
+            ],
+            [
+                "IntelliJ IDEA Community",
+                "18%"
+            ],
+            [
+                "Other",
+                "1%"
+            ]
+        ]
     },
     "php": {
-        "sharesByCountry": [["France","37%"], ["Mexico","31%"],["Spain","28%"],["Argentina","24%"]],
-        "topLibrariesAndFrameworks":[["Laravel","50%"], ["Symfony","24%"], ["WordPress","22%"], ["Codeigniter","12%"]],
-        "editors": [["PhpStorm","59%"], ["Visual Studio Code","21%"], ["Sublime Text","6%"], ["Atom","3%"]]
+        "sharesByCountry": [
+            [
+                "France",
+                "37%"
+            ],
+            [
+                "Mexico",
+                "31%"
+            ],
+            [
+                "Spain",
+                "28%"
+            ],
+            [
+                "Argentina",
+                "24%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Laravel",
+                "50%"
+            ],
+            [
+                "Symfony",
+                "24%"
+            ],
+            [
+                "WordPress",
+                "22%"
+            ],
+            [
+                "Codeigniter",
+                "12%"
+            ]
+        ],
+        "editors": [
+            [
+                "PhpStorm",
+                "59%"
+            ],
+            [
+                "Visual Studio Code",
+                "21%"
+            ],
+            [
+                "Sublime Text",
+                "6%"
+            ],
+            [
+                "Atom",
+                "3%"
+            ]
+        ]
     },
     "python": {
-        "typesOfSoftware": [["Web Development","49%"], ["Data Analysis","43%"], ["Machine Learning","41%"], ["Programming of web parsers/scrapers/crawlers","38%"]],
-        "topLibrariesAndFrameworks":[["Django","49%"], ["Flask","46%"], ["Web2py","4%"], ["Tornado","12%"]],
-        "dataScienceFrameworks":[["NumPy","62%"], ["Pandas","51%"], ["Matplotlib","43%"], ["TensorFlow","12%"]],
-        "editors": [["PyCharm Professional Edition","34%"], ["Visual Studio Code","21%"], ["PyCharm Community Edition Text","20%"], ["Jupyter Notebook","6%"]] 
+        "typesOfSoftware": [
+            [
+                "Web Development",
+                "49%"
+            ],
+            [
+                "Data Analysis",
+                "43%"
+            ],
+            [
+                "Machine Learning",
+                "41%"
+            ],
+            [
+                "Programming of web parsers/scrapers/crawlers",
+                "38%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Django",
+                "49%"
+            ],
+            [
+                "Flask",
+                "46%"
+            ],
+            [
+                "Web2py",
+                "4%"
+            ],
+            [
+                "Tornado",
+                "12%"
+            ]
+        ],
+        "dataScienceFrameworks": [
+            [
+                "NumPy",
+                "62%"
+            ],
+            [
+                "Pandas",
+                "51%"
+            ],
+            [
+                "Matplotlib",
+                "43%"
+            ],
+            [
+                "TensorFlow",
+                "12%"
+            ]
+        ],
+        "editors": [
+            [
+                "PyCharm Professional Edition",
+                "34%"
+            ],
+            [
+                "Visual Studio Code",
+                "21%"
+            ],
+            [
+                "PyCharm Community Edition Text",
+                "20%"
+            ],
+            [
+                "Jupyter Notebook",
+                "6%"
+            ]
+        ]
     },
     "r": {
-        "typesOfSoftware": [["Data Analysis","74%"], ["Educational Purposes","48%"], ["Machine Learning","31%"], ["Parsers, scrapers, ETL etc","9%"]],
-        "topLibrariesAndFrameworks":[["ggplot2","57%"], ["dplyr","37%"], ["data.table","34%"], ["plotly","32%"]],
-        "editors": [["RStudio","79%"], ["Jupyter Notebook","16%"], ["PyCharm","14%"], ["Visual Studio Code","13%"]] 
+        "typesOfSoftware": [
+            [
+                "Data Analysis",
+                "74%"
+            ],
+            [
+                "Educational Purposes",
+                "48%"
+            ],
+            [
+                "Machine Learning",
+                "31%"
+            ],
+            [
+                "Parsers, scrapers, ETL etc",
+                "9%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "ggplot2",
+                "57%"
+            ],
+            [
+                "dplyr",
+                "37%"
+            ],
+            [
+                "data.table",
+                "34%"
+            ],
+            [
+                "plotly",
+                "32%"
+            ]
+        ],
+        "editors": [
+            [
+                "RStudio",
+                "79%"
+            ],
+            [
+                "Jupyter Notebook",
+                "16%"
+            ],
+            [
+                "PyCharm",
+                "14%"
+            ],
+            [
+                "Visual Studio Code",
+                "13%"
+            ]
+        ]
     },
     "ruby": {
-        "sharesByCountry": [["Japan","11%"], ["Ukraine","6%"],["United States","4%"],["Brazil","4%"]],
-        "serversInProduction": [["Puma","58%"], ["Passenger","22%"],["Unicorn","22%"],["Thin","4%"]],
-        "topLibrariesAndFrameworks":[["Ruby on Rails","83%"], ["Sinatra","24%"], ["Rack","23%"], ["Grape","7%"]],
-        "frontEndFrameworks":[["React","46%"], ["no frameworks with RoR","33%"], ["Vue.js","21%"], ["Angular","8%"]],
-        "editors": [["RubyMine","47%"], ["Visual Studio Code","26%"], ["Vim","10%"], ["Sublime Text","5%"]] 
+        "sharesByCountry": [
+            [
+                "Japan",
+                "11%"
+            ],
+            [
+                "Ukraine",
+                "6%"
+            ],
+            [
+                "United States",
+                "4%"
+            ],
+            [
+                "Brazil",
+                "4%"
+            ]
+        ],
+        "serversInProduction": [
+            [
+                "Puma",
+                "58%"
+            ],
+            [
+                "Passenger",
+                "22%"
+            ],
+            [
+                "Unicorn",
+                "22%"
+            ],
+            [
+                "Thin",
+                "4%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Ruby on Rails",
+                "83%"
+            ],
+            [
+                "Sinatra",
+                "24%"
+            ],
+            [
+                "Rack",
+                "23%"
+            ],
+            [
+                "Grape",
+                "7%"
+            ]
+        ],
+        "frontEndFrameworks": [
+            [
+                "React",
+                "46%"
+            ],
+            [
+                "no frameworks with RoR",
+                "33%"
+            ],
+            [
+                "Vue.js",
+                "21%"
+            ],
+            [
+                "Angular",
+                "8%"
+            ]
+        ],
+        "editors": [
+            [
+                "RubyMine",
+                "47%"
+            ],
+            [
+                "Visual Studio Code",
+                "26%"
+            ],
+            [
+                "Vim",
+                "10%"
+            ],
+            [
+                "Sublime Text",
+                "5%"
+            ]
+        ]
     },
     "rust": {
-        "targets": [["Linux","87%"], ["Windows","43%"], ["macOS","40%"], ["WebAssembly","29%"]],
-        "sharesByNumberOfDevelopers": [["1","46%"], ["2-3","33%"], ["4-6","11%"], ["more than 10","8%"]],
-        "typesOfSoftware": [["Systems Programming","56%"], ["Web Development","44%"], ["Network Programming","32%"], ["Desktop/GUI Applications","19%"]],
-        "topLibrariesAndFrameworks":[["Ruby on Rails","83%"], ["Sinatra","24%"], ["Rack","23%"], ["Grape","7%"]],
-        "languagesAlongside":[["JavaScript","18%"], ["C","15%"], ["C++","14%"], ["Python","14%"]],
-        "profilingTools": [["no profiling tools","69%"], ["perf","19%"], ["callgrind/cachegrind","9%"], ["DTrace","6%"]],
-        "editors": [["Visual Studio Code","41%"], ["CLion","22%"], ["IntelliJ IDEA","16%"], ["Vim","11%"]]
+        "targets": [
+            [
+                "Linux",
+                "87%"
+            ],
+            [
+                "Windows",
+                "43%"
+            ],
+            [
+                "macOS",
+                "40%"
+            ],
+            [
+                "WebAssembly",
+                "29%"
+            ]
+        ],
+        "sharesByNumberOfDevelopers": [
+            [
+                "1",
+                "46%"
+            ],
+            [
+                "2-3",
+                "33%"
+            ],
+            [
+                "4-6",
+                "11%"
+            ],
+            [
+                "more than 10",
+                "8%"
+            ]
+        ],
+        "typesOfSoftware": [
+            [
+                "Systems Programming",
+                "56%"
+            ],
+            [
+                "Web Development",
+                "44%"
+            ],
+            [
+                "Network Programming",
+                "32%"
+            ],
+            [
+                "Desktop/GUI Applications",
+                "19%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Ruby on Rails",
+                "83%"
+            ],
+            [
+                "Sinatra",
+                "24%"
+            ],
+            [
+                "Rack",
+                "23%"
+            ],
+            [
+                "Grape",
+                "7%"
+            ]
+        ],
+        "languagesAlongside": [
+            [
+                "JavaScript",
+                "18%"
+            ],
+            [
+                "C",
+                "15%"
+            ],
+            [
+                "C++",
+                "14%"
+            ],
+            [
+                "Python",
+                "14%"
+            ]
+        ],
+        "profilingTools": [
+            [
+                "no profiling tools",
+                "69%"
+            ],
+            [
+                "perf",
+                "19%"
+            ],
+            [
+                "callgrind/cachegrind",
+                "9%"
+            ],
+            [
+                "DTrace",
+                "6%"
+            ]
+        ],
+        "editors": [
+            [
+                "Visual Studio Code",
+                "41%"
+            ],
+            [
+                "CLion",
+                "22%"
+            ],
+            [
+                "IntelliJ IDEA",
+                "16%"
+            ],
+            [
+                "Vim",
+                "11%"
+            ]
+        ]
     },
     "scala": {
-        "targets": [["JVM","100%"], ["Scala.js","5%"], ["Scala Native","2%"], ["Android","0%"]],
-        "topLibrariesAndFrameworks":[["Akka","52%"], ["Cats","35%"], ["Spark","34%"], ["Slick","17%"]],
-        "otherTools": [["Scalafmt","50%"], ["Scoverage","22%"], ["Scalastyle","11%"], ["ScalaFix","9%"]],
-        "editors": [["IntelliJ IDEA","94%"], ["Visual Studio Code","3%"], ["Emacs","2%"], ["Vim","1%"]]
+        "targets": [
+            [
+                "JVM",
+                "100%"
+            ],
+            [
+                "Scala.js",
+                "5%"
+            ],
+            [
+                "Scala Native",
+                "2%"
+            ],
+            [
+                "Android",
+                "0%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "Akka",
+                "52%"
+            ],
+            [
+                "Cats",
+                "35%"
+            ],
+            [
+                "Spark",
+                "34%"
+            ],
+            [
+                "Slick",
+                "17%"
+            ]
+        ],
+        "otherTools": [
+            [
+                "Scalafmt",
+                "50%"
+            ],
+            [
+                "Scoverage",
+                "22%"
+            ],
+            [
+                "Scalastyle",
+                "11%"
+            ],
+            [
+                "ScalaFix",
+                "9%"
+            ]
+        ],
+        "editors": [
+            [
+                "IntelliJ IDEA",
+                "94%"
+            ],
+            [
+                "Visual Studio Code",
+                "3%"
+            ],
+            [
+                "Emacs",
+                "2%"
+            ],
+            [
+                "Vim",
+                "1%"
+            ]
+        ]
     },
     "swiftObjectiveC": {
-        "sharesByDevelopers": [["Swift","70%"], ["ObjectiveC","17%"], ["ObjectiveCSwift","13%"]],
-        "platforms": [["iOS","91%"], ["macOS","35%"], ["watchOS","10%"], ["tvOS","6%"]],
-        "swiftServerSideDevelopmentFrameworks": [["Vapor","73%"], ["Perfect","23%"], ["Kitura","22%"]],
-        "databaseEnginesOrFrameworks": [["Firebase","37%"], ["CoreData","32%"], ["SQLite","31%"], ["Realm","22%"]],
-        "databaseViewers":[ ["DB Browser","23%"], ["SQLite+","20%"], ["Navicat","19%"], ["SQLPro","15%"]],
-        "topLibrariesAndFrameworks":[ ["None","73%"], ["OCMock","12%"], ["SwiftHamcrest","8%"], ["Cuckoo","6%"]],
-        "editors": [["Xcode","76%"], ["AppCode","10%"], ["Visual Studio Code","8%"], ["CLion","1%"]]
+        "sharesByDevelopers": [
+            [
+                "Swift",
+                "70%"
+            ],
+            [
+                "ObjectiveC",
+                "17%"
+            ],
+            [
+                "ObjectiveCSwift",
+                "13%"
+            ]
+        ],
+        "platforms": [
+            [
+                "iOS",
+                "91%"
+            ],
+            [
+                "macOS",
+                "35%"
+            ],
+            [
+                "watchOS",
+                "10%"
+            ],
+            [
+                "tvOS",
+                "6%"
+            ]
+        ],
+        "swiftServerSideDevelopmentFrameworks": [
+            [
+                "Vapor",
+                "73%"
+            ],
+            [
+                "Perfect",
+                "23%"
+            ],
+            [
+                "Kitura",
+                "22%"
+            ]
+        ],
+        "databaseEnginesOrFrameworks": [
+            [
+                "Firebase",
+                "37%"
+            ],
+            [
+                "CoreData",
+                "32%"
+            ],
+            [
+                "SQLite",
+                "31%"
+            ],
+            [
+                "Realm",
+                "22%"
+            ]
+        ],
+        "databaseViewers": [
+            [
+                "DB Browser",
+                "23%"
+            ],
+            [
+                "SQLite+",
+                "20%"
+            ],
+            [
+                "Navicat",
+                "19%"
+            ],
+            [
+                "SQLPro",
+                "15%"
+            ]
+        ],
+        "topLibrariesAndFrameworks": [
+            [
+                "None",
+                "73%"
+            ],
+            [
+                "OCMock",
+                "12%"
+            ],
+            [
+                "SwiftHamcrest",
+                "8%"
+            ],
+            [
+                "Cuckoo",
+                "6%"
+            ]
+        ],
+        "editors": [
+            [
+                "Xcode",
+                "76%"
+            ],
+            [
+                "AppCode",
+                "10%"
+            ],
+            [
+                "Visual Studio Code",
+                "8%"
+            ],
+            [
+                "CLion",
+                "1%"
+            ]
+        ]
     }
 }

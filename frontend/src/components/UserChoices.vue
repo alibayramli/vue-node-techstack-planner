@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<h1>Draft Startups</h1>
-			<div class="card" v-if="draftStartupName">
+			<div class="card" v-if="hasFormSubmitted">
 				<div class="card-body">
 					<h5 class="card-title">Name of the startup: <b>{{ draftStartupName }}</b></h5>
 					<button type="button"
@@ -19,28 +19,34 @@
 		</div>
 		<hr>
 		<h1>Saved Startups</h1>
-		<div v-if="savedStartups.length">
-			<div class="row" v-for="startup of savedStartups" :key="startup">
-				<div>
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Name of the startup: <b>{{ startup.startupName }}</b></h5>
-							<p class="card-text">Creation date:  <b>{{ showCreationDate(startup.creationDate) }}</b></p>
-							<button type="button"
-								class="btn btn-primary"
-								@click="viewStartup(startup.startupId)"
-							>
-								View
-							</button>
-						</div>
-					</div>
-					<br>
-				</div>
-			</div>
+		<div class="d-flex justify-content-center" v-if="isSavedStartupsSpinnerActive">
+			<div class="spinner-border" role="status" />
 		</div>
 		<div v-else>
-			No saved data,  <router-link to="/form">start adding</router-link>
+			<div v-if="savedStartups.length">
+				<div class="row" v-for="startup of savedStartups" :key="startup">
+					<div>
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Name of the startup: <b>{{ startup.startupName }}</b></h5>
+								<p class="card-text">Creation date:  <b>{{ showCreationDate(startup.creationDate) }}</b></p>
+								<button type="button"
+									class="btn btn-primary"
+									@click="viewStartup(startup.startupId)"
+								>
+									View
+								</button>
+							</div>
+						</div>
+						<br>
+					</div>
+				</div>
+			</div>
+			<div v-else>
+				No saved data,  <router-link to="/form">start adding</router-link>
+			</div>
 		</div>
+
 		<hr>
 		<router-view />
 	</div>
@@ -52,7 +58,9 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'UserChoices',
 	data() {
-		return {};
+		return {
+			isSavedStartupsSpinnerActive: true,
+		};
 	},
 	computed: {
 		...mapGetters('startupChoicesData', {
@@ -60,6 +68,7 @@ export default {
 		}),
 		...mapGetters('startupFormData', {
 			draftStartupName: 'getName',
+			hasFormSubmitted: 'hasFormSubmitted',
 		}),
 		startupName: {
 			get() {
@@ -73,6 +82,7 @@ export default {
 	},
 	async mounted() {
 		await this.loadSavedUserChoices();
+		this.isSavedStartupsSpinnerActive = false;
 	},
 	methods: {
 		...mapActions('startupChoicesData', {
@@ -89,11 +99,4 @@ export default {
 </script>
 
 <style scoped>
-.save-choices {
-  margin: auto;
-  margin-top: 5rem;
-  padding: 15px 30px;
-  width: 40rem;
-  background-color: #fff;
-}
 </style>

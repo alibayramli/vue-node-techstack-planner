@@ -88,6 +88,9 @@
 							</ul>
 							<hr><br>
 						</div>
+						<div v-if="!generalChoicesByTypes.length">
+							No data
+						</div>
 					</div>
 				</div>
 			</div>
@@ -108,6 +111,9 @@
 								</ul>
 								<hr><br>
 							</div>
+						</div>
+						<div v-if="!teamChoicesByTypes.length">
+							No data
 						</div>
 					</div>
 				</div>

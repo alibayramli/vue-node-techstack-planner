@@ -1,6 +1,35 @@
 {
     "startupSpecifics": {
-        "locations": [["North America", "95%"],["Europe" ,"85%"],["Asia", "80%"],["South America", "60%"],["Australia", "50%"],["Africa", "20%"]],
-        "sizeOfStartup": ["small", "mid", "large"]
+        "locations": [
+            [
+                "North America",
+                "95%"
+            ],
+            [
+                "Europe",
+                "85%"
+            ],
+            [
+                "Asia",
+                "80%"
+            ],
+            [
+                "South America",
+                "60%"
+            ],
+            [
+                "Australia",
+                "50%"
+            ],
+            [
+                "Africa",
+                "20%"
+            ]
+        ],
+        "sizeOfStartup": [
+            "small",
+            "mid",
+            "large"
+        ]
     }
 }
