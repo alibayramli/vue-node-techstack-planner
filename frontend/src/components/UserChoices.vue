@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<h1>Draft Startups</h1>
-			<div class="card" v-if="draftStartupName">
+			<div class="card" v-if="hasFormSubmitted">
 				<div class="card-body">
 					<h5 class="card-title">Name of the startup: <b>{{ draftStartupName }}</b></h5>
 					<button type="button"
@@ -60,6 +60,7 @@ export default {
 		}),
 		...mapGetters('startupFormData', {
 			draftStartupName: 'getName',
+			hasFormSubmitted: 'hasFormSubmitted',
 		}),
 		startupName: {
 			get() {
@@ -89,11 +90,4 @@ export default {
 </script>
 
 <style scoped>
-.save-choices {
-  margin: auto;
-  margin-top: 5rem;
-  padding: 15px 30px;
-  width: 40rem;
-  background-color: #fff;
-}
 </style>

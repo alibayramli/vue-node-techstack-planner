@@ -116,6 +116,7 @@ export default {
 					},
 				};
 				await backend.post('startup-data/new-startup', newData);
+				commit('startupFormData/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
 				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
 				commit('RESET_STARTUP_CHOICES');
 				router.push('/user-startups');
@@ -146,6 +147,7 @@ export default {
 				console.log(err);
 			}
 		},
+		// eslint-disable-next-line no-empty-pattern
 		async deleteStartup({ }, startupId) {
 			try {
 				await backend.delete(`startup-data/delete-startup/${startupId}`);

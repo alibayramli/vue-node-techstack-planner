@@ -8,6 +8,7 @@ export default {
 		location: '',
 		field: '',
 		budget: '',
+		hasFormSubmitted: false,
 		availableSizes: [],
 		availableLocations: [],
 		availableFields: [],
@@ -29,6 +30,9 @@ export default {
 		getBudget(state) {
 			return state.budget;
 		},
+		hasFormSubmitted(state) {
+			return state.hasFormSubmitted;
+		},
 		getAvailableSizes(state) {
 			return state.availableSizes;
 		},
@@ -37,6 +41,9 @@ export default {
 		},
 		getAvailableFields(state) {
 			return state.availableFields;
+		},
+		getTools(state) {
+			return state.tools;
 		},
 		getStartupFormData(state, getters, rootState) {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
@@ -79,6 +86,9 @@ export default {
 		UPDATE_BUDGET(state, newBudgetValue) {
 			state.budget = newBudgetValue;
 		},
+		UPDATE_HAS_FORM_SUBMITTED(state, newTruthyValue) {
+			state.hasFormSubmitted = newTruthyValue;
+		},
 		SET_AVAILABLE_SIZES(state, sizes) {
 			state.availableSizes = sizes;
 		},
@@ -119,6 +129,7 @@ export default {
 			const response = await backend.post('techstack-data/startup-form-query', newData);
 			const suggestedProgrammingLanguages = response.data;
 			commit('SET_TOOLS', suggestedProgrammingLanguages);
+			commit('UPDATE_HAS_FORM_SUBMITTED', true);
 			router.push('techstack');
 		},
 	},
