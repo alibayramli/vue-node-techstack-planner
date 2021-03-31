@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import StatisticsTable from './StatisticsTable.vue';
 export default {
 	name: 'TeamStatisticsAccordion',
@@ -55,8 +55,8 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('statisticsData', {
-			teamStats: 'teamStatistics',
+		...mapGetters('statisticsData', {
+			teamStats: 'getTeamStatistics',
 		}),
 	},
 };

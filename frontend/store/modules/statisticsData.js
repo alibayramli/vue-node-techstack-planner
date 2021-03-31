@@ -22,6 +22,9 @@ export default {
 					return { [stat]: restOfheProperties };
 				});
 		},
+		getTeamStatistics(state) {
+			return state.teamStatistics;
+		},
 	},
 	mutations: {
 		SET_GENERAL_STATISTICS(state, stats) {

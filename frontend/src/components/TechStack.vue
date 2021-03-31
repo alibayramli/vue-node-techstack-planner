@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import StatisticsTable from './StatisticsTable.vue';
 import GeneralStatisticsAccordion from './GeneralStatisticsAccordion.vue';
 import TeamStatisticsAccordion from './TeamStatisticsAccordion.vue';
@@ -31,8 +31,8 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('startupFormData', {
-			tools: 'tools',
+		...mapGetters('startupFormData', {
+			tools: 'getTools',
 		}),
 		...mapGetters('statisticsData', {
 			generalStats: 'getIsPickableGeneralStatistics',
