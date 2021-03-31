@@ -31,7 +31,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState('toolsData', {
+		...mapState('startupFormData', {
 			tools: 'tools',
 		}),
 		...mapGetters('statisticsData', {
