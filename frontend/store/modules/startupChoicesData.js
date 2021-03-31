@@ -94,7 +94,7 @@ export default {
 	actions: {
 		async loadSavedChoices({ commit }) {
 			try {
-				const response = await backend.get('user-data/user-startups');
+				const response = await backend.get('startup-data/user-startups');
 				commit('SET_SAVED_CHOICES', response.data);
 			} catch (err) {
 				// eslint-disable-next-line no-console
@@ -115,7 +115,7 @@ export default {
 						team: getters.getTeamChoicesByTypes,
 					},
 				};
-				await backend.post('user-data/new-startup', newData);
+				await backend.post('startup-data/new-startup', newData);
 				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
 				commit('RESET_STARTUP_CHOICES');
 				router.push('/user-startups');
@@ -139,7 +139,7 @@ export default {
 						team: getters.getTeamChoicesByTypes,
 					},
 				};
-				await backend.patch(`user-data/edit-startup/${startupId}`, newData);
+				await backend.patch(`startup-data/edit-startup/${startupId}`, newData);
 				router.push('/user-startups');
 			} catch (err) {
 				// eslint-disable-next-line no-console
@@ -148,7 +148,7 @@ export default {
 		},
 		async deleteStartup({ }, startupId) {
 			try {
-				await backend.delete(`user-	data/delete-startup/${startupId}`);
+				await backend.delete(`startup-data/delete-startup/${startupId}`);
 				router.push('/user-startups');
 			} catch (err) {
 				// eslint-disable-next-line no-console

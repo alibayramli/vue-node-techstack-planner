@@ -11,6 +11,7 @@ export default {
 		availableSizes: [],
 		availableLocations: [],
 		availableFields: [],
+		tools: [],
 	},
 	getters: {
 		getName(state) {
@@ -87,6 +88,9 @@ export default {
 		SET_AVAILABLE_FIELDS(state, fields) {
 			state.availableFields = fields;
 		},
+		SET_TOOLS(state, tools) {
+			state.tools = tools;
+		},
 		RESET_STARTUP_FORM(state) {
 			state.name = '';
 			state.size = '';
@@ -97,10 +101,10 @@ export default {
 	},
 	actions: {
 		async loadFormInfos({ commit }) {
-			const formInfosResponse = await backend.get('form-data');
+			const formInfosResponse = await backend.get('techstack-data/available-form-dropdowns');
 			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
 			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
-			const fieldResponse = await backend.get('statistics-data');
+			const fieldResponse = await backend.get('techstack-data/all-statistics');
 			const fields = fieldResponse.data.typesOfSoftware;
 			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);
@@ -112,9 +116,9 @@ export default {
 				location: state.location,
 				field: state.field,
 			};
-			const response = await backend.post('startup-data', newData);
+			const response = await backend.post('techstack-data/startup-form-query', newData);
 			const suggestedProgrammingLanguages = response.data;
-			commit('toolsData/SET_TOOLS', suggestedProgrammingLanguages, { root: true });
+			commit('SET_TOOLS', suggestedProgrammingLanguages);
 			router.push('techstack');
 		},
 	},
