@@ -25,6 +25,12 @@ export default {
 		getTeamStatistics(state) {
 			return state.teamStatistics;
 		},
+		getDeveloperTypeStatistics(state, getters) {
+			if (getters.getIsPickableGeneralStatistics.length) {
+				return Object.entries(getters.getIsPickableIgnoredGeneralStatistics
+					.find(stat => stat.developerType).developerType);
+			}
+		},
 	},
 	mutations: {
 		SET_GENERAL_STATISTICS(state, stats) {

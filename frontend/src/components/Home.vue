@@ -4,8 +4,7 @@
 			Those statistics are taken from StackOverflow and Jetbrains Developer
 			Surveys. Feel free to get to know about the trends before going the form
 		</h5>
-		<PieChart />
-		<BarChart />
+		<BarChart :stats-data="developerStats" v-if="developerStats" />
 		<GeneralStatisticsAccordion :stats-obj="generalStats" :is-pickable-general="false" />
 		<TeamStatisticsAccordion :is-pickable-team="false" />
 	</div>
@@ -15,7 +14,6 @@
 import { mapGetters } from 'vuex';
 import GeneralStatisticsAccordion from './GeneralStatisticsAccordion.vue';
 import TeamStatisticsAccordion from './TeamStatisticsAccordion.vue';
-import PieChart from './Charts/PieChart.vue';
 import BarChart from './Charts/BarChart.vue';
 
 export default {
@@ -23,7 +21,6 @@ export default {
 	components: {
 		GeneralStatisticsAccordion,
 		TeamStatisticsAccordion,
-		PieChart,
 		BarChart,
 	},
 	data() {
@@ -32,6 +29,7 @@ export default {
 	computed: {
 		...mapGetters('statisticsData', {
 			generalStats: 'getIsPickableIgnoredGeneralStatistics',
+			developerStats: 'getDeveloperTypeStatistics',
 		}),
 	},
 };
