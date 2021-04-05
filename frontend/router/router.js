@@ -8,6 +8,7 @@ import TechStack from '../src/components/TechStack.vue';
 import UserChoices from '../src/components/UserChoices.vue';
 import ProgrammingLanguageDetails from '../src/components/ProgrammingLanguageDetails.vue';
 import StartupDetails from '../src/components/StartupDetails.vue';
+import BarChart from '../src/components/Charts/BarChart.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -73,6 +74,12 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
+		},
+		{
+			name: 'barchart',
+			path: '/barchart/:type',
+			props: true,
+			component: BarChart,
 		},
 	],
 });
