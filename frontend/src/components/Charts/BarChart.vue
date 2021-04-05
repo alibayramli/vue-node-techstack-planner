@@ -1,10 +1,11 @@
 <template>
-	<div class="chart">
+	<div class="chart" v-if="chartStats">
 		<Chart :chart-data="chartData" :chart-options="chartOptions" :chart-type="chartType" />
 	</div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Chart from './Chart.vue';
 export default {
 	name: 'BarChart',
@@ -12,30 +13,78 @@ export default {
 		Chart,
 	},
 	props: {
-		statsData: {
-			type: Object,
-			default: null,
+		type: {
+			type: String,
+			default: '',
 		},
 	},
 	data() {
-		return {
-			chartType: 'bar',
-			chartData: {
-				labels: this.statsData.map(stat => stat[0]),
-				datasets: [{
+		return {};
+	},
+	computed: {
+		...mapGetters('statisticsData', {
+			generalStats: 'getIsPickableIgnoredGeneralStatistics',
+			teamStats: 'getTeamStatistics',
+		}),
+		chartStats() {
+			const header = this.$route.query.header;
+			if (!header) {
+				if (this.generalStats.length) {
+					const typeToFind = Object
+						.entries(this.generalStats
+							.find(stat => stat[this.type])[this.type]);
+					return typeToFind;
+				} else {
+					return null;
+				}
+			} else {
+				if (Object.keys(this.teamStats).length) {
+					const headerTofind = Object
+						.entries(this.teamStats)
+						.find(stat => stat[0] === header)[1];
+					const typeToFind = Object.entries(headerTofind[this.type]);
+					return typeToFind;
+				} else {
+					return null;
+				}
+			}
+		},
+		chartType() {
+			return 'bar';
+		},
+		chartData() {
+			if (this.chartStats && this.chartStats.length) {
+				const datasets = [];
+				const popularity = this.chartStats[0][1][0];
+				const cost = this.chartStats[0][1][1];
+				if (popularity) {
+					datasets.push({
 						label: 'popularity',
-						data: this.statsData.map(stat => parseInt(stat[1][0])),
+						data: this.chartStats.map(stat => parseInt(stat[1][0])),
 						backgroundColor: 'rgb(153, 102, 255)',
 						borderWidth: 1,
-					},
-					{
+					});
+				}
+				if (cost) {
+					datasets.push({
 						label: 'cost',
-						data: this.statsData.map(stat => parseInt(stat[1][1] || 0)),
+						data: this.chartStats.map(stat => parseInt(stat[1][1] || 0)),
 						backgroundColor: 'rgba(75, 192, 192)',
 						borderWidth: 1,
-					}],
-			},
-			chartOptions: {
+					});
+				}
+
+				return {
+					labels: this.chartStats.map(stat => stat[0]),
+					datasets,
+
+				};
+			} else {
+				return null;
+			}
+		},
+		chartOptions() {
+			return {
 				tooltips: {
 					mode: 'label',
 				},
@@ -55,9 +104,8 @@ export default {
 					duration: 2000,
 					easing: 'easeInOutQuart',
 				},
-			},
-
-		};
+			};
+		},
 	},
 };
 </script>

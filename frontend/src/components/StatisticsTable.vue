@@ -21,6 +21,7 @@
 					:data-bs-parent="['#accordion-' + type]"
 				>
 					<div class="accordion-body">
+						<button class="btn btn-primary" @click="viewBarChart(header,type)">Barchart view</button>
 						<table class="table">
 							<thead>
 								<tr>
@@ -93,7 +94,6 @@ export default {
 		ProgLangInfo,
 		GeneralChoicePicks,
 		TeamChoicePicks,
-
 	},
 	props: {
 		stat: {
@@ -125,6 +125,11 @@ export default {
 		return {
 			limit: 5,
 		};
+	},
+	methods: {
+		viewBarChart(header, type) {
+			this.$router.push({ name: 'barchart', query: { header }, params: { type } });
+		},
 	},
 };
 </script>

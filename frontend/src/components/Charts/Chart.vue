@@ -41,6 +41,6 @@ export default {
 
 <style>
 canvas{
-	height: 25rem;
+	height: 30rem;
 }
 </style>
