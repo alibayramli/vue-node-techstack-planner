@@ -1,4 +1,11 @@
 <template>
+	<p class="d-flex p-3 ">
+		<button type="button" class="btn btn-primary"
+			@click="goBackToPreviousLink()"
+		>
+			Go back
+		</button>
+	</p>
 	<div class="chart" v-if="chartStats">
 		<Chart :chart-data="chartData" :chart-options="chartOptions" :chart-type="chartType" />
 	</div>
@@ -105,6 +112,11 @@ export default {
 					easing: 'easeInOutQuart',
 				},
 			};
+		},
+	},
+	methods: {
+		goBackToPreviousLink() {
+			this.$router.back();
 		},
 	},
 };
