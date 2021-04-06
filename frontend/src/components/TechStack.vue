@@ -1,16 +1,14 @@
 <template>
-	<div>
-		<div v-if="Object.keys(tools).length">
-			<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-pickable-general has-details-card is-expanded-by-default />
-			<GeneralStatisticsAccordion :is-pickable-general="true" :stats-obj="generalStats" />
-			<TeamStatisticsAccordion :is-pickable-team="true" />
-		</div>
-		<div v-else>
-			<p style="margin:5rem auto">
-				Nothing to show, go to <router-link to="/form"> Form </router-link>to start
-				exploring!
-			</p>
-		</div>
+	<div v-if="Object.keys(tools).length">
+		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-pickable-general has-details-card is-expanded-by-default />
+		<GeneralStatisticsAccordion :is-pickable-general="true" :stats-obj="generalStats" />
+		<TeamStatisticsAccordion :is-pickable-team="true" />
+	</div>
+	<div v-else>
+		<p style="margin:5rem auto">
+			Nothing to show, go to <router-link to="/form"> Form </router-link>to start
+			exploring!
+		</p>
 	</div>
 </template>
 
