@@ -101,15 +101,15 @@ export default {
 				console.log(err);
 			}
 		},
-		async createStartup({ rootGetters, getters, commit }) {
+		async createStartup({ getters, commit }, formInfo) {
 			try {
 				const newData = {
-					startupName: rootGetters['startupFormData/getName'],
-					startupSize: rootGetters['startupFormData/getSize'],
-					startupLocation: rootGetters['startupFormData/getLocation'],
-					startupField: rootGetters['startupFormData/getField'],
-					startupDeploymentSpeed: rootGetters['startupFormData/getDeploymentSpeed'],
-					startupBudget: rootGetters['startupFormData/getBudget'],
+					startupName: formInfo.name,
+					startupSize: formInfo.size,
+					startupLocation: formInfo.location,
+					startupField: formInfo.field,
+					startupDeploymentSpeed: formInfo.deploymentSpeed,
+					startupBudget: formInfo.budget,
 					creationDate: new Date(),
 					choices: {
 						general: getters.getGeneralChoicesByTypes,

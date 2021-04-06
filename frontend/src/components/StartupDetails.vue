@@ -138,7 +138,7 @@
 			@submit.prevent="storeStartup()"
 		>
 			<fieldset>
-				<div class="mb-2">
+				<div class="mb-3">
 					<button
 						class="btn btn-primary"
 						style="margin:1rem"
@@ -211,7 +211,7 @@ export default {
 		async storeStartup() {
 			window.removeEventListener('beforeunload', this.preventNav);
 			if (this.id === 'draft') {
-				await this.createStartup();
+				await this.createStartup(this.formInfo);
 			} else {
 				await this.updateStartup(this.formInfo);
 			}
