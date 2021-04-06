@@ -49,14 +49,14 @@
 				</div>
 
 				<div class="mb-3">
-					<label for="field" class="form-label">Startup Deployment Speed</label>
+					<label for="field" class="form-label">Does Deployment Speed Matter? </label>
 					<select
 						class="form-select"
 						required
 						aria-label="select"
 						v-model="formInfo.deploymentSpeed"
 					>
-						<option v-for="speed in deploymentSpeeds" :key="speed" :value="speed">
+						<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
 							{{ $convertToStartCase(speed) }}
 						</option>
 					</select>
@@ -142,6 +142,7 @@
 					<button
 						class="btn btn-primary"
 						style="margin:1rem"
+						:disabled="!formInfo.name || !formInfo.deploymentSpeed || !formInfo.budget"
 					>
 						<span v-if="id === 'draft'">Save startup</span>
 						<span v-else> Update startup</span>
@@ -161,6 +162,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import _ from 'lodash';
 
 export default {
 	name: 'StartupDetails',
@@ -172,6 +174,7 @@ export default {
 	},
 	data() {
 		return {
+			formInfo: null,
 			isEditing: true,
 		};
 	},
@@ -180,15 +183,18 @@ export default {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
-			deploymentSpeeds: 'getAvailableDeploymentSpeeds',
+			fastDeploymentInfos: 'getFastDeploymentInfos',
 		}),
 		...mapGetters('startupChoicesData', {
 			generalChoicesByTypes: 'getGeneralChoicesByTypes',
 			teamChoicesByTypes: 'getTeamChoicesByTypes',
 		}),
 		...mapGetters('startupFormData', {
-			formInfo: 'getStartupFormData',
+			formInfoFromStore: 'getStartupFormData',
 		}),
+	},
+	created() {
+		this.formInfo = _.cloneDeep(this.formInfoFromStore);
 	},
 	beforeMount() {
 		window.addEventListener('beforeunload', this.preventNav);

@@ -60,14 +60,14 @@
 					<div class="invalid-feedback">Please select</div>
 				</div>
 				<div class="mb-3">
-					<label for="field" class="form-label">Startup Deployment Speed</label>
+					<label for="field" class="form-label">Does Deployment Speed Matter? </label>
 					<select
 						class="form-select"
 						required
 						aria-label="select"
 						v-model="startupDeploymentSpeed"
 					>
-						<option v-for="speed in deploymentSpeeds" :key="speed" :value="speed">
+						<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
 							{{ $convertToStartCase(speed) }}
 						</option>
 					</select>
@@ -87,7 +87,8 @@
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupName || !startupField || !startupBudget|| isSubmitFormClicked"
+						:disabled="(!startupName || !startupField || !startupDeploymentSpeed || !startupBudget )
+							|| isSubmitFormClicked"
 					>
 						Submit form
 						<div
@@ -119,7 +120,7 @@ export default {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
-			deploymentSpeeds: 'getAvailableDeploymentSpeeds',
+			fastDeploymentInfos: 'getFastDeploymentInfos',
 		}),
 		startupName: {
 			get() {

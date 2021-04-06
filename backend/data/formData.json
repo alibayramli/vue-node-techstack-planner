@@ -13,9 +13,9 @@
             "mid",
             "large"
         ],
-        "deploymentSpeeds": [
-            "medium",
-            "fast"
+        "doesFastDeploymentMatter": [
+            "yes",
+            "no"
         ]
     }
 }

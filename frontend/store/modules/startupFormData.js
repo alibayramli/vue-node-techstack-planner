@@ -13,7 +13,7 @@ export default {
 		availableSizes: [],
 		availableLocations: [],
 		availableFields: [],
-		availableDeploymentSpeeds: [],
+		fastDeploymentInfos: [],
 		tools: [],
 	},
 	getters: {
@@ -47,13 +47,13 @@ export default {
 		getAvailableFields(state) {
 			return state.availableFields;
 		},
-		getAvailableDeploymentSpeeds(state) {
-			return state.availableDeploymentSpeeds;
+		getFastDeploymentInfos(state) {
+			return state.fastDeploymentInfos;
 		},
 		getTools(state) {
 			return state.tools;
 		},
-		getStartupFormData(state, getters, rootGetters) {
+		getStartupFormData(state, getters, rootState, rootGetters) {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
 			const startupId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
 			const isDraftStartup = startupId === 'draft';
@@ -93,8 +93,8 @@ export default {
 		UPDATE_FIELD(state, newFieldValue) {
 			state.field = newFieldValue;
 		},
-		UPDATE_DEPLOYMENT_SPEED(state, newSpeedValue) {
-			state.deploymentSpeed = newSpeedValue;
+		UPDATE_DEPLOYMENT_SPEED(state, newTruthyValue) {
+			state.deploymentSpeed = newTruthyValue;
 		},
 		UPDATE_BUDGET(state, newBudgetValue) {
 			state.budget = newBudgetValue;
@@ -111,8 +111,8 @@ export default {
 		SET_AVAILABLE_FIELDS(state, fields) {
 			state.availableFields = fields;
 		},
-		SET_AVAILABLE_DEPLOYMENT_SPEEDS(state, speeds) {
-			state.availableDeploymentSpeeds = speeds;
+		SET_FAST_DEPLOYMENT_INFOS(state, speeds) {
+			state.fastDeploymentInfos = speeds;
 		},
 		SET_TOOLS(state, tools) {
 			state.tools = tools;
@@ -133,11 +133,11 @@ export default {
 			const sizes = formInfosResponse.data.startupSpecifics.sizes;
 			const fieldResponse = await backend.get('techstack-data/all-statistics');
 			const fields = fieldResponse.data.typesOfSoftware;
-			const deploymentSpeeds = formInfosResponse.data.startupSpecifics.deploymentSpeeds;
+			const fastDeploymentInfos = formInfosResponse.data.startupSpecifics.doesFastDeploymentMatter;
 			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);
 			commit('SET_AVAILABLE_FIELDS', fields);
-			commit('SET_AVAILABLE_DEPLOYMENT_SPEEDS', deploymentSpeeds);
+			commit('SET_FAST_DEPLOYMENT_INFOS', fastDeploymentInfos);
 		},
 		async createStartupQuery({ commit, state }) {
 			const newData = {

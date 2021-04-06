@@ -108,7 +108,7 @@ export default {
 					startupSize: rootGetters['startupFormData/getSize'],
 					startupLocation: rootGetters['startupFormData/getLocation'],
 					startupField: rootGetters['startupFormData/getField'],
-					deploymentSpeed: rootGetters['startupFormData/getDeploymentSpeed'],
+					startupDeploymentSpeed: rootGetters['startupFormData/getDeploymentSpeed'],
 					startupBudget: rootGetters['startupFormData/getBudget'],
 					creationDate: new Date(),
 					choices: {
@@ -116,9 +116,6 @@ export default {
 						team: getters.getTeamChoicesByTypes,
 					},
 				};
-				console.log(rootGetters['startupFormData/getName']);
-				console.log('value:');
-				console.log(newData.startupName);
 				await backend.post('startup-data/new-startup', newData);
 				commit('startupFormData/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
 				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
@@ -138,7 +135,7 @@ export default {
 					startupSize: formInfo.size,
 					startupLocation: formInfo.location,
 					startupField: formInfo.field,
-					deploymentSpeed: formInfo.deploymentSpeed,
+					startupDeploymentSpeed: formInfo.deploymentSpeed,
 					startupBudget: formInfo.budget,
 					choices: {
 						general: getters.getGeneralChoicesByTypes,
