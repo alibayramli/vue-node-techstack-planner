@@ -7,11 +7,13 @@ export default {
 		size: '',
 		location: '',
 		field: '',
+		deploymentSpeed: '',
 		budget: '',
 		hasFormSubmitted: false,
 		availableSizes: [],
 		availableLocations: [],
 		availableFields: [],
+		availableDeploymentSpeeds: [],
 		tools: [],
 	},
 	getters: {
@@ -26,6 +28,9 @@ export default {
 		},
 		getField(state) {
 			return state.field;
+		},
+		getDeploymentSpeed(state) {
+			return state.deploymentSpeed;
 		},
 		getBudget(state) {
 			return state.budget;
@@ -42,10 +47,13 @@ export default {
 		getAvailableFields(state) {
 			return state.availableFields;
 		},
+		getAvailableDeploymentSpeeds(state) {
+			return state.availableDeploymentSpeeds;
+		},
 		getTools(state) {
 			return state.tools;
 		},
-		getStartupFormData(state, getters, rootState) {
+		getStartupFormData(state, getters, rootGetters) {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
 			const startupId = fullRouteName.substring(fullRouteName.lastIndexOf('/') + 1);
 			const isDraftStartup = startupId === 'draft';
@@ -55,16 +63,18 @@ export default {
 					size: getters.getSize,
 					location: getters.getLocation,
 					field: getters.getField,
+					deploymentSpeed: getters.getDeploymentSpeed,
 					budget: getters.getBudget,
 				};
 			} else {
-				const savedStartup = rootState.startupChoicesData.savedChoices
+				const savedStartup = rootGetters['startupChoicesData/getSavedChoices']
 					.find(startup => startup.startupId === startupId);
 				return {
 					name: savedStartup.startupName,
 					size: savedStartup.startupSize,
 					location: savedStartup.startupLocation,
 					field: savedStartup.startupField,
+					deploymentSpeed: savedStartup.startupDeploymentSpeed,
 					budget: savedStartup.startupBudget,
 				};
 			}
@@ -83,6 +93,9 @@ export default {
 		UPDATE_FIELD(state, newFieldValue) {
 			state.field = newFieldValue;
 		},
+		UPDATE_DEPLOYMENT_SPEED(state, newSpeedValue) {
+			state.deploymentSpeed = newSpeedValue;
+		},
 		UPDATE_BUDGET(state, newBudgetValue) {
 			state.budget = newBudgetValue;
 		},
@@ -98,6 +111,9 @@ export default {
 		SET_AVAILABLE_FIELDS(state, fields) {
 			state.availableFields = fields;
 		},
+		SET_AVAILABLE_DEPLOYMENT_SPEEDS(state, speeds) {
+			state.availableDeploymentSpeeds = speeds;
+		},
 		SET_TOOLS(state, tools) {
 			state.tools = tools;
 		},
@@ -106,25 +122,29 @@ export default {
 			state.size = '';
 			state.location = '';
 			state.field = '';
+			state.deploymentSpeed = '';
 			state.budget = '';
 		},
 	},
 	actions: {
 		async loadFormInfos({ commit }) {
 			const formInfosResponse = await backend.get('techstack-data/available-form-dropdowns');
-			const locations = formInfosResponse.data.startupSpecifics.locations.map(location => location[0]);
-			const sizes = formInfosResponse.data.startupSpecifics.sizeOfStartup;
+			const locations = formInfosResponse.data.startupSpecifics.locations;
+			const sizes = formInfosResponse.data.startupSpecifics.sizes;
 			const fieldResponse = await backend.get('techstack-data/all-statistics');
 			const fields = fieldResponse.data.typesOfSoftware;
+			const deploymentSpeeds = formInfosResponse.data.startupSpecifics.deploymentSpeeds;
 			commit('SET_AVAILABLE_SIZES', sizes);
 			commit('SET_AVAILABLE_LOCATIONS', locations);
 			commit('SET_AVAILABLE_FIELDS', fields);
+			commit('SET_AVAILABLE_DEPLOYMENT_SPEEDS', deploymentSpeeds);
 		},
 		async createStartupQuery({ commit, state }) {
 			const newData = {
 				size: state.size,
 				location: state.location,
 				field: state.field,
+				deploymentSpeed: state.deploymentSpeed,
 			};
 			const response = await backend.post('techstack-data/startup-form-query', newData);
 			const suggestedProgrammingLanguages = response.data;

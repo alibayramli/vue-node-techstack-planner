@@ -20,6 +20,10 @@ const startupSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	startupDeploymentSpeed: {
+		type: String,
+		required: true,
+	},
 	startupBudget: {
 		type: String,
 	},

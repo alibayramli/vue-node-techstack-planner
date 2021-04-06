@@ -49,6 +49,20 @@
 				</div>
 
 				<div class="mb-3">
+					<label for="field" class="form-label">Startup Deployment Speed</label>
+					<select
+						class="form-select"
+						required
+						aria-label="select"
+						v-model="formInfo.deploymentSpeed"
+					>
+						<option v-for="speed in deploymentSpeeds" :key="speed" :value="speed">
+							{{ $convertToStartCase(speed) }}
+						</option>
+					</select>
+					<div class="invalid-feedback">Please select</div>
+				</div>
+				<div class="mb-3">
 					<label for="field" class="form-label">Startup Field</label>
 					<select
 						class="form-select"
@@ -166,6 +180,7 @@ export default {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
+			deploymentSpeeds: 'getAvailableDeploymentSpeeds',
 		}),
 		...mapGetters('startupChoicesData', {
 			generalChoicesByTypes: 'getGeneralChoicesByTypes',
