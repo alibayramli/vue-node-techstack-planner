@@ -32,7 +32,11 @@
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">name</th>
-									<th v-if="Object.entries(stat)[0][1][0]" scope="col">
+									<th
+										v-if="Object.entries(stat)[0][1][0] &&
+											!isPickableGeneral && !isPickableTeam"
+										scope="col"
+									>
 										popularity
 									</th>
 									<th v-if="Object.entries(stat)[0][1][1]" scope="col">cost</th>
@@ -52,7 +56,12 @@
 										<GeneralChoicePicks v-if="isPickableGeneral" :name="name" :type="type" :cost="parseInt(cost)" />
 										<TeamChoicePicks v-if="isPickableTeam" :header="header" :type="type" :name="name" />
 									</td>
-									<td scope="row" v-if="popularity">{{ popularity }}</td>
+									<td scope="row"
+										v-if="popularity
+											&& !isPickableGeneral && !isPickableTeam"
+									>
+										{{ popularity }}
+									</td>
 									<td scope="row" v-if="cost">{{ cost }}</td>
 								</tr>
 							</tbody>
