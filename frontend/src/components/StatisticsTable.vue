@@ -21,7 +21,12 @@
 					:data-bs-parent="['#accordion-' + type]"
 				>
 					<div class="accordion-body">
-						<button class="btn btn-primary" @click="viewBarChart(header,type)">Barchart view</button>
+						<button class="btn btn-primary"
+							@click="viewBarChart(header,type)"
+							v-if="!isPickableGeneral && !isPickableTeam"
+						>
+							Barchart view
+						</button>
 						<table class="table">
 							<thead>
 								<tr>
