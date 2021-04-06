@@ -5,7 +5,7 @@
 		</div>
 		<div v-else>
 			<div class="row container" style="margin:5rem auto">
-				<div class="col-sm-4 d-flex pb-3" v-if="hasFormSubmitted">
+				<div class="col-sm-6 d-flex pb-3" v-if="hasFormSubmitted">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Name of the startup: <b>{{ draftStartupName }}</b></h5>
@@ -19,7 +19,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4 d-flex pb-3" v-for="startup of savedStartups" :key="startup">
+				<div class="col-sm-6 d-flex pb-3" v-for="startup of savedStartups" :key="startup">
 					<div class="card" v-if="savedStartups.length">
 						<div class="card-body">
 							<h5 class="card-title">Name of the startup: <b>{{ startup.startupName }}</b></h5>
