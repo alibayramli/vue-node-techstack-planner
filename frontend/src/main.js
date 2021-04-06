@@ -4,6 +4,8 @@ import { store } from '../store/index';
 import { router } from '../router/router';
 import caseConverter from '../plugins/caseConverter';
 import budgetValidator from '../plugins/budgetValidator';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 import './index.css';
 
 const app = createApp(App);
