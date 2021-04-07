@@ -6,7 +6,6 @@ const startupSchema = new mongoose.Schema({
 	},
 	startupName: {
 		type: String,
-		unique: true,
 		required: true,
 		trim: true,
 	},
