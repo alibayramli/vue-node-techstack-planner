@@ -98,7 +98,7 @@ export default {
 					labels: {
 						boxWidth: 10,
 					},
-					position: 'bottom',
+					position: 'top',
 				},
 				animation: {
 					duration: 2000,
