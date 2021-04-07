@@ -62,7 +62,10 @@ export default {
 	async mounted() {
 		await this.statisticsInfos();
 		if (this.isLoggedIn) {
-			await this.formInfos();
+			await Promise.all([
+				this.formInfos(),
+				this.loadSavedUserChoices(),
+			]);
 		}
 	},
 	methods: {
@@ -71,6 +74,9 @@ export default {
 		}),
 		...mapActions('startupFormData', {
 			formInfos: 'loadFormInfos',
+		}),
+		...mapActions('startupChoicesData', {
+			loadSavedUserChoices: 'loadSavedChoices',
 		}),
 		...mapActions('authData', {
 			sendLogOutInfo: 'sendLogOutInfo',
