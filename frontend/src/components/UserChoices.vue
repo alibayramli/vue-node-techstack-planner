@@ -4,6 +4,18 @@
 			<div class="spinner-border" role="status" />
 		</div>
 		<div v-else>
+			<div v-if="savedStartups.length">
+				<button type="button" class="btn btn-primary"
+					@click="viewPieChart('startupSize')"
+				>
+					Sizes PieChart
+				</button>
+				<button type="button" class="btn btn-primary m-3"
+					@click="viewPieChart('startupLocation')"
+				>
+					Locations PieChart
+				</button>
+			</div>
 			<div class="row container" style="margin:5rem auto">
 				<div class="col-sm-6 d-flex pb-3" v-if="hasFormSubmitted">
 					<div class="card">
@@ -48,7 +60,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-
 export default {
 	name: 'UserChoices',
 	data() {
@@ -78,6 +89,9 @@ export default {
 		},
 		showCreationDate(dateStr) {
 			return new Date(dateStr).toLocaleString();
+		},
+		viewPieChart(type) {
+			this.$router.push({ name: 'piechart', params: { type } });
 		},
 	},
 };
