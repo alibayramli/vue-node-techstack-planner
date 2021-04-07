@@ -13,5 +13,14 @@ export const store = createStore({
 		startupChoicesData,
 		authData,
 	},
-	plugins: [ createPersistedState() ],
+	plugins: [ createPersistedState({
+		key: 'vuex',
+		reducer(value) {
+			if (!value.authData.accessToken) {
+				// return empty state when user logged out
+				return {};
+			}
+			return value;
+		},
+	}) ],
 });
