@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import statisticsData from './modules/statisticsData';
 import startupFormData from './modules/startupFormData';
 import progLangInfoData from './modules/progLangInfoData';
@@ -12,4 +13,5 @@ export const store = createStore({
 		startupChoicesData,
 		authData,
 	},
+	plugins: [ createPersistedState() ],
 });
