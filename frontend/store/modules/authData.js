@@ -71,8 +71,8 @@ export default {
 				const { email, password } = state;
 				const newData = { email, password };
 				const response = await backend.post('auth-data/login', newData);
-				const accessToken = response.data.accessToken;
-				const refreshToken = response.data.refreshToken;
+				const { fullName, accessToken, refreshToken } = response.data;
+				commit('UPDATE_FULL_NAME', fullName);
 				commit('SET_ACCESS_TOKEN', accessToken);
 				commit('SET_REFRESH_TOKEN', refreshToken);
 				commit('UPDATE_ERROR_MESSAGE', '');

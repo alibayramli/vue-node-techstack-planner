@@ -61,6 +61,7 @@ module.exports = {
 			const refreshToken = await signRefreshToken(String(user._id));
 			return res.status(OK_STATUS).json({
 				title: 'login successful',
+				fullName: user.fullName,
 				accessToken,
 				refreshToken,
 			});
