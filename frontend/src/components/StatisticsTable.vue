@@ -21,12 +21,22 @@
 					:data-bs-parent="['#accordion-' + type]"
 				>
 					<div class="accordion-body">
+						<button class="btn btn-primary"
+							@click="viewBarChart(header,type)"
+							v-if="!isPickableGeneral && !isPickableTeam"
+						>
+							Barchart view
+						</button>
 						<table class="table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">name</th>
-									<th v-if="Object.entries(stat)[0][1][0]" scope="col">
+									<th
+										v-if="Object.entries(stat)[0][1][0] &&
+											!isPickableGeneral && !isPickableTeam"
+										scope="col"
+									>
 										popularity
 									</th>
 									<th v-if="Object.entries(stat)[0][1][1]" scope="col">cost</th>
@@ -46,7 +56,12 @@
 										<GeneralChoicePicks v-if="isPickableGeneral" :name="name" :type="type" :cost="parseInt(cost)" />
 										<TeamChoicePicks v-if="isPickableTeam" :header="header" :type="type" :name="name" />
 									</td>
-									<td scope="row" v-if="popularity">{{ popularity }}</td>
+									<td scope="row"
+										v-if="popularity
+											&& !isPickableGeneral && !isPickableTeam"
+									>
+										{{ popularity }}
+									</td>
 									<td scope="row" v-if="cost">{{ cost }}</td>
 								</tr>
 							</tbody>
@@ -93,7 +108,6 @@ export default {
 		ProgLangInfo,
 		GeneralChoicePicks,
 		TeamChoicePicks,
-
 	},
 	props: {
 		stat: {
@@ -125,6 +139,11 @@ export default {
 		return {
 			limit: 5,
 		};
+	},
+	methods: {
+		viewBarChart(header, type) {
+			this.$router.push({ name: 'barchart', query: { header }, params: { type } });
+		},
 	},
 };
 </script>

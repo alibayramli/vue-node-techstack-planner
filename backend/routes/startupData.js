@@ -14,6 +14,7 @@ router.get('/user-startups', verifyAccessToken, async (req, res) => {
 				startupSize: detail.startupSize,
 				startupLocation: detail.startupLocation,
 				startupField: detail.startupField,
+				startupDeploymentSpeed: detail.startupDeploymentSpeed,
 				startupBudget: detail.startupBudget,
 				creationDate: detail.creationDate,
 				choices: detail.choices,

@@ -60,6 +60,20 @@
 					<div class="invalid-feedback">Please select</div>
 				</div>
 				<div class="mb-3">
+					<label for="field" class="form-label">Does Deployment Speed Matter? </label>
+					<select
+						class="form-select"
+						required
+						aria-label="select"
+						v-model="startupDeploymentSpeed"
+					>
+						<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
+							{{ $convertToStartCase(speed) }}
+						</option>
+					</select>
+					<div class="invalid-feedback">Please select</div>
+				</div>
+				<div class="mb-3">
 					<label for="budget" class="form-label">Startup Budget</label>
 					<input type="text" class="form-control form-label"
 						placeholder="Startup Budget" aria-label="Budget"
@@ -73,7 +87,8 @@
 					<button
 						class="btn btn-primary"
 						type="submit"
-						:disabled="!startupName || !startupField || !startupBudget|| isSubmitFormClicked"
+						:disabled="(!startupName || !startupField || !startupDeploymentSpeed || !startupBudget )
+							|| isSubmitFormClicked"
 					>
 						Submit form
 						<div
@@ -105,6 +120,7 @@ export default {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
+			fastDeploymentInfos: 'getFastDeploymentInfos',
 		}),
 		startupName: {
 			get() {
@@ -136,6 +152,14 @@ export default {
 			},
 			set(value) {
 				this.$store.commit('startupFormData/UPDATE_FIELD', value);
+			},
+		},
+		startupDeploymentSpeed: {
+			get() {
+				return this.$store.getters['startupFormData/getDeploymentSpeed'];
+			},
+			set(value) {
+				this.$store.commit('startupFormData/UPDATE_DEPLOYMENT_SPEED', value);
 			},
 		},
 		startupBudget: {

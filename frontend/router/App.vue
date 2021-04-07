@@ -54,10 +54,6 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('startupChoicesData', {
-			generalChoices: 'getGeneralChoices',
-			teamChoices: 'getTeamChoices',
-		}),
 		...mapGetters('authData', {
 			isLoggedIn: 'isLoggedIn',
 		}),

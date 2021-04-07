@@ -6,7 +6,6 @@ const startupSchema = new mongoose.Schema({
 	},
 	startupName: {
 		type: String,
-		unique: true,
 		required: true,
 		trim: true,
 	},
@@ -17,6 +16,10 @@ const startupSchema = new mongoose.Schema({
 		type: String,
 	},
 	startupField: {
+		type: String,
+		required: true,
+	},
+	startupDeploymentSpeed: {
 		type: String,
 		required: true,
 	},

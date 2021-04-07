@@ -8,6 +8,8 @@ import TechStack from '../src/components/TechStack.vue';
 import UserChoices from '../src/components/UserChoices.vue';
 import ProgrammingLanguageDetails from '../src/components/ProgrammingLanguageDetails.vue';
 import StartupDetails from '../src/components/StartupDetails.vue';
+import BarChart from '../src/components/Charts/BarChart.vue';
+import PieChart from '../src/components/Charts/PieChart.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -70,6 +72,21 @@ export const router = createRouter({
 			path: '/startup/:id',
 			props: true,
 			component: StartupDetails,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
+			name: 'barchart',
+			path: '/barchart/:type',
+			props: true,
+			component: BarChart,
+		},
+		{
+			name: 'piechart',
+			path: '/piechart/:type',
+			props: true,
+			component: PieChart,
 			meta: {
 				requiresAuth: true,
 			},
