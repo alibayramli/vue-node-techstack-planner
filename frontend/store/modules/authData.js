@@ -6,8 +6,8 @@ export default {
 		fullName: '',
 		email: '',
 		password: '',
-		accessToken: localStorage.getItem('accessToken') || '',
-		refreshToken: localStorage.getItem('refreshToken') || '',
+		accessToken: '',
+		refreshToken: '',
 		errorMessage: '',
 	},
 	getters: {
@@ -76,8 +76,6 @@ export default {
 				commit('SET_ACCESS_TOKEN', accessToken);
 				commit('SET_REFRESH_TOKEN', refreshToken);
 				commit('UPDATE_ERROR_MESSAGE', '');
-				localStorage.setItem('accessToken', accessToken);
-				localStorage.setItem('refreshToken', refreshToken);
 				router.go();
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
@@ -88,8 +86,6 @@ export default {
 				const { refreshToken } = state;
 				await backend.delete('auth-data/logout', { params: { refreshToken } });
 				commit('DESTROY_TOKENS');
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
 				router.go();
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
@@ -103,8 +99,6 @@ export default {
 				const newRefreshToken = response.data.refreshToken;
 				commit('SET_ACCESS_TOKEN', newAccessToken);
 				commit('SET_REFRESH_TOKEN', newRefreshToken);
-				localStorage.setItem('accessToken', newAccessToken);
-				localStorage.setItem('refreshToken', newRefreshToken);
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
 			}
