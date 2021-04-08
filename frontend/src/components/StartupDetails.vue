@@ -176,6 +176,7 @@ export default {
 		return {
 			formInfo: null,
 			isEditing: true,
+			isFieldChoicesUpdated: false,
 		};
 	},
 	computed: {
@@ -192,6 +193,18 @@ export default {
 		...mapGetters('startupFormData', {
 			formInfoFromStore: 'getStartupFormData',
 		}),
+	},
+	watch: {
+		'formInfo.field': {
+			handler(newVal, oldVal) {
+				if (oldVal !== null && !this.isFieldChoicesUpdated) {
+					this.$store
+						.commit('startupChoicesData/RESET_GENERAL_CHOICES_SUGGESTED_PROG_LANGS',
+							{ startupId: this.id });
+					this.isFieldChoicesUpdated = true;
+				}
+			},
+		},
 	},
 	created() {
 		this.formInfo = _.cloneDeep(this.formInfoFromStore);
