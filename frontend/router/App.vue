@@ -25,10 +25,7 @@ export default {
 	async mounted() {
 		await this.statisticsInfos();
 		if (this.isLoggedIn) {
-			await Promise.all([
-				this.formInfos(),
-				this.loadSavedUserChoices(),
-			]);
+			await this.formInfos();
 		}
 	},
 	methods: {
