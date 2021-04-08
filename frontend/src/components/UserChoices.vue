@@ -17,7 +17,9 @@
 				</button>
 			</div>
 			<div class="row container" style="margin:5rem auto">
-				<div class="col-sm-6 d-flex pb-3" v-if="hasFormSubmitted">
+				<div class="col-sm-6 d-flex pb-3"
+					v-if="hasFormSubmitted && draftStartupName"
+				>
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Name of the startup: <b>{{ draftStartupName }}</b></h5>

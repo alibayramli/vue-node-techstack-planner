@@ -70,6 +70,21 @@ export default {
 		SET_GENERAL_CHOICES(state, { type, name }) {
 			state.generalChoices.push({ [type]: name }) ;
 		},
+		RESET_GENERAL_CHOICES_SUGGESTED_PROG_LANGS(state, { startupId }) {
+			if (startupId === 'draft') {
+				state.generalChoices = state.generalChoices
+					.filter(choice => !choice.suggestedProgrammingLanguages);
+			} else {
+				const savedStartup = state.savedChoices
+					.find(startup => startup.startupId === startupId);
+				const indexToDelete = savedStartup.choices.general
+					.findIndex(choice => choice[0] === 'suggestedProgrammingLanguages');
+				const notFoundIdx = -1;
+				if (indexToDelete > notFoundIdx) {
+					savedStartup.choices.general.splice(indexToDelete, 1);
+				}
+			}
+		},
 		SET_TEAM_CHOICES(state, { header, type, name }) {
 			state.teamChoices.push({ [header]: { [type]: name } });
 		},
@@ -153,6 +168,17 @@ export default {
 		async deleteStartup({ }, startupId) {
 			try {
 				await backend.delete(`startup-data/delete-startup/${startupId}`);
+				router.push('/user-startups');
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			}
+		},
+		deleteDraftStartup({ commit }) {
+			try {
+				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
+				commit('RESET_STARTUP_CHOICES');
+				commit('startupFormData/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
 				router.push('/user-startups');
 			} catch (err) {
 				// eslint-disable-next-line no-console

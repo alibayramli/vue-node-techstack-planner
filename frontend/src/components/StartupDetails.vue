@@ -148,12 +148,18 @@
 						<span v-else> Update startup</span>
 					</button>
 					<button
+						class="btn btn-secondary"
+						v-if="id ==='draft'"
+						@click.stop="removeDraftStartup()"
+					>
+						<span> Discard startup</span>
+					</button>
+					<button
 						class="btn btn-danger"
-						v-if="id !=='draft'"
+						v-else
 						@click.stop="removeStartup()"
 					>
-						<span v-if="id === 'draft'">Save startup</span>
-						<span v-else> Delete startup</span>
+						<span> Delete startup</span>
 					</button>
 				</div>
 			</fieldset>
@@ -175,7 +181,7 @@ export default {
 	data() {
 		return {
 			formInfo: null,
-			isEditing: true,
+			isFieldChoicesUpdated: false,
 		};
 	},
 	computed: {
@@ -193,23 +199,29 @@ export default {
 			formInfoFromStore: 'getStartupFormData',
 		}),
 	},
+	watch: {
+		'formInfo.field': {
+			handler(newVal, oldVal) {
+				if (oldVal !== null && !this.isFieldChoicesUpdated) {
+					this.$store
+						.commit('startupChoicesData/RESET_GENERAL_CHOICES_SUGGESTED_PROG_LANGS',
+							{ startupId: this.id });
+					this.isFieldChoicesUpdated = true;
+				}
+			},
+		},
+	},
 	created() {
 		this.formInfo = _.cloneDeep(this.formInfoFromStore);
-	},
-	beforeMount() {
-		window.addEventListener('beforeunload', this.preventNav);
-	},
-	beforeUnmount() {
-		window.removeEventListener('beforeunload', this.preventNav);
 	},
 	methods: {
 		...mapActions('startupChoicesData', {
 			createStartup: 'createStartup',
 			updateStartup: 'updateStartup',
+			deleteDraftStartup: 'deleteDraftStartup',
 			deleteStartup: 'deleteStartup',
 		}),
 		async storeStartup() {
-			window.removeEventListener('beforeunload', this.preventNav);
 			if (this.id === 'draft') {
 				await this.createStartup(this.formInfo);
 			} else {
@@ -217,15 +229,10 @@ export default {
 			}
 		},
 		async removeStartup() {
-			window.removeEventListener('beforeunload', this.preventNav);
 			await this.deleteStartup(this.id);
 		},
-		preventNav(event) {
-			if (!this.isEditing) {
-				return;
-			}
-			event.preventDefault();
-			event.returnValue = '';
+		removeDraftStartup() {
+			this.deleteDraftStartup();
 		},
 	},
 };
@@ -234,7 +241,7 @@ export default {
 <style scoped>
 .save-choices {
   margin: auto;
-  padding: 15px 30px;
+  padding: 5rem 10rem;
   width: 40rem;
   background-color: #fff;
 }
