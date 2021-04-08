@@ -148,12 +148,18 @@
 						<span v-else> Update startup</span>
 					</button>
 					<button
+						class="btn btn-secondary"
+						v-if="id ==='draft'"
+						@click.stop="removeDraftStartup()"
+					>
+						<span> Discard startup</span>
+					</button>
+					<button
 						class="btn btn-danger"
-						v-if="id !=='draft'"
+						v-else
 						@click.stop="removeStartup()"
 					>
-						<span v-if="id === 'draft'">Save startup</span>
-						<span v-else> Delete startup</span>
+						<span> Delete startup</span>
 					</button>
 				</div>
 			</fieldset>
@@ -212,6 +218,7 @@ export default {
 		...mapActions('startupChoicesData', {
 			createStartup: 'createStartup',
 			updateStartup: 'updateStartup',
+			deleteDraftStartup: 'deleteDraftStartup',
 			deleteStartup: 'deleteStartup',
 		}),
 		async storeStartup() {
@@ -223,6 +230,9 @@ export default {
 		},
 		async removeStartup() {
 			await this.deleteStartup(this.id);
+		},
+		removeDraftStartup() {
+			this.deleteDraftStartup();
 		},
 	},
 };

@@ -174,5 +174,16 @@ export default {
 				console.log(err);
 			}
 		},
+		deleteDraftStartup({ commit }) {
+			try {
+				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
+				commit('RESET_STARTUP_CHOICES');
+				commit('startupFormData/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
+				router.push('/user-startups');
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			}
+		},
 	},
 };
