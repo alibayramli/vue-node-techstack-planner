@@ -142,7 +142,7 @@ export default {
 	},
 	methods: {
 		viewBarChart(header, type) {
-			this.$router.push({ name: 'barchart', query: { header }, params: { type } });
+			this.$router.push({ name: 'barchart', query: { header: header || undefined }, params: { type } });
 		},
 	},
 };
