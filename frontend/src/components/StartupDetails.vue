@@ -175,7 +175,6 @@ export default {
 	data() {
 		return {
 			formInfo: null,
-			isEditing: true,
 			isFieldChoicesUpdated: false,
 		};
 	},
@@ -209,12 +208,6 @@ export default {
 	created() {
 		this.formInfo = _.cloneDeep(this.formInfoFromStore);
 	},
-	beforeMount() {
-		window.addEventListener('beforeunload', this.preventNav);
-	},
-	beforeUnmount() {
-		window.removeEventListener('beforeunload', this.preventNav);
-	},
 	methods: {
 		...mapActions('startupChoicesData', {
 			createStartup: 'createStartup',
@@ -222,7 +215,6 @@ export default {
 			deleteStartup: 'deleteStartup',
 		}),
 		async storeStartup() {
-			window.removeEventListener('beforeunload', this.preventNav);
 			if (this.id === 'draft') {
 				await this.createStartup(this.formInfo);
 			} else {
@@ -230,15 +222,7 @@ export default {
 			}
 		},
 		async removeStartup() {
-			window.removeEventListener('beforeunload', this.preventNav);
 			await this.deleteStartup(this.id);
-		},
-		preventNav(event) {
-			if (!this.isEditing) {
-				return;
-			}
-			event.preventDefault();
-			event.returnValue = '';
 		},
 	},
 };
@@ -247,7 +231,7 @@ export default {
 <style scoped>
 .save-choices {
   margin: auto;
-  padding: 15px 30px;
+  padding: 5rem 10rem;
   width: 40rem;
   background-color: #fff;
 }
