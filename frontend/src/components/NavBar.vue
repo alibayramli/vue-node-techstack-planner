@@ -49,7 +49,7 @@
 						</a>
 					</li>
 					<li class="nav-item" v-if="isLoggedIn">
-						<a class="nav-link" style="cursor:pointer" @click="modal.show()">
+						<a class="nav-link" style="cursor:pointer" @click="showModal">
 							Logout
 						</a>
 					</li>
@@ -57,34 +57,32 @@
 			</div>
 		</div>
 	</nav>
-	<div class="modal fade" ref="logoutModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="logoutModalLabel">Modal title</h5>
-					<button type="button" class="btn-close" @click="modal.hide()" aria-label="Close" />
-				</div>
-				<div class="modal-body">
-					Are you sure to log out?
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" @click="modal.hide()">No</button>
-					<button type="button" class="btn btn-danger" @click="logout()">Yes</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<Modal
+		v-if="isModalVisible"
+		@closed="closeModal"
+		@approved="logout"
+	>
+		<template #header>
+			Log out
+		</template>
+
+		<template #body>
+			Are you sure you want to log out?
+		</template>
+	</Modal>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { Modal } from 'bootstrap';
-
+import Modal from './Modal.vue';
 export default {
 	name: 'NavBar',
+	components: {
+		Modal,
+	},
 	data() {
 		return {
-			modal: null,
+			isModalVisible: false,
 		};
 	},
 	computed: {
@@ -93,15 +91,18 @@ export default {
 			fullName: 'getFullName',
 		}),
 	},
-	mounted() {
-		this.modal = new Modal(this.$refs.logoutModal);
-	},
 	methods: {
 		...mapActions('authData', {
 			sendLogOutInfo: 'sendLogOutInfo',
 		}),
 		async logout() {
 			await this.sendLogOutInfo();
+		},
+		showModal() {
+			this.isModalVisible = true;
+		},
+		closeModal() {
+			this.isModalVisible = false;
 		},
 	},
 };
