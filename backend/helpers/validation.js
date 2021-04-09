@@ -6,6 +6,7 @@ const authSchemaSignup = Joi.object({
 	email: Joi.string().email().lowercase()
 		.required(),
 	password: Joi.string().min(minPasswordLength).required(),
+	confirmedPassword: Joi.string().valid(Joi.ref('password')).required(),
 });
 const authSchemaLogin = Joi.object({
 	email: Joi.string().email().lowercase()

@@ -27,7 +27,14 @@
 							{{ minPasswordCharacters }} characters
 						</span>
 					</div>
-					<div v-if="isValidPassword" class="form-text">
+				</div>
+				<div class="mb-3">
+					<label for="name" class="form-label">Confirm Password</label>
+					<input type="password" class="form-control" v-model="reTypedPassWord">
+					<div v-if="password && !IsPasswordConfirmed" class="form-text">
+						<span>Passwords don't match </span> <br>
+					</div>
+					<div v-if="isValidPassword && IsPasswordConfirmed" class="form-text">
 						Good to go :)
 					</div>
 				</div>
@@ -36,7 +43,7 @@
 					class="btn btn-primary"
 					type="submit"
 					:disabled="
-						!fullName || !isValidEmail || !isValidPassword || isSignupButtonClicked
+						!fullName || !isValidEmail || !isValidPassword || !IsPasswordConfirmed || isSignupButtonClicked
 					"
 				>
 					Signup
@@ -93,6 +100,14 @@ export default {
 				this.$store.commit('authData/UPDATE_PASSWORD', value);
 			},
 		},
+		reTypedPassWord: {
+			get() {
+				return this.$store.state.authData.confirmedPassword;
+			},
+			set(value) {
+				this.$store.commit('authData/UPDATE_CONFIRMED_PASSWORD', value);
+			},
+		},
 		isValidEmail() {
 			return this.emailRegex.test(this.email);
 		},
@@ -113,6 +128,9 @@ export default {
 				&& this.passwordContainsNumber
 				&& this.passwordContainsSpecialLetter
 				&& this.passwordContainsMinCharacters;
+		},
+		IsPasswordConfirmed() {
+			return this.password === this.reTypedPassWord;
 		},
 	},
 	methods: {

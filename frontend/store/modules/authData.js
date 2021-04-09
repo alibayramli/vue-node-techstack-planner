@@ -6,6 +6,7 @@ export default {
 		fullName: '',
 		email: '',
 		password: '',
+		confirmedPassword: '',
 		accessToken: '',
 		refreshToken: '',
 		errorMessage: '',
@@ -19,6 +20,9 @@ export default {
 		},
 		getPassword(state) {
 			return state.password;
+		},
+		getConfirmedPassword(state) {
+			return state.confirmedPassword;
 		},
 		getAccessToken(state) {
 			return state.accessToken;
@@ -40,6 +44,9 @@ export default {
 		UPDATE_PASSWORD(state, newPassword) {
 			state.password = newPassword;
 		},
+		UPDATE_CONFIRMED_PASSWORD(state, newConfirmedPassword) {
+			state.confirmedPassword = newConfirmedPassword;
+		},
 		UPDATE_ERROR_MESSAGE(state, newErrorMessage) {
 			state.errorMessage = newErrorMessage;
 		},
@@ -57,8 +64,8 @@ export default {
 	actions: {
 		async sendSignupInfo({ commit, state }) {
 			try {
-				const { fullName, email, password } = state;
-				const newData = { fullName, email, password };
+				const { fullName, email, password, confirmedPassword } = state;
+				const newData = { fullName, email, password, confirmedPassword };
 				await backend.post('auth-data/signup', newData);
 				commit('UPDATE_ERROR_MESSAGE', '');
 				router.push('/');
