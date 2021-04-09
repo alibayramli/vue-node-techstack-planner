@@ -1,62 +1,55 @@
 <template>
-	<div>
-		<form class="signup-form" @submit.prevent="onSubmitSignup">
-			<fieldset>
-				<legend>Sign up</legend>
-				<hr>
-				<div class="mb-3">
-					<label for="name" class="form-label">Name</label>
-					<input type="text" class="form-control" v-model="fullName">
-				</div>
-
-				<div class="mb-3">
-					<label for="name" class="form-label">Email</label>
-					<input class="form-control" v-model="email">
-					<div v-if="email && !isValidEmail" class="form-text">Invalid email.</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="name" class="form-label">Password</label>
-					<input type="password" class="form-control" v-model="password">
-					<div v-if="password && !isValidPassword" class="form-text">
-						<span>Please include:</span> <br>
-						<span v-if="!passwordContainsCapitalLetter"> capital letter(s) </span>
-						<span v-if="!passwordContainsNumber">number(s) </span>
-						<span v-if="!passwordContainsSpecialLetter"> special character(s) </span>
-						<span v-if="!passwordContainsMinCharacters"> min length of
-							{{ minPasswordCharacters }} characters
-						</span>
-					</div>
-				</div>
-				<div class="mb-3">
-					<label for="name" class="form-label">Confirm Password</label>
-					<input type="password" class="form-control" v-model="reTypedPassWord">
-					<div v-if="reTypedPassWord && !IsPasswordConfirmed" class="form-text">
-						<span>Passwords don't match </span> <br>
-					</div>
-					<div v-if="isValidPassword && IsPasswordConfirmed" class="form-text">
-						Good to go :)
-					</div>
-				</div>
-
-				<button
-					class="btn btn-primary"
-					type="submit"
-					:disabled="
-						!fullName || !isValidEmail || !isValidPassword || !IsPasswordConfirmed || isSignupButtonClicked
-					"
-				>
-					Signup
-					<div
-						class="spinner-border spinner-border-sm"
-						role="status"
-						v-if="isSignupSpinnerActive"
-					/>
-				</button>
-
-				<p class="form-text text-muted">{{ error }}</p>
-			</fieldset>
-		</form>
+	<div class="signup-form">
+		<legend>Sign up</legend>
+		<hr>
+		<div class="mb-3">
+			<label for="name" class="form-label">Name</label>
+			<input type="text" class="form-control" v-model="fullName">
+		</div>
+		<div class="mb-3">
+			<label for="name" class="form-label">Email</label>
+			<input class="form-control" v-model="email">
+			<div v-if="email && !isValidEmail" class="form-text">Invalid email.</div>
+		</div>
+		<div class="mb-3">
+			<label for="name" class="form-label">Password</label>
+			<input type="password" class="form-control" v-model="password">
+			<div v-if="password && !isValidPassword" class="form-text">
+				<span>Please include:</span> <br>
+				<span v-if="!passwordContainsCapitalLetter"> capital letter(s) </span>
+				<span v-if="!passwordContainsNumber">number(s) </span>
+				<span v-if="!passwordContainsSpecialLetter"> special character(s) </span>
+				<span v-if="!passwordContainsMinCharacters"> min length of
+					{{ minPasswordCharacters }} characters
+				</span>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="name" class="form-label">Confirm Password</label>
+			<input type="password" class="form-control" v-model="reTypedPassWord">
+			<div v-if="password && reTypedPassWord && !IsPasswordConfirmed" class="form-text">
+				<span>Passwords don't match </span> <br>
+			</div>
+			<div v-if="isValidPassword && IsPasswordConfirmed" class="form-text">
+				Good to go :)
+			</div>
+		</div>
+		<button
+			class="btn btn-primary"
+			type="submit"
+			:disabled="
+				!fullName || !isValidEmail || !isValidPassword || !IsPasswordConfirmed || isSignupButtonClicked
+			"
+			@click="submitSignup"
+		>
+			Signup
+			<div
+				class="spinner-border spinner-border-sm"
+				role="status"
+				v-if="isSignupSpinnerActive"
+			/>
+		</button>
+		<p class="form-text text-muted">{{ error }}</p>
 	</div>
 </template>
 
@@ -137,7 +130,7 @@ export default {
 		...mapActions('authData', {
 			sendSignupInfo: 'sendSignupInfo',
 		}),
-		async onSubmitSignup() {
+		async submitSignup() {
 			this.isSignupSpinnerActive = true;
 			this.isSignupButtonClicked = true;
 			await this.sendSignupInfo();
@@ -150,13 +143,12 @@ export default {
 
 <style scoped>
 .signup-form {
-  margin: auto;
-  margin-top: 5rem;
-  padding: 15px 30px;
-  width: 40rem;
+  margin: 1rem auto;
+  padding:1rem;
+  max-width: 50rem;
   background-color: #fff;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(41, 0, 60, 0.24);
 }
 </style>

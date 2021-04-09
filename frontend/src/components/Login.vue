@@ -1,43 +1,38 @@
 <template>
-	<div>
-		<form class="login-form" @submit.prevent="onSubmitLogin">
-			<fieldset>
-				<legend>Login</legend>
-				<hr>
-				<div class="mb-3">
-					<label for="name" class="form-label">Email</label>
-					<input class="form-control" v-model="email">
-					<div v-if="email && !isValidEmail" class="form-text">Invalid email.</div>
-				</div>
-				<div class="mb-3">
-					<label for="name" class="form-label">Password</label>
-					<input type="password" class="form-control" v-model="password">
-					<div v-if="password && !isValidPassword" class="form-text">
-						<span>Please include:</span> <br>
-						<span v-if="!passwordContainsCapitalLetter"> capital letter(s) </span>
-						<span v-if="!passwordContainsNumber">number(s) </span>
-						<span v-if="!passwordContainsSpecialLetter"> special character(s) </span>
-						<span v-if="!passwordContainsMinCharacters"> min length of
-							{{ minPasswordCharacters }} characters
-						</span>
-					</div>
-				</div>
-
-				<button
-					class="btn btn-primary"
-					type="submit"
-					:disabled="!isValidEmail || !isValidPassword || isLoginButtonClicked"
-				>
-					Login
-					<div
-						class="spinner-border spinner-border-sm"
-						role="status"
-						v-if="isLoginSpinnerActive"
-					/>
-				</button>
-				<p class="form-text text-muted">{{ error }}</p>
-			</fieldset>
-		</form>
+	<div class="login-form">
+		<legend>Login</legend>
+		<hr>
+		<div class="mb-3">
+			<label for="name" class="form-label">Email</label>
+			<input class="form-control" v-model="email">
+			<div v-if="email && !isValidEmail" class="form-text">Invalid email.</div>
+		</div>
+		<div class="mb-3">
+			<label for="name" class="form-label">Password</label>
+			<input type="password" class="form-control" v-model="password">
+			<div v-if="password && !isValidPassword" class="form-text">
+				<span>Please include:</span> <br>
+				<span v-if="!passwordContainsCapitalLetter"> capital letter(s) </span>
+				<span v-if="!passwordContainsNumber">number(s) </span>
+				<span v-if="!passwordContainsSpecialLetter"> special character(s) </span>
+				<span v-if="!passwordContainsMinCharacters"> min length of
+					{{ minPasswordCharacters }} characters
+				</span>
+			</div>
+		</div>
+		<button
+			class="btn btn-primary"
+			:disabled="!isValidEmail || !isValidPassword || isLoginButtonClicked"
+			@click="submitLogin()"
+		>
+			Login
+			<div
+				class="spinner-border spinner-border-sm"
+				role="status"
+				v-if="isLoginSpinnerActive"
+			/>
+		</button>
+		<p class="form-text text-muted">{{ error }}</p>
 	</div>
 </template>
 
@@ -99,7 +94,7 @@ export default {
 		...mapActions('authData', {
 			sendLoginInfo: 'sendLoginInfo',
 		}),
-		async onSubmitLogin() {
+		async submitLogin() {
 			this.isLoginSpinnerActive = true;
 			this.isLoginButtonClicked = true;
 			await this.sendLoginInfo();
@@ -112,13 +107,12 @@ export default {
 
 <style scoped>
 .login-form {
-  margin: auto;
-  margin-top: 5rem;
-  padding: 15px 30px;
-  width: 40rem;
+  margin: 5rem auto;
+  padding:2rem;
+  max-width: 50rem;
   background-color: #fff;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(41, 0, 60, 0.24);
 }
 </style>
