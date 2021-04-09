@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 import NavBar from '../src/components/NavBar.vue';
 export default {
 	name: 'App',
@@ -16,15 +16,9 @@ export default {
 	data() {
 		return {};
 	},
-	computed: {
-		...mapGetters('authData', {
-			isLoggedIn: 'isLoggedIn',
-		}),
-
-	},
 	async mounted() {
 		await this.statisticsInfos();
-		if (this.isLoggedIn) {
+		if (this.isLoggedInAuthMixin) {
 			await this.formInfos();
 		}
 	},
