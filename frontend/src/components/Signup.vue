@@ -31,7 +31,7 @@
 				<div class="mb-3">
 					<label for="name" class="form-label">Confirm Password</label>
 					<input type="password" class="form-control" v-model="reTypedPassWord">
-					<div v-if="password && !IsPasswordConfirmed" class="form-text">
+					<div v-if="reTypedPassWord && !IsPasswordConfirmed" class="form-text">
 						<span>Passwords don't match </span> <br>
 					</div>
 					<div v-if="isValidPassword && IsPasswordConfirmed" class="form-text">
