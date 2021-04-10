@@ -1,18 +1,18 @@
 <template>
 	<div>
 		<button class="tooltip-view" @click="goToProgInfoComponent()">
-			<ChoiceIcons type="viewDetails" />
+			<TechStackSuggestedToolIcons type="viewDetails" />
 		</button>
 	</div>
 </template>
 
 <script>
-import ChoiceIcons from './ChoiceIcons.vue';
+import TechStackSuggestedToolIcons from './TechStackSuggestedToolIcons.vue';
 
 export default {
 	name: 'ProgLangInfo',
 	components: {
-		ChoiceIcons,
+		TechStackSuggestedToolIcons,
 	},
 	props: {
 		name: {

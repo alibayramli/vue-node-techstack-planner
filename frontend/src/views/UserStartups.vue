@@ -63,7 +63,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 export default {
-	name: 'UserChoices',
+	name: 'UserStartups',
 	data() {
 		return {
 			isSavedStartupsSpinnerActive: true,

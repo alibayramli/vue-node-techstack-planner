@@ -100,7 +100,7 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-	name: 'Form',
+	name: 'AppForm',
 	data() {
 		return {
 			isSubmitted: false,

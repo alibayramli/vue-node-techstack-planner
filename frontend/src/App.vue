@@ -1,17 +1,17 @@
 <template>
 	<header>
-		<NavBar />
+		<TheNavbar />
 	</header>
 	<router-view />
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import NavBar from '../src/components/NavBar.vue';
+import TheNavbar from './commons/components/TheNavbar.vue';
 export default {
 	name: 'App',
 	components: {
-		NavBar,
+		TheNavbar,
 	},
 	data() {
 		return {};

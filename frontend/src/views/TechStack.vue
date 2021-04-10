@@ -14,9 +14,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import StatisticsTable from './StatisticsTable.vue';
-import GeneralStatisticsAccordion from './GeneralStatisticsAccordion.vue';
-import TeamStatisticsAccordion from './TeamStatisticsAccordion.vue';
+import StatisticsTable from '../commons/components/StatisticsTable.vue';
+import GeneralStatisticsAccordion from '../commons/components/GeneralStatisticsAccordion.vue';
+import TeamStatisticsAccordion from '../commons/components/TeamStatisticsAccordion.vue';
 
 export default {
 	name: 'TechStack',

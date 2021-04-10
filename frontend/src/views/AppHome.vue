@@ -11,11 +11,11 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import GeneralStatisticsAccordion from './GeneralStatisticsAccordion.vue';
-import TeamStatisticsAccordion from './TeamStatisticsAccordion.vue';
+import GeneralStatisticsAccordion from '../commons/components/GeneralStatisticsAccordion.vue';
+import TeamStatisticsAccordion from '../commons/components/TeamStatisticsAccordion.vue';
 
 export default {
-	name: 'Home',
+	name: 'AppHome',
 	components: {
 		GeneralStatisticsAccordion,
 		TeamStatisticsAccordion,

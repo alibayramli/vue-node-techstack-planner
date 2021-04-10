@@ -53,8 +53,8 @@
 									<td scope="row">
 										{{ type === 'developerType' ? $convertToStartCase(name) : name }}
 										<ProgLangInfo v-if="hasDetailsCard" :name="name" />
-										<GeneralChoicePicks v-if="isPickableGeneral" :name="name" :type="type" :cost="parseInt(cost)" />
-										<TeamChoicePicks v-if="isPickableTeam" :header="header" :type="type" :name="name" />
+										<StatisticsTableGeneralChoiceOptions v-if="isPickableGeneral" :name="name" :type="type" :cost="parseInt(cost)" />
+										<StatisticsTableTeamChoiceOptions v-if="isPickableTeam" :header="header" :type="type" :name="name" />
 									</td>
 									<td scope="row"
 										v-if="popularity
@@ -100,14 +100,14 @@
 
 <script>
 import ProgLangInfo from './ProgLangInfo.vue';
-import GeneralChoicePicks from './GeneralChoicePicks.vue';
-import TeamChoicePicks from './TeamChoicePicks.vue';
+import StatisticsTableGeneralChoiceOptions from './StatisticsTableGeneralChoiceOptions.vue';
+import StatisticsTableTeamChoiceOptions from './StatisticsTableTeamChoiceOptions.vue';
 export default {
 	name: 'StatisticsTable',
 	components: {
 		ProgLangInfo,
-		GeneralChoicePicks,
-		TeamChoicePicks,
+		StatisticsTableGeneralChoiceOptions,
+		StatisticsTableTeamChoiceOptions,
 	},
 	props: {
 		stat: {

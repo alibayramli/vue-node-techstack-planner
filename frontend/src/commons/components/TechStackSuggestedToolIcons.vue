@@ -39,7 +39,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-	name: 'ChoiceIcons',
+	name: 'TechStackSuggestedToolIcons',
 	props: {
 		name: {
 			type: String,

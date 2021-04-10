@@ -37,7 +37,7 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-	name: 'ProgrammingLanguageDetails',
+	name: 'ProgLangInfoDetails',
 	props: {
 		id: {
 			type: String,

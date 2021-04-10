@@ -1,7 +1,11 @@
 <template>
-	<div class="login-form">
-		<legend>Login</legend>
+	<div class="signup-form">
+		<legend>Sign up</legend>
 		<hr>
+		<div class="mb-3">
+			<label for="name" class="form-label">Name</label>
+			<input type="text" class="form-control" v-model="fullNameAuthMixin">
+		</div>
 		<div class="mb-3">
 			<label for="name" class="form-label">Email</label>
 			<input class="form-control" v-model="emailAuthMixin">
@@ -22,16 +26,29 @@
 				</span>
 			</div>
 		</div>
+		<div class="mb-3">
+			<label for="name" class="form-label">Confirm Password</label>
+			<input type="password" class="form-control" v-model="reTypedPassWordAuthMixin">
+			<div class="form-text"
+				v-if="passwordAuthMixin && reTypedPassWordAuthMixin && !IsPasswordConfirmedAuthMixin"
+			>
+				<span>Passwords don't match </span> <br>
+			</div>
+			<div class="form-text" v-if="isValidPasswordAuthMixin && IsPasswordConfirmedAuthMixin">
+				Good to go :)
+			</div>
+		</div>
 		<button
 			class="btn btn-primary"
-			:disabled="!isValidLoginFormAuthMixin"
-			@click="submitLoginAuthMixin()"
+			type="submit"
+			:disabled="!isValidSignupFormAuthMixin"
+			@click="submitSignupAuthMixin"
 		>
-			Login
+			Signup
 			<div
 				class="spinner-border spinner-border-sm"
 				role="status"
-				v-if="isLoginSpinnerActiveAuthMixin"
+				v-if="isSignupSpinnerActiveAuthMixin"
 			/>
 		</button>
 		<p class="form-text text-muted">{{ errorAuthMixin }}</p>
@@ -40,7 +57,7 @@
 
 <script>
 export default {
-	name: 'Login',
+	name: 'AppSignup',
 	data() {
 		return {};
 	},
@@ -48,9 +65,9 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  margin: 5rem auto;
-  padding:2rem;
+.signup-form {
+  margin: 1rem auto;
+  padding:1rem;
   max-width: 50rem;
   background-color: #fff;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),

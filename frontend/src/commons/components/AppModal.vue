@@ -21,7 +21,7 @@
 import { Modal } from 'bootstrap';
 
 export default {
-	name: 'Modal',
+	name: 'AppModal',
 	emits: ['closed', 'approved'],
 	data() {
 		return {

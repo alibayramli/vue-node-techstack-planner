@@ -169,7 +169,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import _ from 'lodash';
-import Modal from './Modal.vue';
+import Modal from '../components/AppModal.vue';
 
 export default {
 	name: 'StartupDetails',

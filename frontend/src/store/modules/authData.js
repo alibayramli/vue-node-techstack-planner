@@ -1,5 +1,5 @@
 import backend from '../../helpers/interceptors';
-import router from '../../router/router';
+import router from '../../router/index';
 export default {
 	namespaced: true,
 	state: {

@@ -73,9 +73,9 @@
 </template>
 
 <script>
-import Modal from './Modal.vue';
+import Modal from './AppModal.vue';
 export default {
-	name: 'NavBar',
+	name: 'TheNavbar',
 	components: {
 		Modal,
 	},

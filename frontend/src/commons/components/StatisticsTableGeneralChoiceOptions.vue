@@ -2,50 +2,50 @@
 	<div v-if="type === 'developerType'">
 		<div class="tooltip-add tooltip-view" v-if="hasEnoughBudgetToPick">
 			<span v-if="isGeneralChoiceAdded">
-				<ChoiceIcons
+				<TechStackSuggestedToolIcons
 					type="deleteChoice" :name="name"
 					@click.stop="deleteGeneralChoice(type,name)"
 				/>
 			</span>
 			<span v-if="!isGeneralChoiceAdded">
-				<ChoiceIcons
+				<TechStackSuggestedToolIcons
 					type="addChoice"
 					@click.stop="selectGeneralChoice(type,name)"
 				/>
 			</span>
-			<ChoiceIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
+			<TechStackSuggestedToolIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
 		</div>
-		<ChoiceIcons class="tooltip-add" v-else
+		<TechStackSuggestedToolIcons class="tooltip-add" v-else
 			type="notEnoughBudget" :name="name"
 		/>
 	</div>
 	<div v-else>
 		<div class="tooltip-add tooltip-view">
 			<span v-if="isGeneralChoiceAdded">
-				<ChoiceIcons
+				<TechStackSuggestedToolIcons
 					type="deleteChoice" :name="name"
 					@click.stop="deleteGeneralChoice(type,name)"
 				/>
 			</span>
 			<span v-if="!isGeneralChoiceAdded">
-				<ChoiceIcons
+				<TechStackSuggestedToolIcons
 					type="addChoice"
 					@click.stop="selectGeneralChoice(type,name)"
 				/>
 			</span>
-			<ChoiceIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
+			<TechStackSuggestedToolIcons type="choiceAdded" v-if="isGeneralChoiceAdded" />
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import ChoiceIcons from './ChoiceIcons.vue';
+import TechStackSuggestedToolIcons from './TechStackSuggestedToolIcons.vue';
 
 export default {
-	name: 'GeneralChoicePicks',
+	name: 'StatisticsTableGeneralChoiceOptions',
 	components: {
-		ChoiceIcons,
+		TechStackSuggestedToolIcons,
 	},
 	props: {
 		name: {

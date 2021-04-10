@@ -7,6 +7,7 @@
 <script>
 import Chart from 'chart.js';
 export default {
+	name: 'CreateChart',
 	props: {
 		chartType: {
 			type: String,
@@ -24,10 +25,10 @@ export default {
 
 	mounted() {
 		const { chartType, chartData, chartOptions } = this;
-		this.createChart(chartType, chartData, chartOptions);
+		this.drawChart(chartType, chartData, chartOptions);
 	},
 	methods: {
-		createChart(chartType, chartData, chartOptions) {
+		drawChart(chartType, chartData, chartOptions) {
 			const chartElement = document.querySelector(`.${this.chartType} canvas`);
 			new Chart(chartElement, {
 				type: chartType,

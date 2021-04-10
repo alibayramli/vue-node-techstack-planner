@@ -2,31 +2,31 @@
 	<div>
 		<div class="tooltip-add tooltip-view">
 			<span v-if="isTeamChoiceAdded">
-				<ChoiceIcons
+				<TechStackSuggestedToolIcons
 					type="deleteChoice" :name="name"
 					@click.stop="deleteTeamChoice(header,type,name)"
 				/>
 
 			</span>
 			<span v-if="!isTeamChoiceAdded">
-				<ChoiceIcons
+				<TechStackSuggestedToolIcons
 					type="addChoice"
 					@click.stop="selectTeamChoice(header,type,name)"
 				/>
 			</span>
-			<ChoiceIcons type="choiceAdded" v-if="isTeamChoiceAdded" />
+			<TechStackSuggestedToolIcons type="choiceAdded" v-if="isTeamChoiceAdded" />
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import ChoiceIcons from './ChoiceIcons.vue';
+import TechStackSuggestedToolIcons from './TechStackSuggestedToolIcons.vue';
 
 export default {
-	name: 'TeamChoicePicks',
+	name: 'StatisticsTableTeamChoiceOptions',
 	components: {
-		ChoiceIcons,
+		TechStackSuggestedToolIcons,
 	},
 	props: {
 		header: {

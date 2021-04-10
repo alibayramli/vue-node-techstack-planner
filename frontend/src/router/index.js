@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { store } from '../store/index';
-import Login from '../src/components/Login.vue';
-import Signup from '../src/components/Signup.vue';
-import Home from '../src/components/Home.vue';
-import Form from '../src/components/Form.vue';
-import TechStack from '../src/components/TechStack.vue';
-import UserChoices from '../src/components/UserChoices.vue';
-import ProgrammingLanguageDetails from '../src/components/ProgrammingLanguageDetails.vue';
-import StartupDetails from '../src/components/StartupDetails.vue';
-import BarChart from '../src/components/Charts/BarChart.vue';
-import PieChart from '../src/components/Charts/PieChart.vue';
+import Signup from '../views/AppSignup.vue';
+import Login from '../views/AppLogin.vue';
+import Home from '../views/AppHome.vue';
+import Form from '../views/AppForm.vue';
+import TechStack from '../views/TechStack.vue';
+import UserStartups from '../views/UserStartups.vue';
+import ProgLangInfoDetails from '../commons/components/ProgLangInfoDetails.vue';
+import StartupDetails from '../commons/components/StartupDetails.vue';
+import BarChart from '../commons/components/BarChart.vue';
+import PieChart from '../commons/components/PieChart.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -54,7 +54,7 @@ export const router = createRouter({
 			name: 'prog-lang',
 			path: '/prog-lang/:id',
 			props: true,
-			component: ProgrammingLanguageDetails,
+			component: ProgLangInfoDetails,
 			meta: {
 				requiresAuth: true,
 			},
@@ -62,7 +62,7 @@ export const router = createRouter({
 		{
 			name: 'userStartups',
 			path: '/user-startups',
-			component: UserChoices,
+			component: UserStartups,
 			meta: {
 				requiresAuth: true,
 			},

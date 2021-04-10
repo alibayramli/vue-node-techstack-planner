@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Chart from './Chart.vue';
+import Chart from './CreateChart.vue';
 export default {
 	name: 'BarChart',
 	components: {

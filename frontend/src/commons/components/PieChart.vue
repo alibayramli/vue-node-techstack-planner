@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Chart from './Chart.vue';
+import Chart from './CreateChart.vue';
 import { mapGetters } from 'vuex';
 export default {
 	name: 'PieChart',
