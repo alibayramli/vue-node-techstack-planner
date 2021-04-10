@@ -2,12 +2,11 @@ import { createApp } from 'vue';
 import App from '../router/App.vue';
 import { store } from '../store/index';
 import { router } from '../router/router';
-import caseConverter from '../plugins/caseConverter';
-import budgetValidator from '../plugins/budgetValidator';
+import caseConverter from './plugins/caseConverter';
+import budgetValidator from './plugins/budgetValidator';
 import authMixin from './mixins/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
-import './index.css';
 
 const app = createApp(App);
 app.use(store);
