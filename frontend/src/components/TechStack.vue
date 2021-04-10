@@ -1,5 +1,5 @@
 <template>
-	<div v-if="Object.keys(tools).length">
+	<div v-if="hasFormSubmitted">
 		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-pickable-general has-details-card is-expanded-by-default />
 		<GeneralStatisticsAccordion :is-pickable-general="true" :stats-obj="generalStats" />
 		<TeamStatisticsAccordion :is-pickable-team="true" />
@@ -31,6 +31,7 @@ export default {
 	computed: {
 		...mapGetters('startupFormData', {
 			tools: 'getTools',
+			hasFormSubmitted: 'hasFormSubmitted',
 		}),
 		...mapGetters('statisticsData', {
 			generalStats: 'getIsPickableGeneralStatistics',

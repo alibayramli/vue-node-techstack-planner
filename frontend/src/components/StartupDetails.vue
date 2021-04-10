@@ -103,7 +103,7 @@
 							<hr><br>
 						</div>
 						<div v-if="!generalChoicesByTypes.length">
-							No data
+							No tools
 						</div>
 					</div>
 				</div>
@@ -127,51 +127,55 @@
 							</div>
 						</div>
 						<div v-if="!teamChoicesByTypes.length">
-							No data
+							No tools
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<form
-			class="was-validated save-choices"
-			@submit.prevent="storeStartup()"
-		>
-			<fieldset>
-				<div class="mb-3">
-					<button
-						class="btn btn-primary"
-						style="margin:1rem"
-						:disabled="!formInfo.name || !formInfo.deploymentSpeed || !formInfo.budget"
-					>
-						<span v-if="id === 'draft'">Save startup</span>
-						<span v-else> Update startup</span>
-					</button>
-					<button
-						class="btn btn-secondary"
-						v-if="id ==='draft'"
-						@click.stop="removeDraftStartup()"
-					>
-						<span> Discard startup</span>
-					</button>
-					<button
-						class="btn btn-danger"
-						v-else
-						@click.stop="removeStartup()"
-					>
-						<span> Delete startup</span>
-					</button>
-				</div>
-			</fieldset>
-		</form>
+
+		<div class="mb-3">
+			<button
+				class="btn btn-primary"
+				style="margin:1rem"
+				:disabled="!formInfo.name || !formInfo.deploymentSpeed || !formInfo.budget"
+				@click="storeStartup()"
+			>
+				<span v-if="id === 'draft'">Save startup</span>
+				<span v-else> Update startup</span>
+			</button>
+			<button
+				class="btn btn-danger"
+				@click="showModal()"
+			>
+				<span> Delete startup </span>
+			</button>
+		</div>
 	</div>
+	<Modal
+		v-if="isModalVisible"
+		@closed="closeModal"
+		@approved="removeStartup"
+	>
+		<template #header>
+			Delete Startup
+		</template>
+
+		<template #body>
+			Are you sure you want to delete?
+		</template>
+	</Modal>
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import _ from 'lodash';
+import Modal from './Modal.vue';
 
 export default {
 	name: 'StartupDetails',
+	components: {
+		Modal,
+	},
 	props: {
 		id: {
 			type: String,
@@ -182,6 +186,7 @@ export default {
 		return {
 			formInfo: null,
 			isFieldChoicesUpdated: false,
+			isModalVisible: false,
 		};
 	},
 	computed: {
@@ -221,6 +226,12 @@ export default {
 			deleteDraftStartup: 'deleteDraftStartup',
 			deleteStartup: 'deleteStartup',
 		}),
+		showModal() {
+			this.isModalVisible = true;
+		},
+		closeModal() {
+			this.isModalVisible = false;
+		},
 		async storeStartup() {
 			if (this.id === 'draft') {
 				await this.createStartup(this.formInfo);
@@ -229,20 +240,15 @@ export default {
 			}
 		},
 		async removeStartup() {
-			await this.deleteStartup(this.id);
-		},
-		removeDraftStartup() {
-			this.deleteDraftStartup();
+			if (this.id === 'draft') {
+				this.deleteDraftStartup();
+			} else {
+				await this.deleteStartup(this.id);
+			}
 		},
 	},
 };
 </script>
 
 <style scoped>
-.save-choices {
-  margin: auto;
-  padding: 5rem 10rem;
-  width: 40rem;
-  background-color: #fff;
-}
 </style>

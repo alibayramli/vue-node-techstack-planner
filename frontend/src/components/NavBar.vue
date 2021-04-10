@@ -18,38 +18,38 @@
 					<li class="nav-item">
 						<router-link class="nav-link" to="/home"> Home </router-link>
 					</li>
-					<li class="nav-item" v-if="isLoggedIn">
+					<li class="nav-item" v-if="isLoggedInAuthMixin">
 						<router-link class="nav-link" to="/form"> Form </router-link>
 					</li>
-					<li class="nav-item" v-if="isLoggedIn">
+					<li class="nav-item" v-if="isLoggedInAuthMixin">
 						<router-link class="nav-link" to="/techstack">
 							Tech Stack
 						</router-link>
 					</li>
-					<li class="nav-item" v-if="isLoggedIn">
+					<li class="nav-item" v-if="isLoggedInAuthMixin">
 						<router-link class="nav-link" to="/user-startups">
 							Your Startups
 						</router-link>
 					</li>
 				</ul>
 				<ul class="d-flex navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item" v-if="!isLoggedIn">
+					<li class="nav-item" v-if="!isLoggedInAuthMixin">
 						<router-link class="nav-link" to="/">
 							Login
 						</router-link>
 					</li>
-					<li class="nav-item" v-if="!isLoggedIn">
+					<li class="nav-item" v-if="!isLoggedInAuthMixin">
 						<router-link class="nav-link" to="/signup">
 							Signup
 						</router-link>
 					</li>
-					<li class="nav-item" v-if="isLoggedIn">
+					<li class="nav-item" v-if="isLoggedInAuthMixin">
 						<a class="nav-link" style="cursor:pointer">
-							{{ fullName }}
+							{{ fullNameAuthMixin }}
 						</a>
 					</li>
-					<li class="nav-item" v-if="isLoggedIn">
-						<a class="nav-link" style="cursor:pointer" @click="logout()">
+					<li class="nav-item" v-if="isLoggedInAuthMixin">
+						<a class="nav-link" style="cursor:pointer" @click="showModal">
 							Logout
 						</a>
 					</li>
@@ -57,27 +57,39 @@
 			</div>
 		</div>
 	</nav>
+	<Modal
+		v-if="isModalVisible"
+		@closed="closeModal"
+		@approved="submitLogOutAuthMixin"
+	>
+		<template #header>
+			Log out
+		</template>
+
+		<template #body>
+			Are you sure you want to log out?
+		</template>
+	</Modal>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import Modal from './Modal.vue';
 export default {
 	name: 'NavBar',
-	data() {
-		return {};
+	components: {
+		Modal,
 	},
-	computed: {
-		...mapGetters('authData', {
-			isLoggedIn: 'isLoggedIn',
-			fullName: 'getFullName',
-		}),
+	data() {
+		return {
+			isModalVisible: false,
+		};
 	},
 	methods: {
-		...mapActions('authData', {
-			sendLogOutInfo: 'sendLogOutInfo',
-		}),
-		async logout() {
-			await this.sendLogOutInfo();
+		showModal() {
+			this.isModalVisible = true;
+		},
+		closeModal() {
+			this.isModalVisible = false;
 		},
 	},
 };

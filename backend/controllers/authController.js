@@ -28,7 +28,6 @@ module.exports = {
 			await newUser.save();
 			return res.status(OK_STATUS).json({
 				title: 'signup successful',
-
 			});
 		} catch (err) {
 			console.log(err);
