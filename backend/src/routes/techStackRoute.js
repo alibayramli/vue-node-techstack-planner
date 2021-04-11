@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const { verifyAccessToken } = require('../helpers/jwt');
+const { verifyAccessToken } = require('../helpers/handleJwt');
 const formDataFile = './data/formData.json';
-const statisticsFile = './data/statistics.json';
-const languagesFile = './data/programmingLanguages.json';
+const statisticsFile = './data/statisticsData.json';
+const languagesFile = './data/programmingLanguagesData.json';
 const INTERNAL_SERVER_ERROR = 500;
 
 router.get('/available-form-dropdowns', verifyAccessToken, (req, res) => {

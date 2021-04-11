@@ -1,6 +1,6 @@
-const { authSchemaSignup, authSchemaLogin } = require('../helpers/validation');
-const { signAccessToken, signRefreshToken, verifyRefreshToken } = require('../helpers/jwt');
-const client = require('../helpers/init_redis');
+const { authSchemaSignup, authSchemaLogin } = require('../helpers/validateAuthSchema');
+const { signAccessToken, signRefreshToken, verifyRefreshToken } = require('../helpers/handleJwt');
+const client = require('../dbs/initRedis');
 const User = require('../models/user');
 const INTERNAL_SERVER_ERROR = 500;
 const UNAUTHORIZED_STATUS = 401;
@@ -116,5 +116,4 @@ module.exports = {
 			res.status(INTERNAL_SERVER_ERROR).send(err);
 		}
 	},
-
 };

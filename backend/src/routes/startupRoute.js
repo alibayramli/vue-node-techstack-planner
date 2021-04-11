@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const INTERNAL_SERVER_ERROR = 500;
-const { verifyAccessToken } = require('../helpers/jwt');
+const { verifyAccessToken } = require('../helpers/handleJwt');
 const Startup = require('../models/startup.js');
 
 router.get('/user-startups', verifyAccessToken, async (req, res) => {
