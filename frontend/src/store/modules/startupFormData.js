@@ -67,7 +67,7 @@ export default {
 					budget: getters.getBudget,
 				};
 			} else {
-				const savedStartup = rootGetters['startupChoicesData/getSavedChoices']
+				const savedStartup = rootGetters['startupChoices/getSavedChoices']
 					.find(startup => startup.startupId === startupId);
 				return {
 					name: savedStartup.startupName,

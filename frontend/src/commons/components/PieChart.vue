@@ -32,7 +32,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('startupChoicesData', {
+		...mapGetters('startupChoices', {
 			startups: 'getSavedChoices',
 		}),
 		allStartupTypes() {

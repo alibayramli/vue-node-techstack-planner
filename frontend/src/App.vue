@@ -29,7 +29,7 @@ export default {
 		...mapActions('startupFormData', {
 			formInfos: 'loadFormInfos',
 		}),
-		...mapActions('startupChoicesData', {
+		...mapActions('startupChoices', {
 			loadSavedUserChoices: 'loadSavedChoices',
 		}),
 	},
