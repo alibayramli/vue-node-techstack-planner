@@ -65,7 +65,9 @@
 						{{ $convertToStartCase(speed) }}
 					</option>
 				</select>
-				<div class="invalid-feedback">Please select</div>
+				<div class="form-text" v-if="doesDeploymentSpeedMatter">
+					Please note that fast deployment requires all team choices to be selected
+				</div>
 			</div>
 			<div class="mb-3">
 				<label for="budget" class="form-label">Startup Budget</label>
@@ -114,6 +116,7 @@ export default {
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
 			fastDeploymentInfos: 'getFastDeploymentInfos',
+			doesDeploymentSpeedMatter: 'doesDeploymentSpeedMatter',
 		}),
 		startupName: {
 			get() {
