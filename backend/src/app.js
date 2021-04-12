@@ -9,9 +9,9 @@ require('./dbs/initRedis');
 const authRoute = require('./routes/authRoute');
 const startupRoute = require('./routes/startupRoute');
 const techStackRoute = require('./routes/techStackRoute');
-app.use('/techstack-data', techStackRoute);
-app.use('/startup-data', startupRoute);
-app.use('/auth-data', authRoute);
+app.use('/techstack', techStackRoute);
+app.use('/startup', startupRoute);
+app.use('/auth', authRoute);
 
 app.listen(port, (err) => {
 	return err

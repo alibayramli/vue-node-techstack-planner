@@ -70,10 +70,10 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('startupChoicesData', {
+		...mapGetters('startupChoices', {
 			savedStartups: 'getSavedChoices',
 		}),
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			draftStartupName: 'getName',
 			hasFormSubmitted: 'hasFormSubmitted',
 		}),
@@ -83,7 +83,7 @@ export default {
 		this.isSavedStartupsSpinnerActive = false;
 	},
 	methods: {
-		...mapActions('startupChoicesData', {
+		...mapActions('startupChoices', {
 			loadSavedUserChoices: 'loadSavedChoices',
 		}),
 		viewStartup(startupId) {

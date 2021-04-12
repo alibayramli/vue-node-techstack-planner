@@ -65,11 +65,11 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('startupChoicesData', {
+		...mapGetters('startupChoices', {
 			generalChoices: 'getGeneralChoices',
 			teamChoices: 'getTeamChoices',
 		}),
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			startupBudget: 'getBudget',
 		}),
 		hasEnoughBudgetToPick() {
@@ -82,10 +82,10 @@ export default {
 	},
 	methods: {
 		selectGeneralChoice(type, name) {
-			this.$store.commit('startupChoicesData/SET_GENERAL_CHOICES', { type, name });
+			this.$store.commit('startupChoices/SET_GENERAL_CHOICES', { type, name });
 		},
 		deleteGeneralChoice(type, name) {
-			this.$store.commit('startupChoicesData/DELETE_GENERAL_CHOICE', { type, name });
+			this.$store.commit('startupChoices/DELETE_GENERAL_CHOICE', { type, name });
 		},
 	},
 };

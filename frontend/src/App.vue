@@ -23,13 +23,13 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions('statisticsData', {
+		...mapActions('statistics', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
-		...mapActions('startupFormData', {
+		...mapActions('startupForm', {
 			formInfos: 'loadFormInfos',
 		}),
-		...mapActions('startupChoicesData', {
+		...mapActions('startupChoices', {
 			loadSavedUserChoices: 'loadSavedChoices',
 		}),
 	},

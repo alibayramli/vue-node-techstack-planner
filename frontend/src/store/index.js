@@ -1,22 +1,22 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import statisticsData from './modules/statisticsData';
-import startupFormData from './modules/startupFormData';
-import progLangInfoData from './modules/progLangInfoData';
-import startupChoicesData from './modules/startupChoicesData';
-import authData from './modules/authData';
+import statistics from './modules/statistics';
+import startupForm from './modules/startupForm';
+import progLangInfo from './modules/progLangInfo';
+import startupChoices from './modules/startupChoices';
+import auth from './modules/auth';
 export const store = createStore({
 	modules: {
-		statisticsData,
-		startupFormData,
-		progLangInfoData,
-		startupChoicesData,
-		authData,
+		statistics,
+		startupForm,
+		progLangInfo,
+		startupChoices,
+		auth,
 	},
 	plugins: [ createPersistedState({
 		key: 'vuex',
 		reducer(value) {
-			if (!value.authData.accessToken) {
+			if (!value.auth.accessToken) {
 				// return empty state when user logged out
 				return {};
 			}

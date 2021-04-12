@@ -9,7 +9,7 @@ const instance = axios.create({
 	},
 });
 instance.interceptors.request.use(function (config) {
-	const accessToken = store.getters['authData/getAccessToken'];
+	const accessToken = store.getters['auth/getAccessToken'];
 	if (accessToken) {
 		config.headers.Authorization = 'Bearer ' + accessToken;
 	}
@@ -24,12 +24,12 @@ instance.interceptors.response.use(
 	},
 	async function (error) {
 		const originalRequest = error.config;
-		const authUrls = ['auth-data/login', 'auth-data/signup'];
+		const authUrls = ['auth/login', 'auth/signup'];
 		if (error.response.status === UNAUTHORIZED_STATUS
 			&& !originalRequest._retry && !authUrls.includes(originalRequest.url)) {
 			originalRequest._retry = true;
-			await store.dispatch('authData/refreshTokens');
-			const newAccessToken = store.getters['authData/getAccessToken'];
+			await store.dispatch('auth/refreshTokens');
+			const newAccessToken = store.getters['auth/getAccessToken'];
 			originalRequest.headers.Authorization = 'Bearer ' + newAccessToken;
 			return axios(originalRequest);
 		}

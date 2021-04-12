@@ -190,17 +190,17 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
 			fastDeploymentInfos: 'getFastDeploymentInfos',
 		}),
-		...mapGetters('startupChoicesData', {
+		...mapGetters('startupChoices', {
 			generalChoicesByTypes: 'getGeneralChoicesByTypes',
 			teamChoicesByTypes: 'getTeamChoicesByTypes',
 		}),
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			formInfoFromStore: 'getStartupFormData',
 		}),
 	},
@@ -209,7 +209,7 @@ export default {
 			handler(newVal, oldVal) {
 				if (oldVal !== null && !this.isFieldChoicesUpdated) {
 					this.$store
-						.commit('startupChoicesData/RESET_GENERAL_CHOICES_SUGGESTED_PROG_LANGS',
+						.commit('startupChoices/RESET_GENERAL_CHOICES_SUGGESTED_PROG_LANGS',
 							{ startupId: this.id });
 					this.isFieldChoicesUpdated = true;
 				}
@@ -220,7 +220,7 @@ export default {
 		this.formInfo = _.cloneDeep(this.formInfoFromStore);
 	},
 	methods: {
-		...mapActions('startupChoicesData', {
+		...mapActions('startupChoices', {
 			createStartup: 'createStartup',
 			updateStartup: 'updateStartup',
 			deleteDraftStartup: 'deleteDraftStartup',

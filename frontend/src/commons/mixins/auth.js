@@ -11,40 +11,40 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('authData', {
+		...mapGetters('auth', {
 			errorAuthMixin: 'getErrorMessage',
 			isLoggedInAuthMixin: 'isLoggedIn',
 		}),
 		fullNameAuthMixin: {
 			get() {
-				return this.$store.state.authData.fullName;
+				return this.$store.state.auth.fullName;
 			},
 			set(value) {
-				this.$store.commit('authData/UPDATE_FULL_NAME', value);
+				this.$store.commit('auth/UPDATE_FULL_NAME', value);
 			},
 		},
 		emailAuthMixin: {
 			get() {
-				return this.$store.state.authData.email;
+				return this.$store.state.auth.email;
 			},
 			set(value) {
-				this.$store.commit('authData/UPDATE_EMAIL', value);
+				this.$store.commit('auth/UPDATE_EMAIL', value);
 			},
 		},
 		passwordAuthMixin: {
 			get() {
-				return this.$store.state.authData.password;
+				return this.$store.state.auth.password;
 			},
 			set(value) {
-				this.$store.commit('authData/UPDATE_PASSWORD', value);
+				this.$store.commit('auth/UPDATE_PASSWORD', value);
 			},
 		},
 		reTypedPassWordAuthMixin: {
 			get() {
-				return this.$store.state.authData.confirmedPassword;
+				return this.$store.state.auth.confirmedPassword;
 			},
 			set(value) {
-				this.$store.commit('authData/UPDATE_CONFIRMED_PASSWORD', value);
+				this.$store.commit('auth/UPDATE_CONFIRMED_PASSWORD', value);
 			},
 		},
 		isValidEmailAuthMixin() {
@@ -83,7 +83,7 @@ export default {
 		},
 	},
 	methods: {
-		...mapActions('authData', {
+		...mapActions('auth', {
 			sendSignupInfoAuthMixin: 'sendSignupInfo',
 			sendLoginInfoAuthMixin: 'sendLoginInfo',
 			sendLogOutInfoAuthMixin: 'sendLogOutInfo',

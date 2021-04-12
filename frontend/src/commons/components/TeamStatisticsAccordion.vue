@@ -55,7 +55,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('statisticsData', {
+		...mapGetters('statistics', {
 			teamStats: 'getTeamStatistics',
 		}),
 	},

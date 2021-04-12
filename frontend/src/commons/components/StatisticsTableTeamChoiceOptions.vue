@@ -46,7 +46,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('startupChoicesData', {
+		...mapGetters('startupChoices', {
 			teamChoices: 'getTeamChoices',
 		}),
 		isTeamChoiceAdded() {
@@ -56,10 +56,10 @@ export default {
 	},
 	methods: {
 		selectTeamChoice(header, type, name) {
-			this.$store.commit('startupChoicesData/SET_TEAM_CHOICES', { header, type, name });
+			this.$store.commit('startupChoices/SET_TEAM_CHOICES', { header, type, name });
 		},
 		deleteTeamChoice(header, type, name) {
-			this.$store.commit('startupChoicesData/DELETE_TEAM_CHOICE', { header, type, name });
+			this.$store.commit('startupChoices/DELETE_TEAM_CHOICE', { header, type, name });
 		},
 	},
 };
