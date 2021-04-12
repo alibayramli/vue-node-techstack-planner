@@ -66,7 +66,7 @@ export default {
 			try {
 				const { fullName, email, password, confirmedPassword } = state;
 				const newData = { fullName, email, password, confirmedPassword };
-				await backend.post('auth-data/signup', newData);
+				await backend.post('auth/signup', newData);
 				commit('UPDATE_ERROR_MESSAGE', '');
 				router.push('/');
 			} catch (err) {
@@ -77,7 +77,7 @@ export default {
 			try {
 				const { email, password } = state;
 				const newData = { email, password };
-				const response = await backend.post('auth-data/login', newData);
+				const response = await backend.post('auth/login', newData);
 				const { fullName, accessToken, refreshToken } = response.data;
 				commit('UPDATE_FULL_NAME', fullName);
 				commit('SET_ACCESS_TOKEN', accessToken);
@@ -91,7 +91,7 @@ export default {
 		async sendLogOutInfo({ commit, state }) {
 			try {
 				const { refreshToken } = state;
-				await backend.delete('auth-data/logout', { params: { refreshToken } });
+				await backend.delete('auth/logout', { params: { refreshToken } });
 				commit('DESTROY_TOKENS');
 				router.go();
 			} catch (err) {
@@ -101,7 +101,7 @@ export default {
 		async refreshTokens({ commit, state }) {
 			try {
 				const refreshToken = state.refreshToken;
-				const response = await backend.post('auth-data/refresh-token', { refreshToken });
+				const response = await backend.post('auth/refresh-token', { refreshToken });
 				const newAccessToken = response.data.accessToken;
 				const newRefreshToken = response.data.refreshToken;
 				commit('SET_ACCESS_TOKEN', newAccessToken);

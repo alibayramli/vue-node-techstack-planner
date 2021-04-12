@@ -24,7 +24,7 @@ instance.interceptors.response.use(
 	},
 	async function (error) {
 		const originalRequest = error.config;
-		const authUrls = ['auth-data/login', 'auth-data/signup'];
+		const authUrls = ['auth/login', 'auth/signup'];
 		if (error.response.status === UNAUTHORIZED_STATUS
 			&& !originalRequest._retry && !authUrls.includes(originalRequest.url)) {
 			originalRequest._retry = true;

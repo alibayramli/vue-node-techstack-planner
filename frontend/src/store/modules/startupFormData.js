@@ -128,10 +128,10 @@ export default {
 	},
 	actions: {
 		async loadFormInfos({ commit }) {
-			const formInfosResponse = await backend.get('techstack-data/available-form-dropdowns');
+			const formInfosResponse = await backend.get('techstack/available-form-dropdowns');
 			const locations = formInfosResponse.data.startupSpecifics.locations;
 			const sizes = formInfosResponse.data.startupSpecifics.sizes;
-			const fieldResponse = await backend.get('techstack-data/all-statistics');
+			const fieldResponse = await backend.get('techstack/all-statistics');
 			const fields = fieldResponse.data.typesOfSoftware;
 			const fastDeploymentInfos = formInfosResponse.data.startupSpecifics.doesFastDeploymentMatter;
 			commit('SET_AVAILABLE_SIZES', sizes);
@@ -146,7 +146,7 @@ export default {
 				field: state.field,
 				deploymentSpeed: state.deploymentSpeed,
 			};
-			const response = await backend.post('techstack-data/startup-form-query', newData);
+			const response = await backend.post('techstack/startup-form-query', newData);
 			const suggestedProgrammingLanguages = response.data;
 			commit('SET_TOOLS', suggestedProgrammingLanguages);
 			commit('UPDATE_HAS_FORM_SUBMITTED', true);
