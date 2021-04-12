@@ -2,14 +2,14 @@ import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import statisticsData from './modules/statisticsData';
 import startupFormData from './modules/startupFormData';
-import progLangInfoData from './modules/progLangInfoData';
+import progLangInfo from './modules/progLangInfo';
 import startupChoicesData from './modules/startupChoicesData';
 import auth from './modules/auth';
 export const store = createStore({
 	modules: {
 		statisticsData,
 		startupFormData,
-		progLangInfoData,
+		progLangInfo,
 		startupChoicesData,
 		auth,
 	},
