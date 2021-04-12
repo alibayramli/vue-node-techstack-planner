@@ -42,7 +42,8 @@ export default {
 			const fullRouteName = router.currentRoute._rawValue.fullPath;
 			const startupId = fullRouteName
 				.substring(fullRouteName.lastIndexOf('/') + 1);
-			const isDraftStartup = startupId === 'draft';
+			const isDraftStartup = startupId === 'draft'
+				|| fullRouteName.includes('user-startups');
 			if (isDraftStartup) {
 				const choicesByTypes = {} ;
 				state.teamChoices.forEach((choice) => {
@@ -63,6 +64,20 @@ export default {
 				const savedStartup = state.savedChoices
 					.find(startup => startup.startupId === startupId);
 				return savedStartup.choices.team;
+			}
+		},
+		getAllTeamChoicesArePicked(state, getters, rootState, rootGetters) {
+			if (!rootGetters['startupForm/doesDeploymentSpeedMatter']) {
+				return true;
+			} else {
+				const allTeamChoices = rootGetters['statistics/getTeamStatisticsByTypes'];
+				const userPickedTeamChoices = [];
+				getters.getTeamChoicesByTypes.forEach((choiceByHeader) => {
+					choiceByHeader[1].forEach((choiceByType) => {
+						userPickedTeamChoices.push(choiceByType[0]);
+					});
+				});
+				return userPickedTeamChoices.length === allTeamChoices.length;
 			}
 		},
 	},

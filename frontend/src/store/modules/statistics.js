@@ -25,6 +25,12 @@ export default {
 		getTeamStatistics(state) {
 			return state.teamStatistics;
 		},
+		getTeamStatisticsByTypes(state) {
+			const teamChoiesByHeaders = Object
+				.entries(state.teamStatistics)
+				.map(stat => Object.keys(stat[1]));
+			return [].concat.apply([], teamChoiesByHeaders);
+		},
 	},
 	mutations: {
 		SET_GENERAL_STATISTICS(state, stats) {

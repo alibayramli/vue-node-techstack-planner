@@ -27,6 +27,7 @@
 							<button type="button"
 								class="btn btn-primary"
 								@click="viewStartup('draft')"
+								:disabled="!areAllTeamChoicesPicked"
 							>
 								View
 							</button>
@@ -72,6 +73,7 @@ export default {
 	computed: {
 		...mapGetters('startupChoices', {
 			savedStartups: 'getSavedChoices',
+			areAllTeamChoicesPicked: 'getAllTeamChoicesArePicked',
 		}),
 		...mapGetters('startupForm', {
 			draftStartupName: 'getName',
