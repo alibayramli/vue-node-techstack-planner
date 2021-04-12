@@ -33,7 +33,7 @@ export default {
 			tools: 'getTools',
 			hasFormSubmitted: 'hasFormSubmitted',
 		}),
-		...mapGetters('statisticsData', {
+		...mapGetters('statistics', {
 			generalStats: 'getIsPickableGeneralStatistics',
 		}),
 	},

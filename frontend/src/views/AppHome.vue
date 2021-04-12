@@ -24,7 +24,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('statisticsData', {
+		...mapGetters('statistics', {
 			generalStats: 'getIsPickableIgnoredGeneralStatistics',
 		}),
 	},

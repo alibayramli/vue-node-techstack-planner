@@ -23,7 +23,7 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions('statisticsData', {
+		...mapActions('statistics', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
 		...mapActions('startupFormData', {
