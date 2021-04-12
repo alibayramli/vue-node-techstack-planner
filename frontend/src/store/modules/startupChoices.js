@@ -132,8 +132,8 @@ export default {
 					},
 				};
 				await backend.post('startup/new-startup', newData);
-				commit('startupFormData/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
-				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
+				commit('startupForm/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
+				commit('startupForm/RESET_STARTUP_FORM', null, { root: true });
 				commit('RESET_STARTUP_CHOICES');
 				router.push('/user-startups');
 			} catch (err) {
@@ -176,9 +176,9 @@ export default {
 		},
 		deleteDraftStartup({ commit }) {
 			try {
-				commit('startupFormData/RESET_STARTUP_FORM', null, { root: true });
+				commit('startupForm/RESET_STARTUP_FORM', null, { root: true });
 				commit('RESET_STARTUP_CHOICES');
-				commit('startupFormData/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
+				commit('startupForm/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
 				router.push('/user-startups');
 			} catch (err) {
 				// eslint-disable-next-line no-console

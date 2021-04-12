@@ -69,7 +69,7 @@ export default {
 			generalChoices: 'getGeneralChoices',
 			teamChoices: 'getTeamChoices',
 		}),
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			startupBudget: 'getBudget',
 		}),
 		hasEnoughBudgetToPick() {

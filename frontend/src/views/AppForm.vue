@@ -109,7 +109,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
@@ -117,55 +117,55 @@ export default {
 		}),
 		startupName: {
 			get() {
-				return this.$store.state.startupFormData.name;
+				return this.$store.state.startupForm.name;
 			},
 			set(value) {
-				this.$store.commit('startupFormData/UPDATE_NAME', value);
+				this.$store.commit('startupForm/UPDATE_NAME', value);
 			},
 		},
 		startupSize: {
 			get() {
-				return this.$store.getters['startupFormData/getSize'];
+				return this.$store.getters['startupForm/getSize'];
 			},
 			set(value) {
-				this.$store.commit('startupFormData/UPDATE_SIZE', value);
+				this.$store.commit('startupForm/UPDATE_SIZE', value);
 			},
 		},
 		startupLocation: {
 			get() {
-				return this.$store.getters['startupFormData/getLocation'];
+				return this.$store.getters['startupForm/getLocation'];
 			},
 			set(value) {
-				this.$store.commit('startupFormData/UPDATE_LOCATION', value);
+				this.$store.commit('startupForm/UPDATE_LOCATION', value);
 			},
 		},
 		startupField: {
 			get() {
-				return this.$store.getters['startupFormData/getField'];
+				return this.$store.getters['startupForm/getField'];
 			},
 			set(value) {
-				this.$store.commit('startupFormData/UPDATE_FIELD', value);
+				this.$store.commit('startupForm/UPDATE_FIELD', value);
 			},
 		},
 		startupDeploymentSpeed: {
 			get() {
-				return this.$store.getters['startupFormData/getDeploymentSpeed'];
+				return this.$store.getters['startupForm/getDeploymentSpeed'];
 			},
 			set(value) {
-				this.$store.commit('startupFormData/UPDATE_DEPLOYMENT_SPEED', value);
+				this.$store.commit('startupForm/UPDATE_DEPLOYMENT_SPEED', value);
 			},
 		},
 		startupBudget: {
 			get() {
-				return this.$store.getters['startupFormData/getBudget'];
+				return this.$store.getters['startupForm/getBudget'];
 			},
 			set(value) {
-				this.$store.commit('startupFormData/UPDATE_BUDGET', value);
+				this.$store.commit('startupForm/UPDATE_BUDGET', value);
 			},
 		},
 	},
 	methods: {
-		...mapActions('startupFormData', {
+		...mapActions('startupForm', {
 			createStartupQuery: 'createStartupQuery',
 		}),
 		async submitForm() {

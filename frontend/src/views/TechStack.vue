@@ -29,7 +29,7 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			tools: 'getTools',
 			hasFormSubmitted: 'hasFormSubmitted',
 		}),

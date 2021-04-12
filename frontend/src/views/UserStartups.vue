@@ -73,7 +73,7 @@ export default {
 		...mapGetters('startupChoices', {
 			savedStartups: 'getSavedChoices',
 		}),
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			draftStartupName: 'getName',
 			hasFormSubmitted: 'hasFormSubmitted',
 		}),

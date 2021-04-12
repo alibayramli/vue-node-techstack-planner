@@ -190,7 +190,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			locations: 'getAvailableLocations',
 			sizes: 'getAvailableSizes',
 			fields: 'getAvailableFields',
@@ -200,7 +200,7 @@ export default {
 			generalChoicesByTypes: 'getGeneralChoicesByTypes',
 			teamChoicesByTypes: 'getTeamChoicesByTypes',
 		}),
-		...mapGetters('startupFormData', {
+		...mapGetters('startupForm', {
 			formInfoFromStore: 'getStartupFormData',
 		}),
 	},

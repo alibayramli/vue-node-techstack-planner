@@ -26,7 +26,7 @@ export default {
 		...mapActions('statistics', {
 			statisticsInfos: 'loadStatisticsInfos',
 		}),
-		...mapActions('startupFormData', {
+		...mapActions('startupForm', {
 			formInfos: 'loadFormInfos',
 		}),
 		...mapActions('startupChoices', {
