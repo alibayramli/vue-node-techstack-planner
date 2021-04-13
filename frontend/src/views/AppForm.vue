@@ -76,15 +76,17 @@
 					required v-model="startupBudget"
 					@keypress=" $isValidStartupBudget($event,startupBudget)"
 				>
-				<div class="form-text">Please include average annual salary per person. (e.g 65 -> 65000 USD)</div>
+				<div class="form-text">
+					Please include max yearly salary per person.
+					(e.g 65 -> 65000 USD)
+				</div>
 			</div>
-
 			<div class="mb-3">
 				<button
 					class="btn btn-primary"
 					:disabled="(!startupName || !startupField || !startupDeploymentSpeed || !startupBudget )
 						|| isSubmitFormClicked"
-					@click="submitForm"
+					@click="!hasFormSubmitted? submitForm() : showModal()"
 				>
 					Submit form
 					<div
@@ -95,19 +97,38 @@
 				</button>
 			</div>
 		</div>
+		<Modal
+			v-if="isModalVisible"
+			@closed="closeModal"
+			@approved="submitForm()"
+		>
+			<template #header>
+				Re-submit form
+			</template>
+
+			<template #body>
+				Previous details are not saved yet.
+				Are you sure to override?
+			</template>
+		</Modal>
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import Modal from '../commons/components/AppModal.vue';
 
 export default {
 	name: 'AppForm',
+	components: {
+		Modal,
+	},
 	data() {
 		return {
 			isSubmitted: false,
 			isSubmitFormSpinnerActive: false,
 			isSubmitFormClicked: false,
+			isModalVisible: false,
 		};
 	},
 	computed: {
@@ -117,6 +138,7 @@ export default {
 			fields: 'getAvailableFields',
 			fastDeploymentInfos: 'getFastDeploymentInfos',
 			doesDeploymentSpeedMatter: 'doesDeploymentSpeedMatter',
+			hasFormSubmitted: 'hasFormSubmitted',
 		}),
 		startupName: {
 			get() {
@@ -179,6 +201,12 @@ export default {
 			this.isSubmitted = true;
 			this.isSubmitFormSpinnerActive = false;
 			this.isSubmitFormClicked = false;
+		},
+		showModal() {
+			this.isModalVisible = true;
+		},
+		closeModal() {
+			this.isModalVisible = false;
 		},
 	},
 };
