@@ -1,7 +1,17 @@
 <template>
 	<div v-if="hasFormSubmitted">
-		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools" is-pickable-general has-details-card is-expanded-by-default />
+		<h5 style="margin: 2rem">
+			General Choices
+		</h5>
+		<StatisticsTable type="suggestedProgrammingLanguages" :stat="tools"
+			is-pickable-general
+			has-details-card
+			is-expanded-by-default
+		/>
 		<GeneralStatisticsAccordion :is-pickable-general="true" :stats-obj="generalStats" />
+		<h5 style="margin: 2rem">
+			Team Choices
+		</h5>
 		<TeamStatisticsAccordion :is-pickable-team="true" />
 	</div>
 	<div v-else>
