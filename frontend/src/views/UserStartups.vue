@@ -4,46 +4,100 @@
 			<div class="spinner-border" role="status" />
 		</div>
 		<div v-else>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5" v-if="savedStartups.length">
-				<button type="button" class="btn btn-primary"
+			<div class="mb-3">
+				<button
+					type="button"
+					style="margin:1rem"
+					class="btn btn-primary"
 					@click="viewPieChart('startupSize')"
 				>
 					Sizes PieChart
 				</button>
-				<button type="button" class="btn btn-primary"
+				<button
+					type="button"
+					class="btn btn-primary"
 					@click="viewPieChart('startupLocation')"
 				>
 					Locations PieChart
 				</button>
 			</div>
 			<div class="row container" style="margin:5rem auto">
-				<div class="col-12 col-sm-6 col-lg-4 d-flex pb-3"
+				<div class="col-12 col-sm-6 col-lg-3 d-flex pb-3"
 					v-if="hasFormSubmitted && draftStartupName"
 				>
-					<div class="card">
+					<div class="card w-100">
 						<div class="card-body">
-							<h5 class="card-title">Name of the startup: <b>{{ draftStartupName }}</b></h5>
-							<p class="card-text">Creation date:  <strong>Draft, make sure to save data!</strong></p>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									Name:
+									<b>
+										{{ draftStartupName }}
+									</b>
+								</li>
+								<li class="list-group-item">
+									Does speed matter:
+									<b>
+										{{ doesDraftStartupDeploymentSpeedMatter }}
+									</b>
+								</li>
+								<li class="list-group-item">
+									Field:
+									<b>
+										{{ $convertToStartCase(draftStartupField) }}
+									</b>
+								</li>
+							</ul>
+							<hr>
 							<button type="button"
 								class="btn btn-primary"
 								@click="viewStartup('draft')"
+								:disabled="!areAllTeamChoicesPicked"
 							>
 								View
 							</button>
+							<div class="form-text" v-if="!areAllTeamChoicesPicked">
+								Please note you need to check all
+								team choices to view/save the startup details
+							</div>
+						</div>
+						<div class="card-footer text-muted">
+							Draft
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-sm-6 col-lg-4 d-flex pb-3" v-for="startup of savedStartups" :key="startup">
-					<div class="card" v-if="savedStartups.length">
+				<div class="col-12 col-sm-6 col-lg-3 d-flex pb-3" v-for="startup of savedStartups" :key="startup">
+					<div class="card w-100" v-if="savedStartups.length">
 						<div class="card-body">
-							<h5 class="card-title">Name of the startup: <b>{{ startup.startupName }}</b></h5>
-							<p class="card-text">Creation date:  <b>{{ showCreationDate(startup.creationDate) }}</b></p>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									Name:
+									<b>
+										{{ startup.startupName }}
+									</b>
+								</li>
+								<li class="list-group-item">
+									Does speed matter:
+									<b>
+										{{ startup.startupDeploymentSpeed }}
+									</b>
+								</li>
+								<li class="list-group-item">
+									Field:
+									<b>
+										{{ $convertToStartCase(startup.startupField) }}
+									</b>
+								</li>
+							</ul>
+							<hr>
 							<button type="button"
 								class="btn btn-primary"
 								@click="viewStartup(startup.startupId)"
 							>
 								View
 							</button>
+						</div>
+						<div class="card-footer text-muted">
+							{{ showCreationDate(startup.creationDate) }}
 						</div>
 					</div>
 					<br>
@@ -72,9 +126,12 @@ export default {
 	computed: {
 		...mapGetters('startupChoices', {
 			savedStartups: 'getSavedChoices',
+			areAllTeamChoicesPicked: 'getAreAllTeamChoicesPicked',
 		}),
 		...mapGetters('startupForm', {
 			draftStartupName: 'getName',
+			draftStartupField: 'getField',
+			doesDraftStartupDeploymentSpeedMatter: 'getDeploymentSpeed',
 			hasFormSubmitted: 'hasFormSubmitted',
 		}),
 	},

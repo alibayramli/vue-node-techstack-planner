@@ -32,6 +32,9 @@ export default {
 		getDeploymentSpeed(state) {
 			return state.deploymentSpeed;
 		},
+		doesDeploymentSpeedMatter(state) {
+			return state.deploymentSpeed === 'yes';
+		},
 		getBudget(state) {
 			return state.budget;
 		},
