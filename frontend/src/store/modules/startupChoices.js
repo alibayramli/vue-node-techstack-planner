@@ -43,7 +43,8 @@ export default {
 			const startupId = fullRouteName
 				.substring(fullRouteName.lastIndexOf('/') + 1);
 			const isDraftStartup = startupId === 'draft'
-				|| fullRouteName.includes('user-startups');
+				|| fullRouteName.includes('user-startups')
+				|| fullRouteName.includes('techstack');
 			if (isDraftStartup) {
 				const choicesByTypes = {} ;
 				state.teamChoices.forEach((choice) => {
@@ -66,17 +67,21 @@ export default {
 				return savedStartup.choices.team;
 			}
 		},
-		getAllTeamChoicesArePicked(state, getters, rootState, rootGetters) {
+		getUserPickedTeamChoices(state, getters) {
+			const choices = [];
+			getters.getTeamChoicesByTypes.forEach((choiceByHeader) => {
+				choiceByHeader[1].forEach((choiceByType) => {
+					choices.push(choiceByType[0]);
+				});
+			});
+			return choices;
+		},
+		getAreAllTeamChoicesPicked(state, getters, rootState, rootGetters) {
 			if (!rootGetters['startupForm/doesDeploymentSpeedMatter']) {
 				return true;
 			} else {
 				const allTeamChoices = rootGetters['statistics/getTeamStatisticsByTypes'];
-				const userPickedTeamChoices = [];
-				getters.getTeamChoicesByTypes.forEach((choiceByHeader) => {
-					choiceByHeader[1].forEach((choiceByType) => {
-						userPickedTeamChoices.push(choiceByType[0]);
-					});
-				});
+				const userPickedTeamChoices = getters.getUserPickedTeamChoices;
 				return userPickedTeamChoices.length === allTeamChoices.length;
 			}
 		},

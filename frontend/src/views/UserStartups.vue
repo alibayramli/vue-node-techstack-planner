@@ -126,7 +126,7 @@ export default {
 	computed: {
 		...mapGetters('startupChoices', {
 			savedStartups: 'getSavedChoices',
-			areAllTeamChoicesPicked: 'getAllTeamChoicesArePicked',
+			areAllTeamChoicesPicked: 'getAreAllTeamChoicesPicked',
 		}),
 		...mapGetters('startupForm', {
 			draftStartupName: 'getName',

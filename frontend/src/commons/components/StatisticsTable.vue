@@ -12,6 +12,10 @@
 						:aria-controls="['#collapse-' + type]"
 					>
 						{{ $convertToStartCase(type) }}
+						<StatisticsTableFastDeploymentInfo
+							:team-choice-type="type"
+							v-if="isPickableTeam && doesDeploymentSpeedMatter"
+						/>
 					</button>
 				</h2>
 				<div
@@ -27,11 +31,6 @@
 						>
 							Barchart view
 						</button>
-						<span
-							v-if="isPickableTeam && doesDeploymentSpeedMatter"
-						>
-							For fast deployment, please choose at least one of the tools below
-						</span>
 						<br>
 						<table class="table">
 							<thead>
@@ -58,9 +57,22 @@
 									<td scope="row">{{ index + 1 }}</td>
 									<td scope="row">
 										{{ type === 'developerType' ? $convertToStartCase(name) : name }}
-										<ProgLangInfo v-if="hasDetailsCard" :name="name" />
-										<StatisticsTableGeneralChoiceOptions v-if="isPickableGeneral" :name="name" :type="type" :cost="parseInt(cost)" />
-										<StatisticsTableTeamChoiceOptions v-if="isPickableTeam" :header="header" :type="type" :name="name" />
+										<ProgLangInfo
+											v-if="hasDetailsCard"
+											:name="name"
+										/>
+										<StatisticsTableGeneralChoiceOptions
+											v-if="isPickableGeneral"
+											:name="name"
+											:type="type"
+											:cost="parseInt(cost)"
+										/>
+										<StatisticsTableTeamChoiceOptions
+											v-if="isPickableTeam"
+											:header="header"
+											:type="type"
+											:name="name"
+										/>
 									</td>
 									<td scope="row"
 										v-if="popularity
@@ -109,12 +121,14 @@ import { mapGetters } from 'vuex';
 import ProgLangInfo from './ProgLangInfo.vue';
 import StatisticsTableGeneralChoiceOptions from './StatisticsTableGeneralChoiceOptions.vue';
 import StatisticsTableTeamChoiceOptions from './StatisticsTableTeamChoiceOptions.vue';
+import StatisticsTableFastDeploymentInfo from './StatisticsTableFastDeploymentInfo.vue';
 export default {
 	name: 'StatisticsTable',
 	components: {
 		ProgLangInfo,
 		StatisticsTableGeneralChoiceOptions,
 		StatisticsTableTeamChoiceOptions,
+		StatisticsTableFastDeploymentInfo,
 	},
 	props: {
 		stat: {
