@@ -27,6 +27,12 @@
 						>
 							Barchart view
 						</button>
+						<span
+							v-if="isPickableTeam && doesDeploymentSpeedMatter"
+						>
+							For fast deployment, please choose at least one of the tools below
+						</span>
+						<br>
 						<table class="table">
 							<thead>
 								<tr>
@@ -99,6 +105,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ProgLangInfo from './ProgLangInfo.vue';
 import StatisticsTableGeneralChoiceOptions from './StatisticsTableGeneralChoiceOptions.vue';
 import StatisticsTableTeamChoiceOptions from './StatisticsTableTeamChoiceOptions.vue';
@@ -139,6 +146,11 @@ export default {
 		return {
 			limit: 5,
 		};
+	},
+	computed: {
+		...mapGetters('startupForm', {
+			doesDeploymentSpeedMatter: 'doesDeploymentSpeedMatter',
+		}),
 	},
 	methods: {
 		viewBarChart(header, type) {
