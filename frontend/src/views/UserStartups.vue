@@ -4,13 +4,18 @@
 			<div class="spinner-border" role="status" />
 		</div>
 		<div v-else>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5" v-if="savedStartups.length">
-				<button type="button" class="btn btn-primary"
+			<div class="mb-3">
+				<button
+					type="button"
+					style="margin:1rem"
+					class="btn btn-primary"
 					@click="viewPieChart('startupSize')"
 				>
 					Sizes PieChart
 				</button>
-				<button type="button" class="btn btn-primary"
+				<button
+					type="button"
+					class="btn btn-primary"
 					@click="viewPieChart('startupLocation')"
 				>
 					Locations PieChart
@@ -20,7 +25,7 @@
 				<div class="col-12 col-sm-6 col-lg-3 d-flex pb-3"
 					v-if="hasFormSubmitted && draftStartupName"
 				>
-					<div class="card">
+					<div class="card w-100">
 						<div class="card-body">
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item">
@@ -61,7 +66,7 @@
 					</div>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 d-flex pb-3" v-for="startup of savedStartups" :key="startup">
-					<div class="card" v-if="savedStartups.length">
+					<div class="card w-100" v-if="savedStartups.length">
 						<div class="card-body">
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item">

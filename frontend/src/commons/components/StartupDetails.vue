@@ -1,96 +1,86 @@
 <template>
-	<div class="container">
-		<form
-			class="startup-form"
-			@submit.prevent="submit"
-		>
-			<fieldset>
-				<legend>Startup Details</legend>
-				<hr>
-				<div class="mb-3">
-					<label for="size" class="form-label">Startup Name</label>
-					<input type="text" class="form-control form-label"
-						placeholder="Name of the startup"
-						aria-label="Startup Name"
-						required v-model="formInfo.name"
-					>
-				</div>
-
-				<div class="mb-3">
-					<label for="size" class="form-label">Startup size</label>
-					<select
-						class="form-select"
-						aria-label="select"
-						v-model="formInfo.size"
-					>
-						<option v-for="size in sizes" :key="size" :value="size">
-							{{ $convertToStartCase(size) }}
-						</option>
-					</select>
-					<div class="invalid-feedback">Please select</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="location" class="form-label">Startup Location</label>
-					<select
-						class="form-select"
-						aria-label="select"
-						v-model="formInfo.location"
-					>
-						<option
-							v-for="location in locations"
-							:value="location"
-							:key="location"
-						>
-							{{ location }}
-						</option>
-					</select>
-					<div class="invalid-feedback">Please select</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="field" class="form-label">Does Deployment Speed Matter? </label>
-					<select
-						class="form-select"
-						required
-						aria-label="select"
-						disabled
-						v-model="formInfo.deploymentSpeed"
-					>
-						<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
-							{{ $convertToStartCase(speed) }}
-						</option>
-					</select>
-					<div class="invalid-feedback">Please select</div>
-				</div>
-				<div class="mb-3">
-					<label for="field" class="form-label">Startup Field</label>
-					<select
-						class="form-select"
-						required
-						aria-label="select"
-						v-model="formInfo.field"
-					>
-						<option v-for="field in fields" :key="field" :value="field">
-							{{ $convertToStartCase(field) }}
-						</option>
-					</select>
-					<div class="invalid-feedback">Please select</div>
-				</div>
-				<div class="mb-3">
-					<label for="budget" class="form-label">
-						Max Budget Per Person (yearly, in USD)
-					</label>
-					<input type="text" class="form-control form-label"
-						placeholder="Startup Budget"
-						aria-label="Budget"
-						required
-						disabled
-						v-model="formInfo.budget"
-					>
-				</div>
-			</fieldset>
-		</form>
+	<div class="container mt-5">
+		<legend>Startup Details</legend>
+		<hr>
+		<div class="mb-3">
+			<label for="size" class="form-label">Startup Name</label>
+			<input type="text" class="form-control form-label"
+				placeholder="Name of the startup"
+				aria-label="Startup Name"
+				required v-model="formInfo.name"
+			>
+		</div>
+		<div class="mb-3">
+			<label for="size" class="form-label">Startup size</label>
+			<select
+				class="form-select"
+				aria-label="select"
+				v-model="formInfo.size"
+			>
+				<option v-for="size in sizes" :key="size" :value="size">
+					{{ $convertToStartCase(size) }}
+				</option>
+			</select>
+			<div class="invalid-feedback">Please select</div>
+		</div>
+		<div class="mb-3">
+			<label for="location" class="form-label">Startup Location</label>
+			<select
+				class="form-select"
+				aria-label="select"
+				v-model="formInfo.location"
+			>
+				<option
+					v-for="location in locations"
+					:value="location"
+					:key="location"
+				>
+					{{ location }}
+				</option>
+			</select>
+			<div class="invalid-feedback">Please select</div>
+		</div>
+		<div class="mb-3">
+			<label for="field" class="form-label">Does Deployment Speed Matter? </label>
+			<select
+				class="form-select"
+				required
+				aria-label="select"
+				disabled
+				v-model="formInfo.deploymentSpeed"
+			>
+				<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
+					{{ $convertToStartCase(speed) }}
+				</option>
+			</select>
+			<div class="invalid-feedback">Please select</div>
+		</div>
+		<div class="mb-3">
+			<label for="field" class="form-label">Startup Field</label>
+			<select
+				class="form-select"
+				required
+				aria-label="select"
+				v-model="formInfo.field"
+			>
+				<option v-for="field in fields" :key="field" :value="field">
+					{{ $convertToStartCase(field) }}
+				</option>
+			</select>
+			<div class="invalid-feedback">Please select</div>
+		</div>
+		<div class="mb-3">
+			<label for="budget" class="form-label">
+				Max Budget Per Person (yearly, in USD)
+			</label>
+			<input type="text" class="form-control form-label"
+				placeholder="Startup Budget"
+				aria-label="Budget"
+				required
+				disabled
+				v-model="formInfo.budget"
+			>
+		</div>
 		<div class="accordion accordion-flush" id="accordionFlushExample">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="flush-headingOne">
