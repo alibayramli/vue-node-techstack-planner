@@ -54,6 +54,7 @@
 						class="form-select"
 						required
 						aria-label="select"
+						disabled
 						v-model="formInfo.deploymentSpeed"
 					>
 						<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
@@ -77,11 +78,15 @@
 					<div class="invalid-feedback">Please select</div>
 				</div>
 				<div class="mb-3">
-					<label for="budget" class="form-label">Startup Budget</label>
+					<label for="budget" class="form-label">
+						Max Budget Per Person (yearly, in USD)
+					</label>
 					<input type="text" class="form-control form-label"
-						placeholder="Startup Budget" aria-label="Budget"
-						required v-model="formInfo.budget"
-						@keypress="$isValidStartupBudget($event,formInfo.budget)"
+						placeholder="Startup Budget"
+						aria-label="Budget"
+						required
+						disabled
+						v-model="formInfo.budget"
 					>
 				</div>
 			</fieldset>
@@ -100,7 +105,8 @@
 							<ul class="list-group list-group-flush">
 								<li v-for="val of values" class="list-group-item" :key="val">{{ val }}</li>
 							</ul>
-							<hr><br>
+							<hr>
+							<br>
 						</div>
 						<div v-if="!generalChoicesByTypes.length">
 							No tools
@@ -123,7 +129,8 @@
 								<ul class="list-group list-group-flush">
 									<li v-for="val of values" class="list-group-item" :key="val">{{ val }}</li>
 								</ul>
-								<hr><br>
+								<hr>
+								<br>
 							</div>
 						</div>
 						<div v-if="!teamChoicesByTypes.length">
