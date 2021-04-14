@@ -10,6 +10,7 @@ import ProgLangInfoDetails from '../commons/components/ProgLangInfoDetails.vue';
 import StartupDetails from '../commons/components/StartupDetails.vue';
 import BarChart from '../commons/components/BarChart.vue';
 import PieChart from '../commons/components/PieChart.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -90,6 +91,11 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
+		},
+		{
+			name: 'not-found',
+			path: '/:catchAll(.*)*',
+			component: PageNotFound,
 		},
 	],
 });
