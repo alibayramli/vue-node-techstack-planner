@@ -10,6 +10,7 @@ export default {
 		accessToken: '',
 		refreshToken: '',
 		errorMessage: '',
+		toastDuration: 1000,
 	},
 	getters: {
 		getFullName(state) {
@@ -62,18 +63,27 @@ export default {
 		},
 	},
 	actions: {
-		async sendSignupInfo({ commit, state }) {
+		async sendSignupInfo({ commit, state }, { vm }) {
 			try {
 				const { fullName, email, password, confirmedPassword } = state;
 				const newData = { fullName, email, password, confirmedPassword };
 				await backend.post('auth/signup', newData);
 				commit('UPDATE_ERROR_MESSAGE', '');
-				router.push('/');
+				vm.$toast.success('Account created. Sign in to use your account', {
+					position: 'top-right',
+				});
+				setTimeout(() => {
+					router.push('/');
+				}, state.toastDuration);
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.title);
+				vm.$toast.error(state.errorMessage || 'Oops there is something wrong.', {
+					position: 'top-right',
+					duration: 2000,
+				});
 			}
 		},
-		async sendLoginInfo({ commit, state }) {
+		async sendLoginInfo({ commit, state }, { vm }) {
 			try {
 				const { email, password } = state;
 				const newData = { email, password };
@@ -83,19 +93,37 @@ export default {
 				commit('SET_ACCESS_TOKEN', accessToken);
 				commit('SET_REFRESH_TOKEN', refreshToken);
 				commit('UPDATE_ERROR_MESSAGE', '');
-				router.go();
+				vm.$toast.success('You are now logged in', {
+					position: 'top-right',
+				});
+				setTimeout(() => {
+					router.go();
+				}, state.toastDuration);
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
+				vm.$toast.error(state.errorMessage || 'Oops there is something wrong.', {
+					position: 'top-right',
+					duration: 1000,
+				});
 			}
 		},
-		async sendLogOutInfo({ commit, state }) {
+		async sendLogOutInfo({ commit, state }, { vm }) {
 			try {
 				const { refreshToken } = state;
 				await backend.delete('auth/logout', { params: { refreshToken } });
 				commit('DESTROY_TOKENS');
-				router.go();
+				vm.$toast.info('You are now logged out.', {
+					position: 'top-right',
+				});
+				setTimeout(() => {
+					router.go();
+				}, state.toastDuration);
 			} catch (err) {
 				commit('UPDATE_ERROR_MESSAGE', err.response.data.error);
+				vm.$toast.error(state.errorMessage || 'Oops there is something wrong.', {
+					position: 'top-right',
+					duration: 1000,
+				});
 			}
 		},
 		async refreshTokens({ commit, state }) {

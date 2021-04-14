@@ -34,7 +34,6 @@
 				v-if="isLoginSpinnerActiveAuthMixin"
 			/>
 		</button>
-		<p class="form-text text-muted">{{ errorAuthMixin }}</p>
 	</div>
 </template>
 
