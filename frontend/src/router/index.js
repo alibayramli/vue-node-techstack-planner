@@ -10,6 +10,7 @@ import ProgLangInfoDetails from '../commons/components/ProgLangInfoDetails.vue';
 import StartupDetails from '../commons/components/StartupDetails.vue';
 import BarChart from '../commons/components/BarChart.vue';
 import PieChart from '../commons/components/PieChart.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -72,6 +73,19 @@ export const router = createRouter({
 			path: '/startup/:id',
 			props: true,
 			component: StartupDetails,
+			beforeEnter: (to, from, next) => {
+				function isValidUrl(url) {
+					const startupIds = store.getters['startupChoices/getSavedChoices']
+						.map(startup => startup.startupId)
+						.concat([ 'draft' ]);
+					return startupIds.includes(url);
+				}
+				if (!isValidUrl(to.params.id)) {
+					next({ name: 'not-found' });
+				} else {
+					next();
+				}
+			},
 			meta: {
 				requiresAuth: true,
 			},
@@ -90,6 +104,11 @@ export const router = createRouter({
 			meta: {
 				requiresAuth: true,
 			},
+		},
+		{
+			name: 'not-found',
+			path: '/:catchAll(.*)*',
+			component: PageNotFound,
 		},
 	],
 });

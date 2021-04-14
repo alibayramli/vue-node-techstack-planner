@@ -1,5 +1,5 @@
 <template>
-	<p class="d-flex p-3 ">
+	<p class="d-flex p-3">
 		<button type="button" class="btn btn-primary"
 			@click="goBackToPreviousLink()"
 		>
