@@ -69,11 +69,14 @@ export default {
 		randomRgba() {
 			if (this.allStartupTypes.length) {
 				const rgbUpperLimit = 256;
-				const randomR = Math.random() * rgbUpperLimit;
-				const randomG = Math.random() * rgbUpperLimit;
-				const randomB = Math.random() * rgbUpperLimit;
 				return this.allStartupTypes
-					.map(() => `rgb(${randomR}, ${randomG}, ${randomB})`);
+					.map(() => {
+						return `rgb(
+							${ Math.random() * rgbUpperLimit}, 
+							${ Math.random() * rgbUpperLimit}, 
+							${ Math.random() * rgbUpperLimit}
+							)`;
+					});
 			} else {
 				return null;
 			}
