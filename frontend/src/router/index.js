@@ -73,6 +73,19 @@ export const router = createRouter({
 			path: '/startup/:id',
 			props: true,
 			component: StartupDetails,
+			beforeEnter: (to, from, next) => {
+				function isValidUrl(url) {
+					const startupIds = store.getters['startupChoices/getSavedChoices']
+						.map(startup => startup.startupId)
+						.concat([ 'draft' ]);
+					return startupIds.includes(url);
+				}
+				if (!isValidUrl(to.params.id)) {
+					next({ name: 'not-found' });
+				} else {
+					next();
+				}
+			},
 			meta: {
 				requiresAuth: true,
 			},
