@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@meforma/vue-toaster": "^1.2.2",
     "@popperjs/core": "^2.9.2",
     "@vitejs/plugin-vue": "^1.1.5",
     "axios": "^0.21.1",

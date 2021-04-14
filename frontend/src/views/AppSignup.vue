@@ -30,12 +30,11 @@
 			<label for="name" class="form-label">Confirm Password</label>
 			<input type="password" class="form-control" v-model="reTypedPassWordAuthMixin">
 			<div class="form-text"
-				v-if="passwordAuthMixin && reTypedPassWordAuthMixin && !IsPasswordConfirmedAuthMixin"
+				v-if="passwordAuthMixin
+					&& reTypedPassWordAuthMixin
+					&& !IsPasswordConfirmedAuthMixin"
 			>
 				<span>Passwords don't match </span> <br>
-			</div>
-			<div class="form-text" v-if="isValidPasswordAuthMixin && IsPasswordConfirmedAuthMixin">
-				Good to go :)
 			</div>
 		</div>
 		<button
@@ -51,7 +50,6 @@
 				v-if="isSignupSpinnerActiveAuthMixin"
 			/>
 		</button>
-		<p class="form-text text-muted">{{ errorAuthMixin }}</p>
 	</div>
 </template>
 

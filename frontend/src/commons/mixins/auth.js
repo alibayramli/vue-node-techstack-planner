@@ -12,7 +12,6 @@ export default {
 	},
 	computed: {
 		...mapGetters('auth', {
-			errorAuthMixin: 'getErrorMessage',
 			isLoggedInAuthMixin: 'isLoggedIn',
 		}),
 		fullNameAuthMixin: {
@@ -72,14 +71,17 @@ export default {
 			return this.passwordAuthMixin === this.reTypedPassWordAuthMixin;
 		},
 		isValidSignupFormAuthMixin() {
-			return this.fullNameAuthMixin.length > 0 && this.isValidEmailAuthMixin
-                && this.isValidPasswordAuthMixin && this.IsPasswordConfirmedAuthMixin
+			return this.fullNameAuthMixin.length > 0
+				&& this.isValidEmailAuthMixin
+                && this.isValidPasswordAuthMixin
+				&& this.IsPasswordConfirmedAuthMixin
                 && !this.isSignupButtonClickedAuthMixin;
 		},
 		isValidLoginFormAuthMixin() {
 			return this.isValidEmailAuthMixin
                 && this.isValidPasswordAuthMixin
-                && !this.isLoginButtonClickedAuthMixin;
+                && !this.isLoginButtonClickedAuthMixin
+				&& !this.isLoggedInAuthMixin;
 		},
 	},
 	methods: {
@@ -91,19 +93,19 @@ export default {
 		async submitSignupAuthMixin() {
 			this.isSignupSpinnerActiveAuthMixin = true;
 			this.isSignupButtonClickedAuthMixin = true;
-			await this.sendSignupInfoAuthMixin();
+			await this.sendSignupInfoAuthMixin({ vm: this });
 			this.isSignupSpinnerActiveAuthMixin = false;
 			this.isSignupButtonClickedAuthMixin = false;
 		},
 		async submitLoginAuthMixin() {
 			this.isLoginSpinnerActiveAuthMixin = true;
 			this.isLoginButtonClickedAuthMixin = true;
-			await this.sendLoginInfoAuthMixin();
+			await this.sendLoginInfoAuthMixin({ vm: this });
 			this.isLoginSpinnerActiveAuthMixin = false;
 			this.isLoginButtonClickedAuthMixin = false;
 		},
 		async submitLogOutAuthMixin() {
-			await this.sendLogOutInfoAuthMixin();
+			await this.sendLogOutInfoAuthMixin({ vm: this });
 		},
 	},
 };
