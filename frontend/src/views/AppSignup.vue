@@ -2,6 +2,11 @@
 	<div class="signup-form">
 		<legend>Sign up</legend>
 		<hr>
+		<div class="login-link">
+			Have an account?
+			<router-link to="/">Sign in</router-link> instead
+		</div>
+
 		<div class="mb-3">
 			<label for="name" class="form-label">Name</label>
 			<input type="text" class="form-control" v-model="fullNameAuthMixin">
@@ -64,6 +69,7 @@ export default {
 
 <style scoped>
 .signup-form {
+  position: relative;
   margin: 1rem auto;
   padding:1rem;
   max-width: 50rem;
@@ -71,5 +77,12 @@ export default {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(41, 0, 60, 0.24);
+}
+@media screen and (min-width: 700px) {
+  .signup-form .login-link {
+	position: absolute;
+	top: 1.4rem;
+	right: 1.4rem;
+	}
 }
 </style>
