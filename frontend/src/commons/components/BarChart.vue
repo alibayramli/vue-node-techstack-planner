@@ -6,6 +6,13 @@
 			Go back
 		</button>
 	</p>
+	<p>
+		<span v-if="accordionHeader">
+			Header:
+			{{ $convertToStartCase(accordionHeader) }}
+		</span>
+	</p>
+	Type: {{ $convertToStartCase(type) }}
 	<div class="chart" v-if="chartStats">
 		<Chart :chart-data="chartData" :chart-options="chartOptions" :chart-type="chartType" />
 	</div>
@@ -33,6 +40,9 @@ export default {
 			generalStats: 'getIsPickableIgnoredGeneralStatistics',
 			teamStats: 'getTeamStatistics',
 		}),
+		accordionHeader() {
+			return this.$route.query.header;
+		},
 		chartStats() {
 			const header = this.$route.query.header;
 			if (!header) {
