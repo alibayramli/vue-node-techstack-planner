@@ -14,7 +14,8 @@
 			<label
 				for="name"
 				class="form-label"
-			>Name*
+			>
+				Name*
 			</label>
 			<input
 				type="text"
@@ -26,7 +27,8 @@
 			<label
 				for="name"
 				class="form-label"
-			>Email*
+			>
+				Email*
 			</label>
 			<input
 				class="form-control"
@@ -43,7 +45,8 @@
 			<label
 				for="name"
 				class="form-label"
-			>Password*
+			>
+				Password*
 			</label>
 			<input
 				type="password"
@@ -57,15 +60,18 @@
 				<span>Please include:</span> <br>
 				<span
 					v-if="!passwordContainsCapitalLetterAuthMixin"
-				> capital letter(s)
+				>
+					capital letter(s)
 				</span>
 				<span
 					v-if="!passwordContainsNumberAuthMixin"
-				>number(s)
+				>
+					number(s)
 				</span>
 				<span
 					v-if="!passwordContainsSpecialLetterAuthMixin"
-				> special character(s)
+				>
+					special character(s)
 				</span>
 				<span
 					v-if="!passwordContainsMinCharactersAuthMixin"
@@ -77,7 +83,8 @@
 				<br>
 				<span
 					v-if="!passwordContainsSpecialLetterAuthMixin"
-				> special character(s): !@#$%^&*
+				>
+					special character(s): !@#$%^&*
 				</span>
 			</div>
 		</div>
@@ -85,7 +92,8 @@
 			<label
 				for="name"
 				class="form-label"
-			>Confirm Password*
+			>
+				Confirm Password*
 			</label>
 			<input
 				type="password"
@@ -98,7 +106,7 @@
 					&& reTypedPassWordAuthMixin
 					&& !IsPasswordConfirmedAuthMixin"
 			>
-				<span>Passwords don't match </span> <br>
+				Passwords don't match
 			</div>
 		</div>
 		<button
