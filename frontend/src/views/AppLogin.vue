@@ -3,22 +3,67 @@
 		<legend>Login</legend>
 		<hr>
 		<div class="mb-3">
-			<label for="name" class="form-label">Email</label>
-			<input class="form-control" v-model="emailAuthMixin">
-			<div class="form-text" v-if="emailAuthMixin && !isValidEmailAuthMixin">
+			<label
+				for="name"
+				class="form-label"
+			>
+				Email*
+			</label>
+			<input
+				class="form-control"
+				v-model="emailAuthMixin"
+			>
+			<div
+				class="form-text"
+				v-if="emailAuthMixin && !isValidEmailAuthMixin"
+			>
 				Invalid email.
 			</div>
 		</div>
 		<div class="mb-3">
-			<label for="name" class="form-label">Password</label>
-			<input type="password" class="form-control" v-model="passwordAuthMixin">
-			<div class="form-text" v-if="passwordAuthMixin && !isValidPasswordAuthMixin">
-				<span>Please include:</span> <br>
-				<span v-if="!passwordContainsCapitalLetterAuthMixin"> capital letter(s) </span>
-				<span v-if="!passwordContainsNumberAuthMixin">number(s) </span>
-				<span v-if="!passwordContainsSpecialLetterAuthMixin"> special character(s) </span>
-				<span v-if="!passwordContainsMinCharactersAuthMixin"> min length of
-					{{ minPasswordCharactersAuthMixin }} characters
+			<label
+				for="name"
+				class="form-label"
+			>
+				Password*
+			</label>
+			<input
+				type="password"
+				class="form-control"
+				v-model="passwordAuthMixin"
+			>
+			<div
+				class="form-text"
+				v-if="passwordAuthMixin && !isValidPasswordAuthMixin"
+			>
+				Please include: <br>
+				<span
+					v-if="!passwordContainsCapitalLetterAuthMixin"
+				>
+					capital letter(s)
+				</span>
+				<span
+					v-if="!passwordContainsNumberAuthMixin"
+				>
+					number(s)
+				</span>
+				<span
+					v-if="!passwordContainsSpecialLetterAuthMixin"
+				>
+					special character(s)
+				</span>
+				<span
+					v-if="!passwordContainsMinCharactersAuthMixin"
+				>
+					min length of
+					{{ minPasswordCharactersAuthMixin }}
+					characters
+				</span>
+				<br>
+				<span
+					v-if="!passwordContainsSpecialLetterAuthMixin"
+				>
+					special character(s): !@#$%^&*
 				</span>
 			</div>
 		</div>
