@@ -4,37 +4,96 @@
 		<hr>
 		<div class="login-link">
 			Have an account?
-			<router-link to="/">Sign in</router-link> instead
+			<router-link to="/">
+				Sign-in
+			</router-link>
+			instead
 		</div>
 
 		<div class="mb-3">
-			<label for="name" class="form-label">Name</label>
-			<input type="text" class="form-control" v-model="fullNameAuthMixin">
+			<label
+				for="name"
+				class="form-label"
+			>Name*
+			</label>
+			<input
+				type="text"
+				class="form-control"
+				v-model="fullNameAuthMixin"
+			>
 		</div>
 		<div class="mb-3">
-			<label for="name" class="form-label">Email</label>
-			<input class="form-control" v-model="emailAuthMixin">
-			<div class="form-text" v-if="emailAuthMixin && !isValidEmailAuthMixin">
+			<label
+				for="name"
+				class="form-label"
+			>Email*
+			</label>
+			<input
+				class="form-control"
+				v-model="emailAuthMixin"
+			>
+			<div
+				class="form-text"
+				v-if="emailAuthMixin && !isValidEmailAuthMixin"
+			>
 				Invalid email.
 			</div>
 		</div>
 		<div class="mb-3">
-			<label for="name" class="form-label">Password</label>
-			<input type="password" class="form-control" v-model="passwordAuthMixin">
-			<div class="form-text" v-if="passwordAuthMixin && !isValidPasswordAuthMixin">
+			<label
+				for="name"
+				class="form-label"
+			>Password*
+			</label>
+			<input
+				type="password"
+				class="form-control"
+				v-model="passwordAuthMixin"
+			>
+			<div
+				class="form-text"
+				v-if="passwordAuthMixin && !isValidPasswordAuthMixin"
+			>
 				<span>Please include:</span> <br>
-				<span v-if="!passwordContainsCapitalLetterAuthMixin"> capital letter(s) </span>
-				<span v-if="!passwordContainsNumberAuthMixin">number(s) </span>
-				<span v-if="!passwordContainsSpecialLetterAuthMixin"> special character(s) </span>
-				<span v-if="!passwordContainsMinCharactersAuthMixin"> min length of
-					{{ minPasswordCharactersAuthMixin }} characters
+				<span
+					v-if="!passwordContainsCapitalLetterAuthMixin"
+				> capital letter(s)
+				</span>
+				<span
+					v-if="!passwordContainsNumberAuthMixin"
+				>number(s)
+				</span>
+				<span
+					v-if="!passwordContainsSpecialLetterAuthMixin"
+				> special character(s)
+				</span>
+				<span
+					v-if="!passwordContainsMinCharactersAuthMixin"
+				>
+					min length of
+					{{ minPasswordCharactersAuthMixin }}
+					characters
+				</span>
+				<br>
+				<span
+					v-if="!passwordContainsSpecialLetterAuthMixin"
+				> special character(s): !@#$%^&*
 				</span>
 			</div>
 		</div>
 		<div class="mb-3">
-			<label for="name" class="form-label">Confirm Password</label>
-			<input type="password" class="form-control" v-model="reTypedPassWordAuthMixin">
-			<div class="form-text"
+			<label
+				for="name"
+				class="form-label"
+			>Confirm Password*
+			</label>
+			<input
+				type="password"
+				class="form-control"
+				v-model="reTypedPassWordAuthMixin"
+			>
+			<div
+				class="form-text"
 				v-if="passwordAuthMixin
 					&& reTypedPassWordAuthMixin
 					&& !IsPasswordConfirmedAuthMixin"
