@@ -132,7 +132,7 @@
 			<button
 				class="btn btn-primary"
 				:disabled="!isValidStartupForm"
-				@click="!hasFormSubmitted? submitForm() : showModal()"
+				@click="!hasFormSubmitted ? submitForm() : showModal()"
 			>
 				Submit form
 				<div
@@ -239,6 +239,22 @@ export default {
 				&& this.startupDeploymentSpeed
 				&& this.startupBudget
 				&& !this.isSubmitFormClicked;
+		},
+	},
+	watch: {
+		startupSize: {
+			handler(newVal) {
+				if (newVal !== 'small') {
+					this.$store.commit('startupForm/UPDATE_DEPLOYMENT_SPEED', 'yes');
+				}
+			},
+		},
+		startupDeploymentSpeed: {
+			handler(newVal) {
+				if (newVal === 'no') {
+					this.$store.commit('startupForm/UPDATE_SIZE', 'small');
+				}
+			},
 		},
 	},
 	methods: {
