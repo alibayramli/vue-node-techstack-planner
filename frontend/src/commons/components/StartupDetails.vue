@@ -3,28 +3,50 @@
 		<legend>Startup Details</legend>
 		<hr>
 		<div class="mb-3">
-			<label for="size" class="form-label">Startup Name</label>
-			<input type="text" class="form-control form-label"
+			<label
+				for="size"
+				class="form-label"
+			>
+				Startup Name
+			</label>
+			<input
+				type="text"
+				class="form-control form-label"
 				placeholder="Name of the startup"
 				aria-label="Startup Name"
-				required v-model="formInfo.name"
+				required
+				v-model="formInfo.name"
 			>
 		</div>
 		<div class="mb-3">
-			<label for="size" class="form-label">Startup size</label>
+			<label
+				for="size"
+				class="form-label"
+			>
+				Startup size
+			</label>
 			<select
 				class="form-select"
 				aria-label="select"
+				disabled
 				v-model="formInfo.size"
 			>
-				<option v-for="size in sizes" :key="size" :value="size">
+				<option
+					v-for="size in sizes"
+					:key="size"
+					:value="size"
+				>
 					{{ $convertToStartCase(size) }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 		<div class="mb-3">
-			<label for="location" class="form-label">Startup Location</label>
+			<label
+				for="location"
+				class="form-label"
+			>
+				Startup Location
+			</label>
 			<select
 				class="form-select"
 				aria-label="select"
@@ -38,10 +60,14 @@
 					{{ location }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 		<div class="mb-3">
-			<label for="field" class="form-label">Does Deployment Speed Matter? </label>
+			<label
+				for="field"
+				class="form-label"
+			>
+				Does Deployment Speed Matter?
+			</label>
 			<select
 				class="form-select"
 				required
@@ -49,14 +75,22 @@
 				disabled
 				v-model="formInfo.deploymentSpeed"
 			>
-				<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
+				<option
+					v-for="speed in fastDeploymentInfos"
+					:key="speed"
+					:value="speed"
+				>
 					{{ $convertToStartCase(speed) }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 		<div class="mb-3">
-			<label for="field" class="form-label">Startup Field</label>
+			<label
+				for="field"
+				class="form-label"
+			>
+				Startup Field
+			</label>
 			<select
 				class="form-select"
 				required
@@ -67,13 +101,17 @@
 					{{ $convertToStartCase(field) }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 		<div class="mb-3">
-			<label for="budget" class="form-label">
+			<label
+				for="budget"
+				class="form-label"
+			>
 				Max Budget Per Person (yearly, in USD)
 			</label>
-			<input type="text" class="form-control form-label"
+			<input
+				type="text"
+				class="form-control form-label"
 				placeholder="Startup Budget"
 				aria-label="Budget"
 				required
@@ -81,19 +119,47 @@
 				v-model="formInfo.budget"
 			>
 		</div>
-		<div class="accordion accordion-flush" id="accordionFlushExample">
+		<div
+			class="accordion accordion-flush"
+			id="accordionFlushExample"
+		>
 			<div class="accordion-item">
-				<h2 class="accordion-header" id="flush-headingOne">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+				<h2
+					class="accordion-header"
+					id="flush-headingOne"
+				>
+					<button class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseOne"
+						aria-expanded="false"
+						aria-controls="flush-collapseOne"
+					>
 						General Choices
 					</button>
 				</h2>
-				<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+				<div
+					id="flush-collapseOne"
+					class="accordion-collapse collapse"
+					aria-labelledby="flush-headingOne"
+					data-bs-parent="#accordionFlushExample"
+				>
 					<div class="accordion-body">
-						<div v-for="[key, values] of generalChoicesByTypes" :key="key">
-							<h4><strong>{{ key }}</strong></h4>
+						<div
+							v-for="[key, values] of generalChoicesByTypes"
+							:key="key"
+						>
+							<h4>
+								<strong>{{ key }}</strong>
+							</h4>
 							<ul class="list-group list-group-flush">
-								<li v-for="val of values" class="list-group-item" :key="val">{{ val }}</li>
+								<li
+									class="list-group-item"
+									v-for="val of values"
+									:key="val"
+								>
+									{{ val }}
+								</li>
 							</ul>
 							<hr>
 							<br>
@@ -105,19 +171,51 @@
 				</div>
 			</div>
 			<div class="accordion-item">
-				<h2 class="accordion-header" id="flush-headingTwo">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+				<h2
+					class="accordion-header"
+					id="flush-headingTwo"
+				>
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseTwo"
+						aria-expanded="false"
+						aria-controls="flush-collapseTwo"
+					>
 						Team Choices
 					</button>
 				</h2>
-				<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+				<div
+					id="flush-collapseTwo"
+					class="accordion-collapse collapse"
+					aria-labelledby="flush-headingTwo"
+					data-bs-parent="#accordionFlushExample"
+				>
 					<div class="accordion-body">
-						<div v-for="[header, subArr] of teamChoicesByTypes" :key="header">
-							<h4><strong> {{ header }}</strong></h4> <br>
-							<div v-for="[type, values] of subArr" :key="type">
-								<h6><strong> {{ type }}</strong></h6>
+						<div
+							v-for="[header, subArr] of teamChoicesByTypes"
+							:key="header"
+						>
+							<h4>
+								<strong> {{ header }}</strong>
+							</h4>
+							<br>
+							<div
+								v-for="[type, values] of subArr"
+								:key="type"
+							>
+								<h6>
+									<strong> {{ type }}</strong>
+								</h6>
 								<ul class="list-group list-group-flush">
-									<li v-for="val of values" class="list-group-item" :key="val">{{ val }}</li>
+									<li
+										class="list-group-item"
+										v-for="val of values"
+										:key="val"
+									>
+										{{ val }}
+									</li>
 								</ul>
 								<hr>
 								<br>
@@ -135,11 +233,17 @@
 			<button
 				class="btn btn-primary"
 				style="margin:1rem"
-				:disabled="!formInfo.name || !formInfo.deploymentSpeed || !formInfo.budget"
+				:disabled="!isValidStartupContent"
 				@click="storeStartup()"
 			>
-				<span v-if="id === 'draft'">Save startup</span>
-				<span v-else> Update startup</span>
+				<span
+					v-if="id === 'draft'"
+				>
+					Save startup
+				</span>
+				<span v-else>
+					Update startup
+				</span>
 			</button>
 			<button
 				class="btn btn-danger"
@@ -200,6 +304,11 @@ export default {
 		...mapGetters('startupForm', {
 			formInfoFromStore: 'getStartupFormData',
 		}),
+		isValidStartupContent() {
+			return this.formInfo.name
+				&& this.formInfo.deploymentSpeed
+				&& this.formInfo.budget;
+		},
 	},
 	watch: {
 		'formInfo.field': {

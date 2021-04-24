@@ -2,26 +2,45 @@
 	<div class="startup-form">
 		<legend>Tech Stack Specification Form</legend>
 		<div class="mb-3">
-			<input type="text" class="form-control form-label" placeholder="Name of the startup" aria-label="Startup Name" required v-model="startupName">
+			<input
+				type="text"
+				class="form-control form-label"
+				placeholder="Name of the startup"
+				aria-label="Startup Name"
+				required
+				v-model="startupName"
+			>
 		</div>
 
 		<div class="mb-3">
-			<label for="size" class="form-label">Startup size</label>
+			<label
+				for="size"
+				class="form-label"
+			>
+				Startup size
+			</label>
 			<select
 				class="form-select"
-
 				aria-label="select"
 				v-model="startupSize"
 			>
-				<option v-for="size in sizes" :key="size" :value="size">
+				<option
+					v-for="size in sizes"
+					:key="size"
+					:value="size"
+				>
 					{{ $convertToStartCase(size) }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 
 		<div class="mb-3">
-			<label for="location" class="form-label">Startup Location</label>
+			<label
+				for="location"
+				class="form-label"
+			>
+				Startup Location
+			</label>
 			<select
 				class="form-select"
 				aria-label="select"
@@ -35,45 +54,74 @@
 					{{ location }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 
 		<div class="mb-3">
-			<label for="field" class="form-label">Startup Field</label>
+			<label
+				for="field"
+				class="form-label"
+			>
+				Startup Field
+			</label>
 			<select
 				class="form-select"
 				required
 				aria-label="select"
 				v-model="startupField"
 			>
-				<option v-for="field in fields" :key="field" :value="field">
+				<option
+					v-for="field in fields"
+					:key="field"
+					:value="field"
+				>
 					{{ $convertToStartCase(field) }}
 				</option>
 			</select>
-			<div class="invalid-feedback">Please select</div>
 		</div>
 		<div class="mb-3">
-			<label for="field" class="form-label">Does Deployment Speed Matter? </label>
+			<label
+				for="field"
+				class="form-label"
+			>
+				Does Deployment Speed Matter?
+			</label>
 			<select
 				class="form-select"
 				required
 				aria-label="select"
 				v-model="startupDeploymentSpeed"
 			>
-				<option v-for="speed in fastDeploymentInfos" :key="speed" :value="speed">
+				<option
+					v-for="speed in fastDeploymentInfos"
+					:key="speed"
+					:value="speed"
+				>
 					{{ $convertToStartCase(speed) }}
 				</option>
 			</select>
-			<div class="form-text" v-if="doesDeploymentSpeedMatter">
-				Please note that fast deployment requires all team choices to be selected
+			<div
+				class="form-text"
+				v-if="doesDeploymentSpeedMatter"
+			>
+				Please note that fast deployment
+				requires all team choices to be selected
 			</div>
 		</div>
 		<div class="mb-3">
-			<label for="budget" class="form-label">Startup Budget</label>
-			<input type="text" class="form-control form-label"
-				placeholder="Startup Budget" aria-label="Budget"
-				required v-model="startupBudget"
-				@keypress=" $isValidStartupBudget($event,startupBudget)"
+			<label
+				for="budget"
+				class="form-label"
+			>
+				Startup Budget
+			</label>
+			<input
+				type="text"
+				class="form-control form-label"
+				placeholder="Startup Budget"
+				aria-label="Budget"
+				required
+				v-model="startupBudget"
+				@keypress="$isValidStartupBudget($event,startupBudget)"
 			>
 			<div class="form-text">
 				Please include max yearly salary per person.
@@ -83,8 +131,7 @@
 		<div class="mb-3">
 			<button
 				class="btn btn-primary"
-				:disabled="(!startupName || !startupField || !startupDeploymentSpeed || !startupBudget )
-					|| isSubmitFormClicked"
+				:disabled="!isValidStartupForm"
 				@click="!hasFormSubmitted? submitForm() : showModal()"
 			>
 				Submit form
@@ -185,6 +232,13 @@ export default {
 			set(value) {
 				this.$store.commit('startupForm/UPDATE_BUDGET', value);
 			},
+		},
+		isValidStartupForm() {
+			return this.startupName
+				&& this.startupField
+				&& this.startupDeploymentSpeed
+				&& this.startupBudget
+				&& !this.isSubmitFormClicked;
 		},
 	},
 	methods: {

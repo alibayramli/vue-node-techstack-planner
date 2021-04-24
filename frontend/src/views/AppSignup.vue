@@ -57,7 +57,7 @@
 				class="form-text"
 				v-if="passwordAuthMixin && !isValidPasswordAuthMixin"
 			>
-				<span>Please include:</span> <br>
+				Please include: <br>
 				<span
 					v-if="!passwordContainsCapitalLetterAuthMixin"
 				>
