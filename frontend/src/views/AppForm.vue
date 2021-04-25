@@ -5,7 +5,7 @@
 			<input
 				type="text"
 				class="form-control form-label"
-				placeholder="Name of the startup"
+				placeholder="Name of the startup*"
 				aria-label="Startup Name"
 				required
 				v-model="startupName"
@@ -17,7 +17,7 @@
 				for="size"
 				class="form-label"
 			>
-				Startup size
+				Startup size*
 			</label>
 			<select
 				class="form-select"
@@ -39,7 +39,7 @@
 				for="location"
 				class="form-label"
 			>
-				Startup Location
+				Startup Location*
 			</label>
 			<select
 				class="form-select"
@@ -61,7 +61,7 @@
 				for="field"
 				class="form-label"
 			>
-				Startup Field
+				Startup Field*
 			</label>
 			<select
 				class="form-select"
@@ -83,7 +83,7 @@
 				for="field"
 				class="form-label"
 			>
-				Does Deployment Speed Matter?
+				Does Deployment Speed Matter?*
 			</label>
 			<select
 				class="form-select"
@@ -112,7 +112,7 @@
 				for="budget"
 				class="form-label"
 			>
-				Startup Budget
+				Startup Budget*
 			</label>
 			<input
 				type="text"
