@@ -199,7 +199,7 @@ export default {
 				commit('startupForm/RESET_STARTUP_FORM', null, { root: true });
 				commit('RESET_STARTUP_CHOICES');
 				commit('startupForm/UPDATE_HAS_FORM_SUBMITTED', false, { root: true });
-				router.push('/user-startups');
+				router.push('/form');
 			} catch (err) {
 				// eslint-disable-next-line no-console
 				console.log(err);
