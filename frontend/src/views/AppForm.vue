@@ -25,11 +25,14 @@
 				v-model="startupSize"
 			>
 				<option
-					v-for="size in sizes"
+					v-for="[size, numOfEmployees] of Object.entries(sizes)"
 					:key="size"
 					:value="size"
 				>
-					{{ $convertToStartCase(size) }}
+					{{ $convertToStartCase(size) }}:
+					(
+					{{ numOfEmployees }} employees
+					)
 				</option>
 			</select>
 		</div>
@@ -131,8 +134,9 @@
 		<div class="mb-3">
 			<button
 				class="btn btn-primary"
+				style="margin:1rem"
 				:disabled="!isValidStartupForm"
-				@click="!hasFormSubmitted ? submitForm() : showModal()"
+				@click="!hasFormSubmitted ? submitForm() : showSubmitModal()"
 			>
 				Submit form
 				<div
@@ -141,11 +145,18 @@
 					v-if="isSubmitFormSpinnerActive"
 				/>
 			</button>
+			<button
+				class="btn btn-primary"
+				style="margin:1rem"
+				@click="!hasFormSubmitted ? deleteForm() : showResetModal()"
+			>
+				Reset form
+			</button>
 		</div>
 	</div>
 	<Modal
-		v-if="isModalVisible"
-		@closed="closeModal"
+		v-if="isSubmitModalVisible"
+		@closed="closeSubmitModal()"
 		@approved="submitForm()"
 	>
 		<template #header>
@@ -155,6 +166,20 @@
 		<template #body>
 			Previous details are not saved yet.
 			Are you sure to override?
+		</template>
+	</Modal>
+	<Modal
+		v-if="isResetModalVisible"
+		@closed="closeResetModal()"
+		@approved="deleteForm()"
+	>
+		<template #header>
+			Reset form
+		</template>
+
+		<template #body>
+			Previous details are not saved yet.
+			Are you sure to reset?
 		</template>
 	</Modal>
 </template>
@@ -173,7 +198,8 @@ export default {
 			isSubmitted: false,
 			isSubmitFormSpinnerActive: false,
 			isSubmitFormClicked: false,
-			isModalVisible: false,
+			isSubmitModalVisible: false,
+			isResetModalVisible: false,
 		};
 	},
 	computed: {
@@ -261,6 +287,9 @@ export default {
 		...mapActions('startupForm', {
 			createStartupQuery: 'createStartupQuery',
 		}),
+		...mapActions('startupChoices', {
+			deleteForm: 'deleteDraftStartup',
+		}),
 		async submitForm() {
 			this.$store.commit('startupChoices/RESET_STARTUP_CHOICES');
 			this.isSubmitFormSpinnerActive = true;
@@ -270,11 +299,20 @@ export default {
 			this.isSubmitFormSpinnerActive = false;
 			this.isSubmitFormClicked = false;
 		},
-		showModal() {
-			this.isModalVisible = true;
+		resetForm() {
+			this.deleteForm();
 		},
-		closeModal() {
-			this.isModalVisible = false;
+		showSubmitModal() {
+			this.isSubmitModalVisible = true;
+		},
+		showResetModal() {
+			this.isResetModalVisible = true;
+		},
+		closeSubmitModal() {
+			this.isSubmitModalVisible = false;
+		},
+		closeResetModal() {
+			this.isResetModalVisible = false;
 		},
 	},
 };
