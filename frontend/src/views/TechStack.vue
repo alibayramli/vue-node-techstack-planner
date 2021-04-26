@@ -7,7 +7,12 @@
 			is-pickable-general
 			has-details-card
 			is-expanded-by-default
-		/>
+		>
+			<template #competitorInfo>
+				Competitor choices in field:
+				{{ $convertToStartCase(startupField) }}
+			</template>
+		</StatisticsTable>
 		<GeneralStatisticsAccordion :is-pickable-general="true" :stats-obj="generalStats" />
 		<h5 style="margin: 2rem">
 			Team Choices
@@ -41,6 +46,7 @@ export default {
 	computed: {
 		...mapGetters('startupForm', {
 			tools: 'getTools',
+			startupField: 'getField',
 			hasFormSubmitted: 'hasFormSubmitted',
 		}),
 		...mapGetters('statistics', {
