@@ -1,33 +1,43 @@
 <template>
-	<div>
-		<div class="d-flex p-3 container">
-			<button type="button" class="btn btn-secondary"
-				@click="goBackToPreviousLink()"
+	<div class="d-flex p-3">
+		<button
+			type="button"
+			class="btn btn-primary"
+			@click="goBackToPreviousLink()"
+		>
+			Go back
+		</button>
+	</div>
+	<div v-if="!Object.keys(languageDetails).length">
+		<div class="d-flex justify-content-center">
+			no data :(
+		</div>
+	</div>
+	<div v-else>
+		{{ id }} Ecosystem
+	</div>
+	<div class="container">
+		<div
+			class="card m-4"
+			v-for="detailType of Object.keys(languageDetails)"
+			:key="detailType"
+		>
+			<div class="card-header">
+				{{ $convertToStartCase(detailType) }}
+			</div>
+			<p class="card-text"
+				v-for="detail of languageDetails[detailType]"
+				:key="detail"
 			>
-				Go back
-			</button>
+				{{ detail[0] }}
+			</p>
 		</div>
-		<div v-if="!Object.keys(languageDetails).length">
+		<div v-if="isSpinnerActive">
 			<div class="d-flex justify-content-center">
-				no data :(
-			</div>
-		</div>
-		<div class="container">
-			<div class="card" v-for="detailType of Object.keys(languageDetails)" :key="detailType">
-				<div class="card-header">
-					{{ $convertToStartCase(detailType) }}
-				</div>
-				<p class="card-text"
-					v-for="detail of languageDetails[detailType]"
-					:key="detail"
-				>
-					{{ detail[0] }}
-				</p>
-			</div>
-			<div v-if="isSpinnerActive">
-				<div class="d-flex justify-content-center">
-					<div class="spinner-border" role="status" />
-				</div>
+				<div
+					class="spinner-border"
+					role="status"
+				/>
 			</div>
 		</div>
 	</div>
