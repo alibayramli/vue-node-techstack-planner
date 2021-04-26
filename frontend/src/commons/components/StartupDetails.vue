@@ -32,11 +32,14 @@
 				v-model="formInfo.size"
 			>
 				<option
-					v-for="size in sizes"
+					v-for="[size, numOfEmployees] of Object.entries(sizes)"
 					:key="size"
 					:value="size"
 				>
-					{{ $convertToStartCase(size) }}
+					{{ $convertToStartCase(size) }}:
+					(
+					{{ numOfEmployees }} employees
+					)
 				</option>
 			</select>
 		</div>
