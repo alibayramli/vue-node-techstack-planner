@@ -7,7 +7,7 @@
 				for="size"
 				class="form-label"
 			>
-				Startup Name
+				Startup Name*
 			</label>
 			<input
 				type="text"
@@ -23,7 +23,7 @@
 				for="size"
 				class="form-label"
 			>
-				Startup size
+				Startup size*
 			</label>
 			<select
 				class="form-select"
@@ -48,7 +48,7 @@
 				for="location"
 				class="form-label"
 			>
-				Startup Location
+				Startup Location*
 			</label>
 			<select
 				class="form-select"
@@ -69,7 +69,7 @@
 				for="field"
 				class="form-label"
 			>
-				Does Deployment Speed Matter?
+				Does Deployment Speed Matter?*
 			</label>
 			<select
 				class="form-select"
@@ -92,7 +92,7 @@
 				for="field"
 				class="form-label"
 			>
-				Startup Field
+				Startup Field*
 			</label>
 			<select
 				class="form-select"
@@ -104,13 +104,17 @@
 					{{ $convertToStartCase(field) }}
 				</option>
 			</select>
+			<div class="form-text">
+				Please note that modifying the value will lead to
+				resetting suggested programming languages in general section
+			</div>
 		</div>
 		<div class="mb-3">
 			<label
 				for="budget"
 				class="form-label"
 			>
-				Max Budget Per Person (yearly, in USD)
+				Max Budget Per Person (yearly, in USD)*
 			</label>
 			<input
 				type="text"
