@@ -157,7 +157,7 @@
 							:key="key"
 						>
 							<h4>
-								<strong>{{ key }}</strong>
+								<strong>{{ $convertToStartCase(key) }}</strong>
 							</h4>
 							<ul class="list-group list-group-flush">
 								<li
@@ -205,7 +205,7 @@
 							:key="header"
 						>
 							<h4>
-								<strong> {{ header }}</strong>
+								<strong> {{ $convertToStartCase(header) }}</strong>
 							</h4>
 							<br>
 							<div
@@ -213,7 +213,7 @@
 								:key="type"
 							>
 								<h6>
-									<strong> {{ type }}</strong>
+									<strong> {{ $convertToStartCase(type) }}</strong>
 								</h6>
 								<ul class="list-group list-group-flush">
 									<li
