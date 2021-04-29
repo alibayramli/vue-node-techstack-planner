@@ -24,6 +24,7 @@
 					:aria-labelledby="['#heading-' + type]"
 					:data-bs-parent="['#accordion-' + type]"
 				>
+					<slot name="competitorInfo" />
 					<div class="accordion-body">
 						<button class="btn btn-primary"
 							@click="viewBarChart(header,type)"

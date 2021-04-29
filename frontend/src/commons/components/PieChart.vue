@@ -1,20 +1,75 @@
 <template>
 	<p class="d-flex p-5 mt-3">
-		<button type="button" class="btn btn-primary"
+		<button
+			type="button"
+			class="btn btn-primary"
 			@click="goBackToPreviousLink()"
 		>
 			Go back
 		</button>
 	</p>
-	<div class="chart" v-if="Object.keys(valuesByStartupTypes).length">
-		<Chart :chart-data="chartData"
+
+	<div
+		class="accordion accordion-flush"
+		id="accordionFlushPiecChart"
+	>
+		<div
+			class="accordion-item m-5"
+		>
+			<h2
+				class="accordion-header"
+				id="flush-piechart"
+			>
+				<button
+					class="accordion-button collapsed"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#flush-collapsePieChart"
+					aria-expanded="false"
+					aria-controls="flush-collapsePieChart"
+				>
+					{{ $convertToStartCase(type) }}
+				</button>
+			</h2>
+			<div
+				id="flush-collapsePieChart"
+				class="accordion-collapse collapse"
+				aria-labelledby="flush-piechart"
+				data-bs-parent="#accordionFlushPiecChart"
+			>
+				<div class="accordion-body">
+					<div
+						v-for="[key, value] of Object.entries(valuesByStartupTypes)"
+						:key="key"
+					>
+						{{ $convertToStartCase(key) }}: {{ value }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div
+		class="chart"
+		v-if="Object.keys(valuesByStartupTypes).length"
+	>
+		<Chart
+			:chart-data="chartData"
 			:chart-options="chartOptions"
 			:chart-type="chartType"
 		/>
 	</div>
 	<div v-if="!startups.length">
-		<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="m-5 bi bi-cart" viewBox="0 0 16 16">
-			<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="64"
+			height="64"
+			fill="currentColor"
+			class="m-5 bi bi-cart"
+			viewBox="0 0 16 16"
+		>
+			<path
+				d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+			/>
 		</svg>
 		<span class="d-flex justify-content-center">
 			Chart information will be shown when you have saved startups

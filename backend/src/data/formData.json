@@ -8,11 +8,11 @@
             "Australia",
             "Africa"
         ],
-        "sizes": [
-            "small",
-            "mid",
-            "large"
-        ],
+        "sizes": {
+            "small": "1-25",
+            "mid": "25-200",
+            "large": "200-1000"
+        },
         "doesFastDeploymentMatter": [
             "yes",
             "no"
