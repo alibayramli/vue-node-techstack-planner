@@ -75,7 +75,7 @@ module.exports = {
 			res.status(INTERNAL_SERVER_ERROR).send(err);
 		}
 	},
-	refreshToken: async (req, res) => {
+	refreshTokens: async (req, res) => {
 		try {
 			const { refreshToken } = req.body;
 			if (!refreshToken) {
