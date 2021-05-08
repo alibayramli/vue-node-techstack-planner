@@ -32,7 +32,7 @@ describe('User', () => {
 		}
 	});
 
-	it('should be able to create a user', async () => {
+	it('should be able to create an account with correct credentials', async () => {
 		const response = await request(app)
 			.post('/auth/signup')
 			.send({
@@ -44,8 +44,7 @@ describe('User', () => {
 
 		expect(response.status).toBe(200);
 	});
-
-	it('should not create an account if the email is already used', async () => {
+	it('should not create an account if email is already used', async () => {
 		await request(app)
 			.post('/auth/signup')
 			.send({
@@ -83,7 +82,7 @@ describe('User', () => {
 		expect(response.status).toBe(404);
 	});
 
-	it('should not log in if the paswword is incorrect', async () => {
+	it('should not log in if paswword is incorrect', async () => {
 		await request(app)
 			.post('/auth/signup')
 			.send({
@@ -101,7 +100,7 @@ describe('User', () => {
 		expect(response.status).toBe(401);
 	});
 
-	it('should log in to the system', async () => {
+	it('should log in to the system with correct credentials', async () => {
 		await request(app)
 			.post('/auth/signup')
 			.send({
@@ -119,7 +118,7 @@ describe('User', () => {
 		expect(JSON.parse(response.text).title).toBe('login successful');
 	});
 
-	it('should not view unauthorized content', async () => {
+	it('should not view protected content without access token', async () => {
 		const response = await request(app)
 			.get('/startup/user-startups');
 		expect(response.status).toBe(500);
