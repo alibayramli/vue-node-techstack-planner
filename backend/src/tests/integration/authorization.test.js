@@ -119,7 +119,7 @@ describe('User', () => {
 		expect(JSON.parse(response.text).title).toBe('login successful');
 	});
 
-	it('should not show unauthorized content', async () => {
+	it('should not view unauthorized content', async () => {
 		const response = await request(app)
 			.get('/startup/user-startups');
 		expect(response.status).toBe(500);
