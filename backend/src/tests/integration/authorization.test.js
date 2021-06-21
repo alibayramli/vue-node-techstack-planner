@@ -6,32 +6,33 @@ const request = require('supertest');
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const app = require('../../app');
-describe('User', () => {
-	let mongoServer;
-	beforeAll(async () => {
-		mongoServer = new MongoMemoryServer();
-		const URI = await mongoServer.getUri();
+let mongoServer;
+const opts = {
+	useNewUrlParser: true,
+	useCreateIndex: true,
+	useUnifiedTopology: true,
+};
+beforeAll(async () => {
+	mongoServer = new MongoMemoryServer();
+	const URI = await mongoServer.getUri();
 
-		mongoose.connect(URI, {
-			useNewUrlParser: true,
-			useCreateIndex: true,
-			useUnifiedTopology: true,
-		});
-	});
-
-	afterAll(async (done) => {
-		mongoose.disconnect(done);
-		await mongoServer.stop();
-	});
-
-	afterEach(async () => {
-		const collections = await mongoose.connection.db.collections();
-
-		for (const collection of collections) {
-			await collection.deleteMany();
+	mongoose.connect(URI, opts, (err) => {
+		if (err) {
+			console.error(err);
 		}
 	});
-
+});
+afterAll(async (done) => {
+	mongoose.disconnect(done);
+	await mongoServer.stop();
+});
+afterEach(async () => {
+	const collections = await mongoose.connection.db.collections();
+	for (const collection of collections) {
+		await collection.deleteMany();
+	}
+});
+describe('User', () => {
 	it('should be able to create an account with correct credentials', async () => {
 		const response = await request(app)
 			.post('/auth/signup')
