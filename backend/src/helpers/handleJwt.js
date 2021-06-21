@@ -1,9 +1,9 @@
 const JWT = require('jsonwebtoken');
 const client = require('../dbs/initRedis');
-const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET || 'test-token';
-const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET || 'test-token';
-const accessTokenLife = process.env.JWT_ACCESS_TOKEN_LIFE || '1m';
-const refreshTokenLife = process.env.JWT_REFRESH_TOKEN_LIFE || '100';
+const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
+const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET;
+const accessTokenLife = process.env.JWT_ACCESS_TOKEN_LIFE;
+const refreshTokenLife = process.env.JWT_REFRESH_TOKEN_LIFE;
 const UNAUTHORIZED_STATUS = 401;
 module.exports = {
 	signAccessToken: (userId) => {
