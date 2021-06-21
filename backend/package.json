@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "cd src && nodemon -r dotenv/config server.js",
-    "test": "jest"
+    "test": "jest --watchAll --verbose --silent --runInBand"
   },
   "keywords": [
     "techstack",
